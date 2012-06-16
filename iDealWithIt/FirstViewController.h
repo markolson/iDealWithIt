@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  ViewController.h
 //  iDealWithIt
 //
 //  Created by mark olson on 6/16/12.

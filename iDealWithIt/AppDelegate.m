@@ -10,6 +10,7 @@
 
 #import "FirstViewController.h"
 #import "CaptureViewController.h"
+#import "PreviewViewController.h"
 #import "TestFlight.h"
 
 @implementation AppDelegate
@@ -26,15 +27,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /**
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"f904d8336e0e5e80ab1eec89ea382cae_MTAwODE4MjAxMi0wNi0xNiAxMzozMjo0NC43Mzg0ODU"];
     [TestFlight passCheckpoint:@"Started App"];
+     **/
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil] autorelease];
-        viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPhone" bundle:nil] autorelease];
+        UIImage *mr_rogers = [UIImage imageNamed:@"mr-rogers.gif"];
+        viewController2 = [[[PreviewViewController alloc] initWithImage:mr_rogers] autorelease];
     } else {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil] autorelease];
         viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPad" bundle:nil] autorelease];

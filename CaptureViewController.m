@@ -7,14 +7,17 @@
 //
 
 #import "CaptureViewController.h"
+#import "PreviewViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
+
+
 
 @interface CaptureViewController ()
 
 @end
 
 @implementation CaptureViewController
-@synthesize image;
+@synthesize rawimage;
 @synthesize iView;
 
 #pragma mark Initialization
@@ -26,6 +29,8 @@
         self.tabBarItem.tag = 1;
         self.tabBarItem.image = [UIImage imageNamed:@"camera"];
     }
+    //[FWKeysHelper setFaceAPI:@"2f67db92fdb19ae9c269a4bdae34a46f"];
+    //[FWKeysHelper setFaceSecretAPI:@"7414ec16d863f65caa5c3169a8112045"];
     return self;
 }
 
@@ -38,8 +43,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return NO;
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
 #pragma mark Functionality
 
 - (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
@@ -77,11 +84,57 @@
 - (void) imagePickerController: (UIImagePickerController *) picker
  didFinishPickingMediaWithInfo: (NSDictionary *) info {
     
-    self.image = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
-    iView.image = self.image;
+    self.rawimage = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
+    //[self recognize];
+    //iView.image = self.rawimage;
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [picker release];
 }
+/**
+- (void) recognize {
+    FWObject *face = [FWObject new];
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    
+    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(self.rawimage, 1.0)
+                                           imageName:@"recognize"
+                                           extension:@"jpg"
+                                         andFullPath:@""];
+    fwImage.tag = 999;
+    [images addImagePOSTToArray:fwImage];
+    
+    [face setPostImages:images];
+    face.isRESTObject = NO;
+    face.wantRecognition = NO;
+    
+    [face setDetector:DETECTOR_TYPE_DEFAULT];
+    [face setFormat:FORMAT_TYPE_JSON];
+    
+    [[FaceWrapper instance] detectFaceWithFWObject:face
+                                   runInBackground:NO
+                                    completionData:^(NSDictionary *response, int tagImagePost) {
+        NSLog(@"Reponse: %@", response);
+    }];
+}
 
+- (void)controllerDidFindFaceItemWithObject:(NSDictionary *)faces postImageTag:(int)tag
+{
+    //tag = -1 means NO TAG, this tag is only in available to check POST images
+    NSLog(@"DETECTED photo tag: %d, %@", tag, faces);
+    
+    if ([faces count] == 0)
+    {
+        NSLog(@"NO FACES DETECTED - %@", faces);
+    }
+    else
+    {
+        ParseObject *parsed = [[ParseObject alloc] initWithRawDictionary:faces];
+        
+        [parsed loopOverFaces:^(NSDictionary *face) {
+            
+            NSLog(@"FACE DETECTED: %@", face);
+        }]; 
+    }
+}
+**/
 @end

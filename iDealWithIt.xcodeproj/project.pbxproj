@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4D2F7DC4158D30DF00E44CC8 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */; };
 		4D2F7DC5158D30DF00E44CC8 /* CaptureViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */; };
+		4D3F4435158E3C3100E17DFD /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F4433158E3C3100E17DFD /* PreviewViewController.m */; };
+		4D3F4436158E3C3100E17DFD /* PreviewViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */; };
+		4D3F4439158E3D0700E17DFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3F4438158E3D0700E17DFD /* QuartzCore.framework */; };
+		4D3F443B158E3D0E00E17DFD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3F443A158E3D0E00E17DFD /* OpenGLES.framework */; };
+		4D3F443D158E3D1400E17DFD /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3F443C158E3D1400E17DFD /* GLKit.framework */; };
 		4D8648BC158D2971003BEBD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648BB158D2971003BEBD5 /* UIKit.framework */; };
 		4D8648BE158D2971003BEBD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648BD158D2971003BEBD5 /* Foundation.framework */; };
 		4D8648C0158D2971003BEBD5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648BF158D2971003BEBD5 /* CoreGraphics.framework */; };
@@ -22,8 +27,6 @@
 		4D8648DA158D2971003BEBD5 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8648D9158D2971003BEBD5 /* second@2x.png */; };
 		4D8648E0158D2971003BEBD5 /* FirstViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8648DE158D2971003BEBD5 /* FirstViewController_iPad.xib */; };
 		4D8648E6158D2971003BEBD5 /* CaptureViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8648E4158D2971003BEBD5 /* CaptureViewController_iPad.xib */; };
-		4D8648ED158D2997003BEBD5 /* WrapperFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648EC158D2997003BEBD5 /* WrapperFace.framework */; };
-		4D8648EF158D29A1003BEBD5 /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648EE158D29A1003BEBD5 /* AWSiOSSDK.framework */; };
 		4D8648F1158D29AD003BEBD5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648F0158D29AD003BEBD5 /* libz.dylib */; };
 		4D8648F6158D2A11003BEBD5 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648F5158D2A11003BEBD5 /* libTestFlight.a */; };
 		4D8648FA158D2A1C003BEBD5 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8648F7158D2A1C003BEBD5 /* 111-user.png */; };
@@ -31,12 +34,21 @@
 		4D8648FC158D2A1C003BEBD5 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8648F9158D2A1C003BEBD5 /* camera.png */; };
 		4D8648FF158D2C5B003BEBD5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648FE158D2C5B003BEBD5 /* MobileCoreServices.framework */; };
 		4D864904158D2DAF003BEBD5 /* FirstViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */; };
+		4D913E10158E48630024C085 /* mr-rogers.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D913E0F158E48630024C085 /* mr-rogers.gif */; };
+		4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD174CA158E54A600DC7B37 /* FWImageController.nib */; };
+		4DD174CD158E54A600DC7B37 /* WrapperFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD174CB158E54A600DC7B37 /* WrapperFace.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D2F7DC1158D30DE00E44CC8 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureViewController.h; path = ../CaptureViewController.h; sourceTree = "<group>"; };
 		4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureViewController.m; path = ../CaptureViewController.m; sourceTree = "<group>"; };
 		4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CaptureViewController_iPhone.xib; path = ../CaptureViewController_iPhone.xib; sourceTree = "<group>"; };
+		4D3F4432158E3C3100E17DFD /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
+		4D3F4433158E3C3100E17DFD /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
+		4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewViewController_iPhone.xib; sourceTree = "<group>"; };
+		4D3F4438158E3D0700E17DFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4D3F443A158E3D0E00E17DFD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4D3F443C158E3D1400E17DFD /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4D8648B7158D2971003BEBD5 /* iDealWithIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDealWithIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8648BB158D2971003BEBD5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D8648BD158D2971003BEBD5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,8 +67,6 @@
 		4D8648D9158D2971003BEBD5 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		4D8648DF158D2971003BEBD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController_iPad.xib; sourceTree = "<group>"; };
 		4D8648E5158D2971003BEBD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CaptureViewController_iPad.xib; sourceTree = "<group>"; };
-		4D8648EC158D2997003BEBD5 /* WrapperFace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WrapperFace.framework; sourceTree = "<group>"; };
-		4D8648EE158D29A1003BEBD5 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
 		4D8648F0158D29AD003BEBD5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4D8648F5158D2A11003BEBD5 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		4D8648F7158D2A1C003BEBD5 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
@@ -65,6 +75,9 @@
 		4D8648FD158D2BB9003BEBD5 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		4D8648FE158D2C5B003BEBD5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController_iPhone.xib; sourceTree = "<group>"; };
+		4D913E0F158E48630024C085 /* mr-rogers.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mr-rogers.gif"; sourceTree = "<group>"; };
+		4DD174CA158E54A600DC7B37 /* FWImageController.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = FWImageController.nib; sourceTree = "<group>"; };
+		4DD174CB158E54A600DC7B37 /* WrapperFace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WrapperFace.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,14 +85,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D3F443D158E3D1400E17DFD /* GLKit.framework in Frameworks */,
+				4D3F443B158E3D0E00E17DFD /* OpenGLES.framework in Frameworks */,
+				4D3F4439158E3D0700E17DFD /* QuartzCore.framework in Frameworks */,
 				4D8648FF158D2C5B003BEBD5 /* MobileCoreServices.framework in Frameworks */,
 				4D8648F1158D29AD003BEBD5 /* libz.dylib in Frameworks */,
 				4D8648BC158D2971003BEBD5 /* UIKit.framework in Frameworks */,
 				4D8648BE158D2971003BEBD5 /* Foundation.framework in Frameworks */,
 				4D8648C0158D2971003BEBD5 /* CoreGraphics.framework in Frameworks */,
-				4D8648ED158D2997003BEBD5 /* WrapperFace.framework in Frameworks */,
-				4D8648EF158D29A1003BEBD5 /* AWSiOSSDK.framework in Frameworks */,
 				4D8648F6158D2A11003BEBD5 /* libTestFlight.a in Frameworks */,
+				4DD174CD158E54A600DC7B37 /* WrapperFace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,11 +121,13 @@
 		4D8648BA158D2971003BEBD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DD174C8158E54A600DC7B37 /* WrapperFace.embeddedframework */,
+				4D3F443C158E3D1400E17DFD /* GLKit.framework */,
+				4D3F443A158E3D0E00E17DFD /* OpenGLES.framework */,
+				4D3F4438158E3D0700E17DFD /* QuartzCore.framework */,
 				4D8648FE158D2C5B003BEBD5 /* MobileCoreServices.framework */,
 				4D8648F0158D29AD003BEBD5 /* libz.dylib */,
 				4D8648F5158D2A11003BEBD5 /* libTestFlight.a */,
-				4D8648EE158D29A1003BEBD5 /* AWSiOSSDK.framework */,
-				4D8648EC158D2997003BEBD5 /* WrapperFace.framework */,
 				4D8648BB158D2971003BEBD5 /* UIKit.framework */,
 				4D8648BD158D2971003BEBD5 /* Foundation.framework */,
 				4D8648BF158D2971003BEBD5 /* CoreGraphics.framework */,
@@ -130,6 +147,8 @@
 				4D8648CB158D2971003BEBD5 /* AppDelegate.m */,
 				4D8648CD158D2971003BEBD5 /* FirstViewController.h */,
 				4D8648CE158D2971003BEBD5 /* FirstViewController.m */,
+				4D3F4432158E3C3100E17DFD /* PreviewViewController.h */,
+				4D3F4433158E3C3100E17DFD /* PreviewViewController.m */,
 				4D8648C2158D2971003BEBD5 /* Supporting Files */,
 			);
 			path = iDealWithIt;
@@ -151,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				4D8648D7158D2971003BEBD5 /* second.png */,
+				4D913E0F158E48630024C085 /* mr-rogers.gif */,
 				4D8648F7158D2A1C003BEBD5 /* 111-user.png */,
 				4D8648F8158D2A1C003BEBD5 /* 165-glasses-3.png */,
 				4D8648F9158D2A1C003BEBD5 /* camera.png */,
@@ -166,6 +186,7 @@
 			children = (
 				4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */,
 				4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */,
+				4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -177,6 +198,23 @@
 				4D8648E4158D2971003BEBD5 /* CaptureViewController_iPad.xib */,
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		4DD174C8158E54A600DC7B37 /* WrapperFace.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				4DD174C9158E54A600DC7B37 /* Resources */,
+				4DD174CB158E54A600DC7B37 /* WrapperFace.framework */,
+			);
+			path = WrapperFace.embeddedframework;
+			sourceTree = "<group>";
+		};
+		4DD174C9158E54A600DC7B37 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4DD174CA158E54A600DC7B37 /* FWImageController.nib */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +280,9 @@
 				4D8648FC158D2A1C003BEBD5 /* camera.png in Resources */,
 				4D864904158D2DAF003BEBD5 /* FirstViewController_iPhone.xib in Resources */,
 				4D2F7DC5158D30DF00E44CC8 /* CaptureViewController_iPhone.xib in Resources */,
+				4D3F4436158E3C3100E17DFD /* PreviewViewController_iPhone.xib in Resources */,
+				4D913E10158E48630024C085 /* mr-rogers.gif in Resources */,
+				4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +297,7 @@
 				4D8648CC158D2971003BEBD5 /* AppDelegate.m in Sources */,
 				4D8648CF158D2971003BEBD5 /* FirstViewController.m in Sources */,
 				4D2F7DC4158D30DF00E44CC8 /* CaptureViewController.m in Sources */,
+				4D3F4435158E3C3100E17DFD /* PreviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +382,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WrapperFace.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDealWithIt/iDealWithIt-Prefix.pch";
@@ -347,6 +390,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WrapperFace.embeddedframework\"",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -362,6 +410,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WrapperFace.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDealWithIt/iDealWithIt-Prefix.pch";
@@ -369,6 +418,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/WrapperFace.embeddedframework\"",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E19A52B8-511C-408E-86B4-DBB16822E9DA";

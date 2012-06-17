@@ -61,11 +61,20 @@
 
     
     //POST
-    UIImage *image = self.raw_image;
+    UIImage *image = nil;
     NSMutableArray *images = [[NSMutableArray alloc] init];
-    
+    NSLog(@"raw_image is %fx%f", self.raw_image.size.height, self.raw_image.size.width);
+    if(self.raw_image.size.height > 900 || self.raw_image.size.width > 900)
+    {
+        float scale = MAX(self.raw_image.size.height, self.raw_image.size.width)/900.0;
+        
+        image = [self.raw_image resizedImage:CGSizeMake(self.raw_image.size.width/scale, self.raw_image.size.height/scale) interpolationQuality:kCGInterpolationLow];
+    }else{
+        image = self.raw_image;
+    }
+    NSLog(@"raw_image is %fx%f", image.size.height, image.size.width);
     FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(image, 1.0)
-                                           imageName:@"girls"
+                                           imageName:@"resized"
                                            extension:@"jpg"
                                          andFullPath:@""];
     fwImage.tag = 999;
@@ -74,65 +83,18 @@
     [object setPostImages:images];
     
     object.isRESTObject = NO;
-    //END POST
-    
     object.wantRecognition = NO;
     
     [object setDetector:DETECTOR_TYPE_DEFAULT];
     [object setFormat:FORMAT_TYPE_JSON];
     
-    NSMutableArray *attr = [NSMutableArray new];
-    [attr addAttributeToArray:ATTRIBUTE_GENDER];
-    [attr addAttributeToArray:ATTRIBUTE_GLASSES];
-    [attr addAttributeToArray:ATTRIBUTE_SMILING];
     
-    [object setAttributes:attr];
-    [object setCallback:@""];
-    [object setCallback_url:nil];
-    
-    FWImageController *controller = [[FWImageController alloc] initWithNibName:@"FWImageController" bundle:nil];
-    controller.objects = [NSArray arrayWithObjects:object, nil];
-    controller.delegate = self;
-    
-    [self presentModalViewController:controller animated:YES];
-}
-
-#pragma -
-#pragma FWImageControllerDelegate methods
-
-- (void)controllerDidFindFaceItemWithObject:(NSDictionary *)faces postImageTag:(int)tag
-{
-    //tag = -1 means NO TAG, this tag is only in available to check POST images
-    NSLog(@"DETECTED photo tag: %d, %@", tag, faces);
-    
-    if ([faces count] == 0)
-    {
-        NSLog(@"NO FACES DETECTED - %@", faces);
-    }
-    else
-    {
-        ParseObject *parsed = [[ParseObject alloc] initWithRawDictionary:faces];
-        
-        [parsed loopOverFaces:^(NSDictionary *face) {
-            
-            NSLog(@"FACE DETECTED: %@", face);
-        }]; 
-    }
-}
-
-- (void)controllerDidRecognizeFaceItemWithObject:(NSDictionary *)faces postImageTag:(int)tag
-{
-    //tag = -1 means NO TAG, this tag is only in available to check POST images
-    NSLog(@"RECOGNIZED photo tag: %d", tag);
-    
-    if ([faces count] == 0)
-    {
-        NSLog(@"NO FACES RECOGNIZED - %@", faces);
-    }
-    else
-    {
-        NSLog(@"RECOGNIZED : %@", faces);
-    }
+    [[FaceWrapper instance] detectFaceWithFWObject:object 
+                                   runInBackground:NO
+                                    completionData:^(NSDictionary *response, int tagImagePost) 
+     {
+         NSLog(@"response: %@", response);
+     }];
 }
 
 @end

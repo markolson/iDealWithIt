@@ -18,7 +18,6 @@
 
 @implementation CaptureViewController
 @synthesize rawimage;
-@synthesize iView;
 
 #pragma mark Initialization
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,8 +28,6 @@
         self.tabBarItem.tag = 1;
         self.tabBarItem.image = [UIImage imageNamed:@"camera"];
     }
-    //[FWKeysHelper setFaceAPI:@"2f67db92fdb19ae9c269a4bdae34a46f"];
-    //[FWKeysHelper setFaceSecretAPI:@"7414ec16d863f65caa5c3169a8112045"];
     return self;
 }
 
@@ -75,8 +72,12 @@
 
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    [self.tabBarController setSelectedIndex:0];
+    [self dismissViewControllerAnimated:NO completion:^{
+        PreviewViewController *controller = [[PreviewViewController alloc] initWithImage:[UIImage imageNamed:@"mr-rogers.gif"]];
+        
+        [self presentModalViewController:controller animated:NO];
+    }];
+    //[self.tabBarController setSelectedIndex:0];
     [picker release];
 }
 
@@ -85,56 +86,14 @@
  didFinishPickingMediaWithInfo: (NSDictionary *) info {
     
     self.rawimage = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
-    //[self recognize];
-    //iView.image = self.rawimage;
-    
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    [picker release];
-}
-/**
-- (void) recognize {
-    FWObject *face = [FWObject new];
-    NSMutableArray *images = [[NSMutableArray alloc] init];
-    
-    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(self.rawimage, 1.0)
-                                           imageName:@"recognize"
-                                           extension:@"jpg"
-                                         andFullPath:@""];
-    fwImage.tag = 999;
-    [images addImagePOSTToArray:fwImage];
-    
-    [face setPostImages:images];
-    face.isRESTObject = NO;
-    face.wantRecognition = NO;
-    
-    [face setDetector:DETECTOR_TYPE_DEFAULT];
-    [face setFormat:FORMAT_TYPE_JSON];
-    
-    [[FaceWrapper instance] detectFaceWithFWObject:face
-                                   runInBackground:NO
-                                    completionData:^(NSDictionary *response, int tagImagePost) {
-        NSLog(@"Reponse: %@", response);
-    }];
-}
-
-- (void)controllerDidFindFaceItemWithObject:(NSDictionary *)faces postImageTag:(int)tag
-{
-    //tag = -1 means NO TAG, this tag is only in available to check POST images
-    NSLog(@"DETECTED photo tag: %d, %@", tag, faces);
-    
-    if ([faces count] == 0)
-    {
-        NSLog(@"NO FACES DETECTED - %@", faces);
-    }
-    else
-    {
-        ParseObject *parsed = [[ParseObject alloc] initWithRawDictionary:faces];
         
-        [parsed loopOverFaces:^(NSDictionary *face) {
-            
-            NSLog(@"FACE DETECTED: %@", face);
-        }]; 
-    }
+    [self dismissViewControllerAnimated:NO completion:^{
+        PreviewViewController *controller = [[PreviewViewController alloc] initWithImage:self.rawimage];
+        
+        [self presentModalViewController:controller animated:NO];
+    }];
+    [picker release];
+    
+
 }
-**/
 @end

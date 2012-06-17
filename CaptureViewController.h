@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GLKit/GLKit.h>
 
 @interface CaptureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (retain, nonatomic) UIImage *rawimage;
-@property (retain, nonatomic) IBOutlet GLKView *iView;
 @end

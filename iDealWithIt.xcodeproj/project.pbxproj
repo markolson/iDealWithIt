@@ -37,6 +37,10 @@
 		4D913E10158E48630024C085 /* mr-rogers.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D913E0F158E48630024C085 /* mr-rogers.gif */; };
 		4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD174CA158E54A600DC7B37 /* FWImageController.nib */; };
 		4DD174CD158E54A600DC7B37 /* WrapperFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD174CB158E54A600DC7B37 /* WrapperFace.framework */; };
+		4DDE03A2158E6D3B00066CF1 /* FaceRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03A1158E6D3B00066CF1 /* FaceRecognition.m */; };
+		4DDE03A8158E730300066CF1 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03A7158E730300066CF1 /* UIImage+Resize.m */; };
+		4DDE03AB158E733700066CF1 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03AA158E733700066CF1 /* UIImage+RoundedCorner.m */; };
+		4DDE03AE158E736100066CF1 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03AD158E736100066CF1 /* UIImage+Alpha.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +82,14 @@
 		4D913E0F158E48630024C085 /* mr-rogers.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mr-rogers.gif"; sourceTree = "<group>"; };
 		4DD174CA158E54A600DC7B37 /* FWImageController.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = FWImageController.nib; sourceTree = "<group>"; };
 		4DD174CB158E54A600DC7B37 /* WrapperFace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WrapperFace.framework; sourceTree = "<group>"; };
+		4DDE03A0158E6D3B00066CF1 /* FaceRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRecognition.h; sourceTree = "<group>"; };
+		4DDE03A1158E6D3B00066CF1 /* FaceRecognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceRecognition.m; sourceTree = "<group>"; };
+		4DDE03A6158E72DB00066CF1 /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		4DDE03A7158E730300066CF1 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		4DDE03A9158E732500066CF1 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		4DDE03AA158E733700066CF1 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		4DDE03AC158E734600066CF1 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		4DDE03AD158E736100066CF1 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,13 +150,15 @@
 		4D8648C1158D2971003BEBD5 /* iDealWithIt */ = {
 			isa = PBXGroup;
 			children = (
+				4DDE03A5158E72C100066CF1 /* ImageManipulation */,
+				4DDE03A4158E6D4000066CF1 /* Faces */,
 				4D8648F4158D29C0003BEBD5 /* iPad */,
 				4D8648F3158D29BA003BEBD5 /* iPhone */,
 				4D8648F2158D29B4003BEBD5 /* assets */,
 				4D8648CA158D2971003BEBD5 /* AppDelegate.h */,
+				4D8648CB158D2971003BEBD5 /* AppDelegate.m */,
 				4D2F7DC1158D30DE00E44CC8 /* CaptureViewController.h */,
 				4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */,
-				4D8648CB158D2971003BEBD5 /* AppDelegate.m */,
 				4D8648CD158D2971003BEBD5 /* FirstViewController.h */,
 				4D8648CE158D2971003BEBD5 /* FirstViewController.m */,
 				4D3F4432158E3C3100E17DFD /* PreviewViewController.h */,
@@ -215,6 +229,28 @@
 				4DD174CA158E54A600DC7B37 /* FWImageController.nib */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4DDE03A4158E6D4000066CF1 /* Faces */ = {
+			isa = PBXGroup;
+			children = (
+				4DDE03A0158E6D3B00066CF1 /* FaceRecognition.h */,
+				4DDE03A1158E6D3B00066CF1 /* FaceRecognition.m */,
+			);
+			name = Faces;
+			sourceTree = "<group>";
+		};
+		4DDE03A5158E72C100066CF1 /* ImageManipulation */ = {
+			isa = PBXGroup;
+			children = (
+				4DDE03A6158E72DB00066CF1 /* UIImage+Resize.h */,
+				4DDE03A7158E730300066CF1 /* UIImage+Resize.m */,
+				4DDE03A9158E732500066CF1 /* UIImage+RoundedCorner.h */,
+				4DDE03AA158E733700066CF1 /* UIImage+RoundedCorner.m */,
+				4DDE03AC158E734600066CF1 /* UIImage+Alpha.h */,
+				4DDE03AD158E736100066CF1 /* UIImage+Alpha.m */,
+			);
+			name = ImageManipulation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +334,10 @@
 				4D8648CF158D2971003BEBD5 /* FirstViewController.m in Sources */,
 				4D2F7DC4158D30DF00E44CC8 /* CaptureViewController.m in Sources */,
 				4D3F4435158E3C3100E17DFD /* PreviewViewController.m in Sources */,
+				4DDE03A2158E6D3B00066CF1 /* FaceRecognition.m in Sources */,
+				4DDE03A8158E730300066CF1 /* UIImage+Resize.m in Sources */,
+				4DDE03AB158E733700066CF1 /* UIImage+RoundedCorner.m in Sources */,
+				4DDE03AE158E736100066CF1 /* UIImage+Alpha.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

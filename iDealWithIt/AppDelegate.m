@@ -37,8 +37,9 @@
     UIViewController *viewController1, *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil] autorelease];
-        UIImage *mr_rogers = [UIImage imageNamed:@"mr-rogers.gif"];
-        viewController2 = [[[PreviewViewController alloc] initWithImage:mr_rogers] autorelease];
+        //UIImage *mr_rogers = [UIImage imageNamed:@"mr-rogers.gif"];
+        //viewController2 = [[[PreviewViewController alloc] initWithImage:mr_rogers] autorelease];
+        viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPhone" bundle:nil] autorelease];
     } else {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil] autorelease];
         viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPad" bundle:nil] autorelease];

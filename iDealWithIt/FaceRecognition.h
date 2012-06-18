@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WrapperFace/FWImageController.h>
+#import <WrapperFace/FWKeysHelper.h>
+
+#import "UIImage+Resize.h"
+
 
 @interface FaceRecognition : NSObject
 
+@property (nonatomic, strong) UIImage *original;
+@property (nonatomic, retain) id delegate;
 @end

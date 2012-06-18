@@ -41,6 +41,7 @@
 		4DDE03A8158E730300066CF1 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03A7158E730300066CF1 /* UIImage+Resize.m */; };
 		4DDE03AB158E733700066CF1 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03AA158E733700066CF1 /* UIImage+RoundedCorner.m */; };
 		4DDE03AE158E736100066CF1 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03AD158E736100066CF1 /* UIImage+Alpha.m */; };
+		4DDE03B1158EB11A00066CF1 /* notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DDE03B0158EB11A00066CF1 /* notes.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		4DDE03AA158E733700066CF1 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		4DDE03AC158E734600066CF1 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		4DDE03AD158E736100066CF1 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		4DDE03B0158EB11A00066CF1 /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				4D3F4432158E3C3100E17DFD /* PreviewViewController.h */,
 				4D3F4433158E3C3100E17DFD /* PreviewViewController.m */,
 				4D8648C2158D2971003BEBD5 /* Supporting Files */,
+				4DDE03B0158EB11A00066CF1 /* notes.txt */,
 			);
 			path = iDealWithIt;
 			sourceTree = "<group>";
@@ -198,8 +201,8 @@
 		4D8648F3158D29BA003BEBD5 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */,
 				4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */,
+				4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */,
 				4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */,
 			);
 			name = iPhone;
@@ -319,6 +322,7 @@
 				4D3F4436158E3C3100E17DFD /* PreviewViewController_iPhone.xib in Resources */,
 				4D913E10158E48630024C085 /* mr-rogers.gif in Resources */,
 				4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */,
+				4DDE03B1158EB11A00066CF1 /* notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

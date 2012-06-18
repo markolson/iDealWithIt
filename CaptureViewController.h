@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIImage+Resize.h"
 
 @interface CaptureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (retain, nonatomic) UIImage *rawimage;
 @end

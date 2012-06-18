@@ -1,9 +1,5 @@
 
 #import <UIKit/UIKit.h>
-
-#import <WrapperFace/FWImageController.h>
-#import <WrapperFace/FWKeysHelper.h>
-
 #import "UIImage+Resize.h"
 
 @interface PreviewViewController : UIViewController

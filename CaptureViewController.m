@@ -17,7 +17,6 @@
 @end
 
 @implementation CaptureViewController
-@synthesize rawimage;
 
 #pragma mark Initialization
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self startCameraControllerFromViewController: self usingDelegate: self];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -72,12 +72,7 @@
 
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [self dismissViewControllerAnimated:NO completion:^{
-        PreviewViewController *controller = [[PreviewViewController alloc] initWithImage:[UIImage imageNamed:@"mr-rogers.gif"]];
-        
-        [self presentModalViewController:controller animated:NO];
-    }];
-    //[self.tabBarController setSelectedIndex:0];
+    [self.tabBarController setSelectedIndex:0];
     [picker release];
 }
 
@@ -85,15 +80,12 @@
 - (void) imagePickerController: (UIImagePickerController *) picker
  didFinishPickingMediaWithInfo: (NSDictionary *) info {
     
-    self.rawimage = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
+    UIImage *raw = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
         
-    [self dismissViewControllerAnimated:NO completion:^{
-        PreviewViewController *controller = [[PreviewViewController alloc] initWithImage:self.rawimage];
-        
-        [self presentModalViewController:controller animated:NO];
-    }];
+    [self dismissViewControllerAnimated:NO completion:NULL];
     [picker release];
     
-
+    PreviewViewController *worker = [[[PreviewViewController alloc] initWithImage:raw] autorelease];
+    [self.view.window setRootViewController:worker];
 }
 @end

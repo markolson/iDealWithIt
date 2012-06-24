@@ -34,8 +34,17 @@
 {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    [self startCameraControllerFromViewController: self usingDelegate: self];
+    
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.tabBarController.selectedViewController == self)
+    {
+        [self startCameraControllerFromViewController: self usingDelegate: self];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -60,7 +69,7 @@
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-    cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    cameraUI.mediaTypes = [[[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil] autorelease];
     
     cameraUI.allowsEditing = NO;
     
@@ -73,6 +82,8 @@
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     [self.tabBarController setSelectedIndex:0];
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
     [picker release];
 }
 
@@ -84,7 +95,6 @@
         
     [self dismissViewControllerAnimated:NO completion:NULL];
     [picker release];
-    
     PreviewViewController *worker = [[[PreviewViewController alloc] initWithImage:raw] autorelease];
     [self.view.window setRootViewController:worker];
 }

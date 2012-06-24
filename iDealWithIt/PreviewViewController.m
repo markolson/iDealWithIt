@@ -34,18 +34,10 @@
     if(raw_image.size.height > iView.frame.size.height || raw_image.size.width > iView.frame.size.width)
     {
         float extra_height = raw_image.size.height - iView.frame.size.height;
-        float extra_width = raw_image.size.width - iView.frame.size.width;
-
-        /**
-        if(extra_height < extra_width)
-        {
-            scale = raw_image.size.height/iView.frame.size.height;
-        }else{
-            scale = raw_image.size.width/iView.frame.size.width;
-        }**/
         if(extra_height > 0) { scale = raw_image.size.height/iView.frame.size.height; }
     }
-
+    
+    FaceRecognition *recognizer = [[FaceRecognition alloc] initWithImage:raw_image andDelegate:self];
     UIImage *preview = [raw_image resizedImage:CGSizeMake(raw_image.size.width/scale, raw_image.size.height/scale) interpolationQuality:kCGInterpolationLow];
     
     NSLog(@"oh boy Frame %fx%f Image %fx%f,  %f -> endImage %fx%f",
@@ -54,9 +46,11 @@
         scale,
         raw_image.size.height/scale, raw_image.size.width/scale
     );
-
+    
 
     [self.iView setImage:preview];
+    [recognizer recognizeWithFace];
+    [recognizer release];
     
 
 }

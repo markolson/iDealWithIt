@@ -1,6 +1,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImage+Resize.h"
+#import "FaceRecognition.h"
 
 @interface PreviewViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIImageView *iView;

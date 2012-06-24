@@ -31,11 +31,11 @@
 
 #pragma mark Internal Stuff.
 
--(void) IOS {
+-(void) recognizeWithIOS {
     
 }
 
--(void) Face {
+-(void) recognizeWithFace {
     
     [FWKeysHelper setFaceAPI:@"2f67db92fdb19ae9c269a4bdae34a46f"];
     [FWKeysHelper setFaceSecretAPI:@"7414ec16d863f65caa5c3169a8112045"];
@@ -55,11 +55,15 @@
     }else{
         image = self.original;
     }
-    NSLog(@"raw_image is %fx%f", image.size.height, image.size.width);
-    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(image, 1.0)
+    NSLog(@"raw_image is %fx%f (%d)", image.size.height, image.size.width, image.imageOrientation);
+    UIImage *rotated = [image scaleAndRotate];
+    [image release];
+
+    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(rotated, 1.0)
                                            imageName:@"resized"
                                            extension:@"jpg"
                                          andFullPath:@""];
+
     fwImage.tag = 999;
     [images addImagePOSTToArray:fwImage];
     

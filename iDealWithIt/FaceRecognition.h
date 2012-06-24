@@ -17,4 +17,8 @@
 
 @property (nonatomic, strong) UIImage *original;
 @property (nonatomic, retain) id delegate;
+
+- (void) recognizeWithFace;
+- (id)initWithImage:(UIImage *)image andDelegate:(id)delegate;
+
 @end

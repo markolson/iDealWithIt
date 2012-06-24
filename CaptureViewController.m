@@ -7,10 +7,7 @@
 //
 
 #import "CaptureViewController.h"
-#import "PreviewViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
-
-
 
 @interface CaptureViewController ()
 
@@ -84,7 +81,6 @@
     [self.tabBarController setSelectedIndex:0];
     [self dismissViewControllerAnimated:YES completion:NULL];
     
-    [picker release];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -95,7 +91,7 @@
         
     [self dismissViewControllerAnimated:NO completion:NULL];
     [picker release];
-    PreviewViewController *worker = [[[PreviewViewController alloc] initWithImage:raw] autorelease];
-    [self.view.window setRootViewController:worker];
+    
+    [[[UIApplication sharedApplication] delegate] showPreviewWithImage:raw];
 }
 @end

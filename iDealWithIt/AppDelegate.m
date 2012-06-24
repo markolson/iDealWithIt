@@ -27,11 +27,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"f904d8336e0e5e80ab1eec89ea382cae_MTAwODE4MjAxMi0wNi0xNiAxMzozMjo0NC43Mzg0ODU"];
     [TestFlight passCheckpoint:@"Started App"];
-    
+
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2;
@@ -49,6 +48,12 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void) showPreviewWithImage:(UIImage *)raw
+{
+    PreviewViewController *worker = [[[PreviewViewController alloc] initWithImage:raw] autorelease];
+    self.window.rootViewController = worker;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

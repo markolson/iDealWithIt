@@ -57,9 +57,9 @@
     }
     NSLog(@"raw_image is %fx%f (%d)", image.size.height, image.size.width, image.imageOrientation);
     UIImage *rotated = [image scaleAndRotate];
-    [image release];
 
-    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(rotated, 1.0)
+
+    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(rotated, 0.6)
                                            imageName:@"resized"
                                            extension:@"jpg"
                                          andFullPath:@""];
@@ -80,7 +80,8 @@
                                    runInBackground:NO
                                     completionData:^(NSDictionary *response, int tagImagePost) 
      {
-         NSLog(@"response: %@", response);
+         NSLog(@"Response: %@", response);
+         [self.delegate FaceRecognizer:self didFindFaces:(NSArray *)[(NSDictionary *)[(NSArray *)[response objectForKey:@"photos"] objectAtIndex:0] valueForKey:@"tags"]];
      }];
 }
 

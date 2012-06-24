@@ -1,3 +1,71 @@
 2012-06-17 20:37:01.304 iDealWithIt[15799:907] oh boy Frame 411.000000x320.000000 Image 2592.000000x1936.000000,  6.306570 -> endImage 411.000000x306.981476
 
 2012-06-17 20:43:37.238 iDealWithIt[15844:907] oh boy Frame 429.000000x320.000000 Image 640.000000x480.000000,  1.491841 -> endImage 429.000031x321.750000
+
+
+2012-06-24 17:09:01.598 iDealWithIt[4300:907] face; {
+    attributes =     {
+        face =         {
+            confidence = 85;
+            value = true;
+        };
+        gender =         {
+            confidence = 45;
+            value = male;
+        };
+        glasses =         {
+            confidence = 99;
+            value = false;
+        };
+        smiling =         {
+            confidence = 96;
+            value = false;
+        };
+    };
+    center =     {
+        x = "56.77";
+        y = "35.39";
+    };
+    chin = "<null>";
+    confirmed = 0;
+    "ear_left" = "<null>";
+    "ear_right" = "<null>";
+    "eye_left" =     {
+        x = "50.09";
+        y = "28.97";
+    };
+    "eye_right" =     {
+        x = "64.8";
+        y = "29.01";
+    };
+    gid = "<null>";
+    height = "28.91";
+    label = "";
+    manual = 0;
+    "mouth_center" =     {
+        x = "58.78";
+        y = "41.91";
+    };
+    "mouth_left" =     {
+        x = "51.78";
+        y = "41.88";
+    };
+    "mouth_right" =     {
+        x = "63.55";
+        y = "41.39";
+    };
+    nose =     {
+        x = "59.57";
+        y = "36.84";
+    };
+    pitch = "-6.28";
+    recognizable = 1;
+    roll = "-1.02";
+    "tagger_id" = "<null>";
+    threshold = "<null>";
+    tid = "TEMP_F@aa9a32696c5200adb1f2deaef49e381b_2f67db92fdb19ae9c269a4bdae34a46f_56.77_35.39_0_0";
+    uids =     (
+    );
+    width = "38.54";
+    yaw = "-9.140000000000001";
+}

@@ -13,6 +13,7 @@
 @end
 
 @implementation FirstViewController
+@synthesize loader;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

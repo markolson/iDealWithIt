@@ -49,7 +49,9 @@
     
 
     [self.iView setImage:preview];
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    hud.labelText = @"Locating Faces";
+    hud.dimBackground = true;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -59,6 +61,7 @@
 }
 
 -(void)FaceRecognizer:(id)recognizer didFindFaces:(NSDictionary *)faces {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     for (NSDictionary *face in faces) {
         NSLog(@"face; %@", face);
         float bw = self.iView.bounds.size.width;

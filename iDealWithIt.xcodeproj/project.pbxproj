@@ -30,7 +30,6 @@
 		4D8648FC158D2A1C003BEBD5 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8648F9158D2A1C003BEBD5 /* camera.png */; };
 		4D8648FF158D2C5B003BEBD5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8648FE158D2C5B003BEBD5 /* MobileCoreServices.framework */; };
 		4D864904158D2DAF003BEBD5 /* FirstViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */; };
-		4D913E10158E48630024C085 /* mr-rogers.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D913E0F158E48630024C085 /* mr-rogers.gif */; };
 		4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD174CA158E54A600DC7B37 /* FWImageController.nib */; };
 		4DD174CD158E54A600DC7B37 /* WrapperFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD174CB158E54A600DC7B37 /* WrapperFace.framework */; };
 		4DDE03A2158E6D3B00066CF1 /* FaceRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE03A1158E6D3B00066CF1 /* FaceRecognition.m */; };
@@ -40,6 +39,8 @@
 		4DDE03B1158EB11A00066CF1 /* notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DDE03B0158EB11A00066CF1 /* notes.txt */; };
 		F0A035AF1597D16A00392A2C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A035AE1597D16A00392A2C /* MBProgressHUD.m */; };
 		F0A035B41597D62B00392A2C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A035B31597D62B00392A2C /* Icon.png */; };
+		F0A0360215980C2400392A2C /* abraham_lincoln1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */; };
+		F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0CA4F9115980DB3000FC938 /* jobs.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +75,6 @@
 		4D8648FD158D2BB9003BEBD5 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		4D8648FE158D2C5B003BEBD5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController_iPhone.xib; sourceTree = "<group>"; };
-		4D913E0F158E48630024C085 /* mr-rogers.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mr-rogers.gif"; sourceTree = "<group>"; };
 		4DD174CA158E54A600DC7B37 /* FWImageController.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = FWImageController.nib; sourceTree = "<group>"; };
 		4DD174CB158E54A600DC7B37 /* WrapperFace.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WrapperFace.framework; sourceTree = "<group>"; };
 		4DDE03A0158E6D3B00066CF1 /* FaceRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRecognition.h; sourceTree = "<group>"; };
@@ -89,6 +89,8 @@
 		F0A035AE1597D16A00392A2C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		F0A035B01597D17800392A2C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F0A035B31597D62B00392A2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abraham_lincoln1.jpg; sourceTree = "<group>"; };
+		F0CA4F9115980DB3000FC938 /* jobs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jobs.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +186,8 @@
 		4D8648F2158D29B4003BEBD5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				4D913E0F158E48630024C085 /* mr-rogers.gif */,
+				F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */,
+				F0CA4F9115980DB3000FC938 /* jobs.jpg */,
 				F0A035B31597D62B00392A2C /* Icon.png */,
 				4D8648F7158D2A1C003BEBD5 /* 111-user.png */,
 				4D8648F8158D2A1C003BEBD5 /* 165-glasses-3.png */,
@@ -320,10 +323,11 @@
 				4D864904158D2DAF003BEBD5 /* FirstViewController_iPhone.xib in Resources */,
 				4D2F7DC5158D30DF00E44CC8 /* CaptureViewController_iPhone.xib in Resources */,
 				4D3F4436158E3C3100E17DFD /* PreviewViewController_iPhone.xib in Resources */,
-				4D913E10158E48630024C085 /* mr-rogers.gif in Resources */,
 				4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */,
 				4DDE03B1158EB11A00066CF1 /* notes.txt in Resources */,
 				F0A035B41597D62B00392A2C /* Icon.png in Resources */,
+				F0A0360215980C2400392A2C /* abraham_lincoln1.jpg in Resources */,
+				F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +470,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDealWithIt/iDealWithIt-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
 				INFOPLIST_FILE = "iDealWithIt/iDealWithIt-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

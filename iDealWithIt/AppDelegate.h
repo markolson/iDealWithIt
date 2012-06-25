@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PreviewViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 

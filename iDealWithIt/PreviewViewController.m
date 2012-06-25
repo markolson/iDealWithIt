@@ -15,6 +15,7 @@
 @implementation PreviewViewController
 @synthesize iView;
 @synthesize raw_image;
+@synthesize optionBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,6 +62,8 @@
 }
 
 -(void)FaceRecognizer:(id)recognizer didFindFaces:(NSDictionary *)faces {
+    [TestFlight passCheckpoint:@"Started Camera"];
+    TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     for (NSDictionary *face in faces) {
         NSLog(@"face; %@", face);
@@ -80,18 +83,56 @@
         float x = center_x - (faceWidth/2.0);
         float y = center_y - (faceHeight/2.0);
         
-        NSLog(@"hmm. x: %f, y: %f, w: %f, h: %f", x,y,faceWidth,faceHeight );
         // create a UIView using the bounds of the face
         UIView* faceView = [[UIView alloc] initWithFrame:CGRectMake(x,y,faceWidth,faceHeight)];
         
         // add a border around the newly created UIView
         faceView.layer.borderWidth = 1;
         faceView.layer.borderColor = [[UIColor redColor] CGColor];
-        
-        // add the new view to create a box around the face
-        NSLog(@":%@", [self.iView description]);
+
         [self.iView addSubview:faceView];
     }
+    [self addFacesStep];
+}
+
+-(void)addFacesStep
+{
+    [TestFlight passCheckpoint:@"Moved to 'add faces'"];
+    UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Faces" style:UIButtonTypeInfoLight target:self action:nil] autorelease];
+    UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chooseGlassesStep)];
+    
+    [self.optionBar setItems:@[addFace,spacer,done] animated:YES];
+}
+
+-(void)chooseGlassesStep
+{
+     [TestFlight passCheckpoint:@"Moved to 'choose chrome'"];
+    UIImageView *abe = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"abraham_lincoln1.jpg"]];
+    NSLog(@"h: %f, w: %f", self.iView.bounds.size.height, self.iView.bounds.size.width);
+    [self.iView addSubview:abe];
+    CATransition *anim = [CATransition animation];
+    [anim setDuration:1];
+    [anim setType:kCATransitionPush];
+    [anim setSubtype:kCATransitionFade];
+    [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[self.view layer] addAnimation:anim forKey:@"fade in"];
+    
+    NSLog(@"whut");
+    UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
+    
+    [self.optionBar setItems:@[spacer, done] animated:YES];
+}
+
+-(void)animationPreviewStep
+{
+     [TestFlight passCheckpoint:@"Moved to 'preview'"];
+    [[[self.iView subviews] objectAtIndex:1] removeFromSuperview];
+    [self.optionBar setItems:@[] animated:YES];
 }
 
 

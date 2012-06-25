@@ -69,3 +69,13 @@
     width = "38.54";
     yaw = "-9.140000000000001";
 }
+
+Draw the underlay with CGContextDrawImage().
+Push a graphics context state with CGContextSaveGState().
+Load the mask and add it to the context using CGContextClipToMask().
+Draw your content.
+Pop the graphics context with CGContextRestoreGState().
+Draw your overlay image with CGContextDrawImage().
+
+*source over compositing*
+

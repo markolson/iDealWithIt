@@ -40,6 +40,7 @@
     [super viewDidAppear:animated];
     if(self.tabBarController.selectedViewController == self)
     {
+        [TestFlight passCheckpoint:@"Started Camera"];
         [self startCameraControllerFromViewController: self usingDelegate: self];
     }
 }
@@ -60,7 +61,10 @@
           UIImagePickerControllerSourceTypeCamera] == NO)
         || (delegate == nil)
         || (controller == nil))
+    {
+            [[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
         return NO;
+    }
     
     
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
@@ -80,6 +84,9 @@
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     [self.tabBarController setSelectedIndex:0];
     [self dismissViewControllerAnimated:YES completion:NULL];
+    [picker release];
+    
+    [[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
     
 }
 

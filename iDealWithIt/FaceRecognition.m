@@ -6,9 +6,12 @@
 //  Copyright (c) 2012 syntaxi. All rights reserved.
 //
 
+#import "Reachability.h"
 #import "FaceRecognition.h"
+#import "Face.h"
 
 @implementation FaceRecognition
+
 @synthesize original;
 @synthesize delegate;
 
@@ -16,6 +19,13 @@
 {
     self = [super init];
     return self;
+}
+
+- (void) dealloc
+{
+    [super dealloc];
+    [self.original release];
+    [self.delegate release];
 }
 
 - (id) initWithImage:(UIImage *)img andDelegate:(id)d
@@ -28,6 +38,19 @@
     }
     return self;
 }
+
+- (void) recognizeWithImage:(UIImage *)image {
+    [self setOriginal:image];
+    Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
+    if([access isReachable])
+    {
+        [self recognizeWithFace];
+    }else{
+        [self recognizeWithIOS];
+    }
+    
+}
+// Reachability *netReach = [Reachability reachabilityWithHostName:@"host.name"];
 
 #pragma mark Internal Stuff.
 
@@ -46,7 +69,6 @@
     //POST
     UIImage *image = nil;
     NSMutableArray *images = [[NSMutableArray alloc] init];
-    NSLog(@"raw_image is %fx%f", self.original.size.height, self.original.size.width);
     if(self.original.size.height > 900 || self.original.size.width > 900)
     {
         float scale = MAX(self.original.size.height, self.original.size.width)/900.0;
@@ -55,7 +77,6 @@
     }else{
         image = self.original;
     }
-    NSLog(@"raw_image is %fx%f (%d)", image.size.height, image.size.width, image.imageOrientation);
     UIImage *rotated = [image scaleAndRotate];
 
 
@@ -80,7 +101,7 @@
                                    runInBackground:NO
                                     completionData:^(NSDictionary *response, int tagImagePost) 
      {
-         NSLog(@"Response: %@", response);
+         NSLog(@"response: %@", response);
          [self.delegate FaceRecognizer:self didFindFaces:(NSArray *)[(NSDictionary *)[(NSArray *)[response objectForKey:@"photos"] objectAtIndex:0] valueForKey:@"tags"]];
      }];
 }

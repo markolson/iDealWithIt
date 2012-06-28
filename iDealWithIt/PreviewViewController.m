@@ -112,15 +112,16 @@
 
     ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:baseImage.size];
     UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
+    [io setFrames:10];
     
     for (UIView *view in self.iView.subviews) {
         [view removeFromSuperview];
     }
     
-    int frame = 0;
+    NSNumber *frame_number = [NSNumber numberWithInt:0];
     [NSTimer scheduledTimerWithTimeInterval:0.5 block:^
     {
-        overlay.image = [io layerAtFrame:frame of:10];
+        overlay.image = [io nextFrame];
          
     } repeats:YES];
     [self.iView addSubview:overlay];

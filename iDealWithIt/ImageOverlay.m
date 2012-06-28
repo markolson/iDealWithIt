@@ -13,18 +13,31 @@
  **/
 @implementation ImageOverlay
 
-@synthesize layer, faces, dimensions;
+@synthesize layer, faces, dimensions, frame_count, current_frame;
 
 -(id)initWithFaces:(NSArray *)f andDimensions:(CGSize)d
 {
     self = [super init];
     self.faces = f;
     self.dimensions = d;
+    self.current_frame = 0;
     return self;
 }
 
+-(void)setFrames:(int)frames
+{
+    self.frame_count = frames/1.0;
+}
+
+-(UIImage *)nextFrame
+{
+    self.current_frame++;
+    if(self.current_frame > frame_count) { self.current_frame = 0; }
+    return [self layerAtFrame:self.current_frame of:frame_count];
+}
+
 -(UIImage *)layer {
-    return [self layerAtFrame:0 of:0];
+    return [self layerAtFrame:0 of:self.frame_count];
 }
 
 -(UIImage *)layerAtFrame:(int)frame_number of:(int)total_frames
@@ -48,9 +61,13 @@
         
         float start_left = (eye_left_x) - (width * 0.25);
         
-        NSLog(@"Sizes: [%f] %fx%f X:%f Y:%f", width/glasses.size.width, width, height, eye_left_x, eye_right_x);
+        float haha = total_frames/1.0;
         
-        [glasses drawInRect:CGRectMake(start_left,(eye_left_y - (height*0.2)),width,height) blendMode:kCGBlendModeNormal alpha:1.0];
+        float this_y = (eye_left_y - (height*0.2)) * frame_number/haha;
+        
+        NSLog(@"Sizes: [%d of %f] Y:%f", frame_number, haha, this_y);
+        
+        [glasses drawInRect:CGRectMake(start_left,this_y,width,height) blendMode:kCGBlendModeNormal alpha:1.0];
         
     }
     layer = UIGraphicsGetImageFromCurrentImageContext();

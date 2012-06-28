@@ -44,6 +44,7 @@
 		F000AE9F159A88F3006E8743 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F000AE9E159A88F3006E8743 /* CoreImage.framework */; };
 		F081AAFF159A930D0016369A /* glasses.png in Resources */ = {isa = PBXBuildFile; fileRef = F081AAFE159A930D0016369A /* glasses.png */; };
 		F088F31B159BCEAC00C51F7E /* ImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F088F31A159BCEAC00C51F7E /* ImageOverlay.m */; };
+		F088F31F159BE0D200C51F7E /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = F088F31E159BE0D200C51F7E /* NSTimer+Blocks.m */; };
 		F0A035AF1597D16A00392A2C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A035AE1597D16A00392A2C /* MBProgressHUD.m */; };
 		F0A035B41597D62B00392A2C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A035B31597D62B00392A2C /* Icon.png */; };
 		F0A0360215980C2400392A2C /* abraham_lincoln1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */; };
@@ -103,6 +104,8 @@
 		F081AAFE159A930D0016369A /* glasses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glasses.png; sourceTree = "<group>"; };
 		F088F319159BCEAC00C51F7E /* ImageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageOverlay.h; sourceTree = "<group>"; };
 		F088F31A159BCEAC00C51F7E /* ImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageOverlay.m; sourceTree = "<group>"; };
+		F088F31D159BE0A200C51F7E /* NSTimer+Blocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		F088F31E159BE0D200C51F7E /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		F0A035AE1597D16A00392A2C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		F0A035B01597D17800392A2C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F0A035B31597D62B00392A2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 				F0A035B01597D17800392A2C /* MBProgressHUD.h */,
 				F000AE96159A6CA1006E8743 /* Reachability.h */,
 				F000AE97159A6CAA006E8743 /* Reachability.m */,
+				F088F31D159BE0A200C51F7E /* NSTimer+Blocks.h */,
+				F088F31E159BE0D200C51F7E /* NSTimer+Blocks.m */,
 			);
 			name = libs;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				F000AE98159A6CAA006E8743 /* Reachability.m in Sources */,
 				F000AE9B159A743D006E8743 /* Face.m in Sources */,
 				F088F31B159BCEAC00C51F7E /* ImageOverlay.m in Sources */,
+				F088F31F159BE0D200C51F7E /* NSTimer+Blocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

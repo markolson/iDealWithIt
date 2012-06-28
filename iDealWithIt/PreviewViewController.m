@@ -110,21 +110,25 @@
    
     //UIImageView *abe = [[UIImageView alloc] initWithImage:finalpic];
 
-    ImageOverlay *i = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:baseImage.size];
-    UIImageView *overlay = [[UIImageView alloc] initWithImage:[i layer]];
+    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:baseImage.size];
+    UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
     
     for (UIView *view in self.iView.subviews) {
         [view removeFromSuperview];
     }
     
+    int frame = 0;
+    [NSTimer scheduledTimerWithTimeInterval:0.5 block:^
+    {
+        overlay.image = [io layerAtFrame:frame of:10];
+         
+    } repeats:YES];
     [self.iView addSubview:overlay];
     
 
     
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    
     UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
-    
     [self.optionBar setItems:@[spacer, done] animated:YES];
 }
 

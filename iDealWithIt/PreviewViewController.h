@@ -4,6 +4,7 @@
 #import "FaceRecognition.h"
 #import "ImageOverlay.h"
 #import "MBProgressHUD.h"
+#import "NSTimer+Blocks.h"
 
 @interface PreviewViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIImageView *iView;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Face : NSObject
+@interface iFace : NSObject
 
 @property (nonatomic) CGPoint left_eye;
 @property (nonatomic) CGPoint right_eye;

@@ -44,9 +44,9 @@
     Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
     if([access isReachable])
     {
-        [self recognizeWithFace];
+        [self recognizeUsingFace];
     }else{
-        [self recognizeWithIOS];
+        [self recognizeUsingIOS];
     }
     
 }
@@ -54,11 +54,11 @@
 
 #pragma mark Internal Stuff.
 
--(void) recognizeWithIOS {
+-(void) recognizeUsingIOS {
     
 }
 
--(void) recognizeWithFace {
+-(void) recognizeUsingFace {
     
     [FWKeysHelper setFaceAPI:@"2f67db92fdb19ae9c269a4bdae34a46f"];
     [FWKeysHelper setFaceSecretAPI:@"7414ec16d863f65caa5c3169a8112045"];

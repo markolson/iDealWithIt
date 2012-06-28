@@ -16,6 +16,7 @@
 @synthesize iView;
 @synthesize raw_image;
 @synthesize optionBar;
+@synthesize found_faces;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,11 +56,12 @@
     [recognizer recognizeWithImage:raw_image];
 }
 
--(void)FaceRecognizer:(id)recognizer didFindFaces:(NSDictionary *)faces {
+-(void)FaceRecognizer:(id)recognizer didFindFaces:(NSArray *)faces {
+    self.found_faces = faces;
     [TestFlight passCheckpoint:@"Started Camera"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    for (NSDictionary *face in faces) {
+    for (NSDictionary *face in self.found_faces) {
         float bw = self.iView.bounds.size.width;
         float bh = self.iView.bounds.size.height;
         
@@ -102,59 +104,23 @@
 -(void)chooseGlassesStep
 {
      [TestFlight passCheckpoint:@"Moved to 'choose chrome'"];
-    UIImage *abepic = [UIImage imageNamed:@"abraham_lincoln1.jpg"];
-    /**
-    CIImage *face = [[CIImage alloc] initWithImage:abepic];
-    UIImageOrientation originalOrientation = abepic.imageOrientation;
     
-    CIImage *glasses = [[CIImage alloc] initWithImage:[UIImage imageNamed:@"glasses.jpg"]];
+    UIImage *baseImage = self.iView.image; [UIImage imageNamed:@"abraham_lincoln1.jpg"];
     
-    CIFilter *compositer = [CIFilter filterWithName:@"CISourceOverCompositing"];
-    [compositer setDefaults];
-    [compositer setValue:face forKey:@"inputBackgroundImage"];
-    [compositer setValue:glasses forKey:@"inputImage"];
-    
-    EAGLContext* eaContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    CIContext *context = [CIContext contextWithEAGLContext:eaContext];
-      
-    CIImage *outabe = [compositer valueForKey:@"outputImage"];
-    
-    CGImageRef rendered_abe = [context createCGImage:outabe fromRect:outabe.extent];
-    
-    NSLog(@"huh: %@", compositer);
-    
-    UIImage *finalpic = [[UIImage alloc] initWithCGImage:rendered_abe scale:1.0 orientation:originalOrientation];
-    
-    CGImageRelease(rendered_abe);
-    **/
-
+   
     //UIImageView *abe = [[UIImageView alloc] initWithImage:finalpic];
+
+    ImageOverlay *i = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:baseImage.size];
+    UIImageView *overlay = [[UIImageView alloc] initWithImage:[i layer]];
     
-    UIImage *bottomImage = [UIImage imageNamed:@"abraham_lincoln1.jpg"];
-    UIImage *image = [UIImage imageNamed:@"glasses.png"];
+    for (UIView *view in self.iView.subviews) {
+        [view removeFromSuperview];
+    }
     
-    CGSize newSize = CGSizeMake(self.iView.bounds.size.width, self.iView.bounds.size.height);
-    UIGraphicsBeginImageContext( newSize );
+    [self.iView addSubview:overlay];
     
-    // Use existing opacity as is
-    [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    // Apply supplied opacity
-    [image drawInRect:CGRectMake(50,165,220,70) blendMode:kCGBlendModeNormal alpha:1.0];
+
     
-    UIImage *finalpic = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    [self.iView setImage:finalpic];
-    /**
-    CATransition *anim = [CATransition animation];
-    [anim setDuration:1];
-    [anim setType:kCATransitionPush];
-    [anim setSubtype:kCATransitionFade];
-    [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    [[self.view layer] addAnimation:anim forKey:@"fade in"];
-    **/
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
@@ -187,7 +153,4 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-
-
 @end

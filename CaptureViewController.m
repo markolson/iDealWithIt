@@ -62,7 +62,7 @@
         || (delegate == nil)
         || (controller == nil))
     {
-            [[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
         return NO;
     }
     
@@ -86,7 +86,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
     [picker release];
     
-    [[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
     
 }
 
@@ -99,6 +99,6 @@
     [self dismissViewControllerAnimated:NO completion:NULL];
     [picker release];
     
-    [[[UIApplication sharedApplication] delegate] showPreviewWithImage:raw];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:raw];
 }
 @end

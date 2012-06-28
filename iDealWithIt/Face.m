@@ -8,7 +8,7 @@
 
 #import "Face.h"
 
-@implementation Face
+@implementation iFace
 
 @synthesize left_eye, right_eye;
 @synthesize pitch, roll, yaw;

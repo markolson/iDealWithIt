@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImage+Resize.h"
+#import "AppDelegate.h"
 
 @interface CaptureViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 

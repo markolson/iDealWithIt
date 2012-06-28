@@ -79,3 +79,4 @@ Draw your overlay image with CGContextDrawImage().
 
 *source over compositing*
 
+Draw all glasses on a *Image with transparent background. Position it over the face(s). Move down. Save. GIFify?

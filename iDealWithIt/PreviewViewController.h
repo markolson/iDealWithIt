@@ -5,6 +5,7 @@
 #import "ImageOverlay.h"
 #import "MBProgressHUD.h"
 #import "NSTimer+Blocks.h"
+#import "Face.h"
 
 @interface PreviewViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIImageView *iView;

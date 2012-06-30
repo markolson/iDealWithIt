@@ -56,7 +56,7 @@
 					<object class="IBUILabel" id="200363507">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{139, 20}, {58, 21}}</string>
+						<string key="NSFrame">{{106, 20}, {108, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="293734636"/>
@@ -68,11 +68,12 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<string key="IBUIText">0.4b2</string>
-						<object class="NSColor" key="IBUITextColor" id="528032653">
+						<string key="IBUIText">0.5 build 1</string>
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<bytes key="NSRGB">MC41MDE5NjA4MTQgMCAwAA</bytes>
 						</object>
+						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">17</double>
@@ -91,7 +92,7 @@
 						<string key="NSFrame">{{39, 150}, {138, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="755356381"/>
+						<reference key="NSNextKeyView" ref="660031919"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -101,7 +102,10 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<string key="IBUIText">Changes are..</string>
-						<reference key="IBUITextColor" ref="528032653"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
 							<double key="pointSize">17</double>
@@ -114,56 +118,46 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<int key="IBUIAutoshrinkMode">0</int>
 					</object>
-					<object class="IBUITextView" id="755356381">
+					<object class="IBUITextView" id="660031919">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 176}, {280, 82}}</string>
+						<string key="NSFrame">{{20, 176}, {280, 233}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="72760589">
+						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<int key="IBUIIndicatorStyle">1</int>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<string key="IBUIText">Sometimes it'll draw glasses over your face. Sometime's it won't. Sometimes it will crash.                                                                               </string>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="526886892">
+						<string type="base64-UTF8" key="IBUIText">QWZ0ZXIgYXBwcm92aW5nIHRoZSBmYWNlcyB0aGF0IGFyZSBmb3VuZCAoc29vbiB5b3UnbGwgYmUgYWJs
+ZSB0byBoYXZlIGdsYXNzZXMgZHJvcCBkb3duIG9uIHlvdXIgY2F0cyBhbmQgZG9ncyksIGl0J2xsIHNo
+b3cgdGhlIGdsYXNzZXMgbG93ZXJpbmcgZG93biBvdmVyIGFuZCBvdmVyLiBObyAiREVBTCBXSVRIIElU
+IiB5ZXQsIGFzIHRoaXMgaXMgbW9zdGx5IGp1c3QgbWUgcHVzaGluZyBzb21ldGhpbmcgb3V0IGFmdGVy
+IGdldHRpbmcgKmp1c3QqIGVub3VnaCB0byBzaG93IHRoZSBnbGFzc2VzIGRyb3BwaW5nLgoKRnVuIEZh
+Y3Q6IFRoZSBnbGFzc2VzIHNvbWV0aW1lcyB3b24ndCBiZSBsaW5lZCB1cCBjb3JyZWN0bHkhCkZ1biBG
+YWN0OiBUaGUgZ2xhc3NlcyBkb24ndCBjdXJyZW50bHkgcm90YXRlIHdpdGggdGhlIHRpbHQgb2YgeW91
+ciBoZWFkIQpGdW4gRmFjdDogSSBkb24ndCB0aGluayBJJ20gY2xlYXJpbmcgb3V0IHVudXNlZCBtZW1v
+cnkgY29ycmVjdGx5LCBzbyBpdCBtaWdodCBjcmFzaCE</string>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="833990418">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
 						</object>
-					</object>
-					<object class="IBUITextView" id="660031919">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 250}, {280, 82}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="72760589"/>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-							<int key="IBUIAutocapitalizationType">2</int>
-							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
-							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						</object>
-						<string key="IBUIText">Mostly, I've learned that I am *horrible* at graphics programming, and this is going to be a nightmare.</string>
-						<reference key="IBUIFontDescription" ref="526886892"/>
-						<reference key="IBUIFont" ref="833990418"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 416}}</string>
@@ -208,10 +202,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="293734636"/>
-							<reference ref="200363507"/>
 							<reference ref="428672467"/>
-							<reference ref="755356381"/>
 							<reference ref="660031919"/>
+							<reference ref="200363507"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -242,11 +235,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="755356381"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
 						<reference key="object" ref="660031919"/>
 						<reference key="parent" ref="191373211"/>
@@ -260,7 +248,6 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -269,7 +256,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

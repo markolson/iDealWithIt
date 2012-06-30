@@ -53,7 +53,7 @@
 {
     FaceRecognition *recognizer = [[FaceRecognition alloc] init];
     [recognizer setDelegate:self];
-    [recognizer recognizeWithImage:raw_image];
+    [recognizer recognizeWithImage:raw_image andFinalSize:self.iView.image.size];
 }
 
 -(void)FaceRecognizer:(id)recognizer didFindFaces:(NSArray *)faces {
@@ -61,25 +61,22 @@
     [TestFlight passCheckpoint:@"Started Camera"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    for (NSDictionary *face in self.found_faces) {
-        float bw = self.iView.bounds.size.width;
-        float bh = self.iView.bounds.size.height;
-        
-        float center_x = bw * ([(NSString *)[(NSDictionary *)[face objectForKey:@"center"] valueForKey:@"x"] floatValue]/100.0);
-        float center_y = bh * ([(NSString *)[(NSDictionary *)[face objectForKey:@"center"] valueForKey:@"y"] floatValue]/100.0);
+    for (iFace *face in self.found_faces) {
+
 
         
-        float width = [(NSString *)[face valueForKey:@"width"] floatValue];
-        float height = [(NSString *)[face valueForKey:@"height"] floatValue];
+        float center_x = (face.left_eye.x + face.right_eye.x)/2.0;
+        float center_y = (face.left_eye.y + face.right_eye.y)/2.0;
+
+        float width = (face.right_eye.x - face.left_eye.x) * 2;
+        float height = width;
         
-        float faceWidth = bw * (width/100.0);
-        float faceHeight = bh * (height/100.0);
         
-        float x = center_x - (faceWidth/2.0);
-        float y = center_y - (faceHeight/2.0);
+        float x = center_x - (width/2.0);
+        float y = center_y - (height/2.0);
         
         // create a UIView using the bounds of the face
-        UIView* faceView = [[UIView alloc] initWithFrame:CGRectMake(x,y,faceWidth,faceHeight)];
+        UIView* faceView = [[UIView alloc] initWithFrame:CGRectMake(x,y,width,height)];
         
         // add a border around the newly created UIView
         faceView.layer.borderWidth = 1;
@@ -118,8 +115,7 @@
         [view removeFromSuperview];
     }
     
-    NSNumber *frame_number = [NSNumber numberWithInt:0];
-    [NSTimer scheduledTimerWithTimeInterval:0.5 block:^
+    [NSTimer scheduledTimerWithTimeInterval:0.2 block:^
     {
         overlay.image = [io nextFrame];
          
@@ -129,8 +125,8 @@
 
     
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
-    [self.optionBar setItems:@[spacer, done] animated:YES];
+    //UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
+    [self.optionBar setItems:@[spacer] animated:YES];
 }
 
 -(void)animationPreviewStep

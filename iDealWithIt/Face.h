@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum  {
+    RightEye,
+    LeftEye
+} FaceElement;
+
+
 @interface iFace : NSObject
 
 @property (nonatomic) CGPoint left_eye;
@@ -16,4 +22,5 @@
 @property (nonatomic) float roll;
 @property (nonatomic) float yaw;
 
+-(void)setEye:(FaceElement)part withDictionary:(NSDictionary *)xy andDimensions:(CGSize)canvas;
 @end

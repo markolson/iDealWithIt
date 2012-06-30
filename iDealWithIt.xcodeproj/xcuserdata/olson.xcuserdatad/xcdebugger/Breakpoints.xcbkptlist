@@ -86,24 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/ImageOverlay.m"
-         timestampString = "362721825.287497"
+         timestampString = "362767395.544338"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "58"
-         endingLineNumber = "58"
-         landmarkName = "-layerAtFrame:of:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/ImageOverlay.m"
-         timestampString = "362721828.152986"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "62"
-         endingLineNumber = "62"
+         startingLineNumber = "106"
+         endingLineNumber = "106"
          landmarkName = "-layerAtFrame:of:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -111,78 +98,26 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/PreviewViewController.m"
-         timestampString = "362721931.179221"
+         filePath = "iDealWithIt/Face.m"
+         timestampString = "362766781.017796"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
-         landmarkName = "-chooseGlassesStep"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/ImageOverlay.m"
-         timestampString = "362721956.256179"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "29"
-         endingLineNumber = "29"
-         landmarkName = "-setFrames:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/PreviewViewController.m"
-         timestampString = "362722000.683159"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
-         landmarkName = "-chooseGlassesStep"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
+         landmarkName = "-roll"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/PreviewViewController.m"
-         timestampString = "362722003.631269"
+         filePath = "CaptureViewController.m"
+         timestampString = "362762453.790133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
-         landmarkName = "-chooseGlassesStep"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/PreviewViewController.m"
-         timestampString = "362722005.934028"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "118"
-         endingLineNumber = "118"
-         landmarkName = "-chooseGlassesStep"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/PreviewViewController.m"
-         timestampString = "362722007.799971"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
-         landmarkName = "-chooseGlassesStep"
+         startingLineNumber = "65"
+         endingLineNumber = "65"
+         landmarkName = "-startCameraControllerFromViewController:usingDelegate:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

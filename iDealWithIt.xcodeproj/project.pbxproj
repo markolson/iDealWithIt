@@ -49,6 +49,8 @@
 		F0A035B41597D62B00392A2C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A035B31597D62B00392A2C /* Icon.png */; };
 		F0A0360215980C2400392A2C /* abraham_lincoln1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */; };
 		F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0CA4F9115980DB3000FC938 /* jobs.jpg */; };
+		F0D566FA159F5081001281D0 /* roll.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D566F9159F5081001281D0 /* roll.png */; };
+		F0D566FC159F512E001281D0 /* roll.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FB159F512E001281D0 /* roll.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +113,8 @@
 		F0A035B31597D62B00392A2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abraham_lincoln1.jpg; sourceTree = "<group>"; };
 		F0CA4F9115980DB3000FC938 /* jobs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jobs.jpg; sourceTree = "<group>"; };
+		F0D566F9159F5081001281D0 /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roll.png; sourceTree = "<group>"; };
+		F0D566FB159F512E001281D0 /* roll.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = roll.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +215,9 @@
 		4D8648F2158D29B4003BEBD5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				F0D566F9159F5081001281D0 /* roll.png */,
 				F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */,
+				F0D566FB159F512E001281D0 /* roll.jpg */,
 				F0CA4F9115980DB3000FC938 /* jobs.jpg */,
 				F081AAFE159A930D0016369A /* glasses.png */,
 				F0A035B31597D62B00392A2C /* Icon.png */,
@@ -372,6 +378,8 @@
 				F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */,
 				F000AE9D159A8358006E8743 /* glasses.jpg in Resources */,
 				F081AAFF159A930D0016369A /* glasses.png in Resources */,
+				F0D566FA159F5081001281D0 /* roll.png in Resources */,
+				F0D566FC159F512E001281D0 /* roll.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

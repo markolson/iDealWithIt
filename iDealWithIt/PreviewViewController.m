@@ -102,7 +102,7 @@
 {
      [TestFlight passCheckpoint:@"Moved to 'choose chrome'"];
     
-    UIImage *baseImage = self.iView.image; [UIImage imageNamed:@"abraham_lincoln1.jpg"];
+    UIImage *baseImage = self.iView.image; //[UIImage imageNamed:@"abraham_lincoln1.jpg"];
     
    
     //UIImageView *abe = [[UIImageView alloc] initWithImage:finalpic];
@@ -121,8 +121,6 @@
          
     } repeats:YES];
     [self.iView addSubview:overlay];
-    
-
     
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     //UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];

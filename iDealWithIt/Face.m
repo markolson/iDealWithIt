@@ -26,4 +26,9 @@
     }
 }
 
+-(float)roll
+{
+    return (self.left_eye.y - self.right_eye.y) / (self.left_eye.x - self.right_eye.x);
+}
+
 @end

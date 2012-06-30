@@ -7,6 +7,8 @@
 //
 
 #import "ImageOverlay.h"
+#define degreesToRadians(degrees) (M_PI * degrees / 180.0)
+#define radiansToDegrees(radians) (radians * 180 / M_PI)
 
 /**
  TODO: Add in a delegate renderer that can render per-frame images (ie, sparkles, googly-eyes)
@@ -40,14 +42,58 @@
     return [self layerAtFrame:0 of:self.frame_count];
 }
 
+-(UIImage *)shadesForFace:(iFace *)face
+{
+    
+    NSLog(@"sloooope: %f sin: %f cos: %f tan: %f arctan: %f", face.roll, sin(face.roll), cos(face.roll), tan(face.roll), atan(face.roll));
+    NSLog(@"whut %f", atan2(face.right_eye.y - face.left_eye.y, face.right_eye.x - face.left_eye.x));
+    UIImage *glasses = [UIImage imageNamed:@"glasses.png"];
+    
+    CGImageRef imgRef = glasses.CGImage;
+    
+    
+	CGFloat angleInRadians = -atan(face.roll);
+	CGFloat width = CGImageGetWidth(imgRef);
+	CGFloat height = CGImageGetHeight(imgRef);
+    
+	CGRect imgRect = CGRectMake(0, 0, width, height);
+	CGAffineTransform transform = CGAffineTransformMakeRotation(angleInRadians);
+	CGRect rotatedRect = CGRectApplyAffineTransform(imgRect, transform);
+    
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextRef bmContext = CGBitmapContextCreate(NULL,
+												   rotatedRect.size.width,
+												   rotatedRect.size.height,
+												   8,
+												   0,
+												   colorSpace,
+												   kCGImageAlphaPremultipliedFirst);
+	CGContextSetAllowsAntialiasing(bmContext, YES);
+	CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
+	CGColorSpaceRelease(colorSpace);
+	CGContextTranslateCTM(bmContext,
+						  +(rotatedRect.size.width/2),
+						  +(rotatedRect.size.height/2));
+	CGContextRotateCTM(bmContext, angleInRadians);
+	CGContextDrawImage(bmContext, CGRectMake(-width/2, -height/2, width, height),
+					   imgRef);
+    
+	CGImageRef rotatedImage = CGBitmapContextCreateImage(bmContext);
+	CFRelease(bmContext);
+	[(id)rotatedImage autorelease];
+    
+	return  [UIImage imageWithCGImage: rotatedImage];
+}
+
 -(UIImage *)layerAtFrame:(int)frame_number of:(int)total_frames
 {
-    UIImage *glasses = [UIImage imageNamed:@"glasses.png"];
+    
     
     UIGraphicsBeginImageContext( dimensions );
     
     for (iFace *face in self.faces) {
         
+        UIImage *glasses = [self shadesForFace:face];
         float width = (face.right_eye.x - face.left_eye.x) * 2.5 ;
         float height = (width/glasses.size.width) * glasses.size.height;
         
@@ -58,11 +104,11 @@
         float this_y = (face.left_eye.y - (height*0.2)) * frame_number/haha;
         
         
+        
         [glasses drawInRect:CGRectMake(start_left,this_y,width,height) blendMode:kCGBlendModeNormal alpha:1.0];
         
     }
     layer = UIGraphicsGetImageFromCurrentImageContext();
-    [glasses release];
     UIGraphicsEndImageContext();
     return layer;
 }

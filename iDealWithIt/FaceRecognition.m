@@ -46,8 +46,11 @@
     self.canvas = _canvas;
     [self setOriginal:image];
     Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
-    [self recognizeUsingIOS];
-    return;
+    if(YES)
+    {
+        [self recognizeUsingIOS];
+        return;
+    }
     if([access isReachable])
     {
         [self recognizeUsingFace];
@@ -72,8 +75,8 @@
                                 @"eye_left": @{@"x": [NSNumber numberWithDouble:faceFeature.leftEyePosition.x],
                                                 @"y": [NSNumber numberWithDouble:faceFeature.leftEyePosition.y]}};
         iFace *obj = [[iFace alloc] init];
-        [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"] andDimensions:self.canvas];
-        [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"] andDimensions:self.canvas];
+        [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"]];
+        [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"]];
         [faceObjects addObject:obj];
     }
     [self.delegate FaceRecognizer:self didFindFaces:faceObjects];

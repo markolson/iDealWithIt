@@ -14,7 +14,7 @@
 @property (retain, nonatomic) IBOutlet UIView *subContainer;
 @property (retain, nonatomic) IBOutlet UIToolbar *optionBar;
 @property (retain, nonatomic) UIImage *image;
-@property (retain, nonatomic) NSArray *faces;
+@property (retain, nonatomic) NSMutableArray *faces;
 @property (retain, nonatomic) UIViewController *currentController;
 
 -(id)initWithImage:(UIImage *)image;

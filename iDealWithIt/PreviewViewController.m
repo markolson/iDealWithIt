@@ -14,7 +14,7 @@
 @end
 
 @implementation PreviewViewController
-@synthesize parent, imageView;
+@synthesize parent, imageView, tapper, inprogress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +32,10 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapper.numberOfTapsRequired = 1;
+    tapper.numberOfTouchesRequired = 1;    [self.view addGestureRecognizer:tapper];
+
     NSLog(@">appeared");
     if(self.parent)
     {
@@ -55,35 +59,61 @@
     }
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    CGPoint tap = [sender locationInView:self.imageView];
+    NSLog(@"tapped: %f,%f", tap.x, tap.y);
+    if([inprogress hasEye:LeftEye])
+    {
+        NSLog(@"right. whut");
+        [inprogress setEye:RightEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
+        [parent.faces addObject:inprogress];
+        [self setOverlay];
+    }else{
+        [inprogress setEye:LeftEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
+        NSLog(@"left, whut");
+    }
+    NSLog(@"face!");
+}
+
 -(void)setOverlay
 {
     for(UIView *v in self.imageView.subviews)
     {
         [v removeFromSuperview];
+        [v release];
     }
+    tapper.enabled = NO;
+    [inprogress release];
+    inprogress = [[iFace alloc] init];
+    
     UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chooseGlassesStep)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(chooseGlassesStep)];
     
     [parent.optionBar setItems:@[addFace,spacer,done] animated:NO];
-    
+    for(iFace *f in parent.faces)
+    {
+        NSLog(@"lx: %f ly %f    rx %f ry %f", f.left_eye.x, f.left_eye.y, f.right_eye.x, f.right_eye.y);
+    }
     
     ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.imageView.image.size];
     UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
     overlay.image = [io layerAtFrame:10 of:10];
     [self.imageView addSubview:overlay];
+    [io release];
 }
 
 -(void)addFace
 {
+    
     UIBarButtonItem *cancel = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(setOverlay)] autorelease];
     [cancel setTintColor:[UIColor redColor]];
     
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(chooseGlassesStep)];
     
-    [parent.optionBar setItems:@[cancel,spacer,done] animated:NO];
+    [parent.optionBar setItems:@[cancel,spacer] animated:NO];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
 
@@ -94,6 +124,9 @@
 	hud.removeFromSuperViewOnHide = YES;
     
 	[hud hide:YES afterDelay:1.5];
+    
+    tapper.enabled = YES;
+    
 }
 
 

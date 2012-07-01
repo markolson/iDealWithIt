@@ -55,6 +55,7 @@
 		F0D5670115A0D971001281D0 /* OverlayPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */; };
 		F0D5670415A0D9A2001281D0 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D5670315A0D9A2001281D0 /* FaceViewController.m */; };
 		F0D5670615A0DAF5001281D0 /* FaceViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */; };
+		F0D5670815A0F728001281D0 /* Cat-with-hat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0D5670715A0F728001281D0 /* Cat-with-hat.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,7 @@
 		F0D5670215A0D9A2001281D0 /* FaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceViewController.h; sourceTree = "<group>"; };
 		F0D5670315A0D9A2001281D0 /* FaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceViewController.m; sourceTree = "<group>"; };
 		F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController_iPhone.xib; sourceTree = "<group>"; };
+		F0D5670715A0F728001281D0 /* Cat-with-hat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cat-with-hat.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 		4D8648F2158D29B4003BEBD5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				F0D5670715A0F728001281D0 /* Cat-with-hat.jpg */,
 				F0D566F9159F5081001281D0 /* roll.png */,
 				F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */,
 				F0D566FB159F512E001281D0 /* roll.jpg */,
@@ -398,6 +401,7 @@
 				F0D566FC159F512E001281D0 /* roll.jpg in Resources */,
 				F0D5670115A0D971001281D0 /* OverlayPickerViewController.xib in Resources */,
 				F0D5670615A0DAF5001281D0 /* FaceViewController_iPhone.xib in Resources */,
+				F0D5670815A0F728001281D0 /* Cat-with-hat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

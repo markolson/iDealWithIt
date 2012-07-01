@@ -22,5 +22,7 @@ typedef enum  {
 @property (nonatomic) float roll;
 @property (nonatomic) float yaw;
 
+-(void)setEye:(FaceElement)part withDictionary:(NSDictionary *)xy;
 -(void)setEye:(FaceElement)part withDictionary:(NSDictionary *)xy andDimensions:(CGSize)canvas;
+-(BOOL)hasEye:(FaceElement)part;
 @end

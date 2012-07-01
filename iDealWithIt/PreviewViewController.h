@@ -8,4 +8,6 @@
 @property (nonatomic, retain) FaceViewController *parent;
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (retain, nonatomic) UITapGestureRecognizer *tapper;
+@property (retain, nonatomic) iFace *inprogress;
 @end

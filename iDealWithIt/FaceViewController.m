@@ -63,6 +63,7 @@
     [TestFlight passCheckpoint:@"Found faces"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [currentController performSelector:@selector(setOverlay)];
     
 }
 

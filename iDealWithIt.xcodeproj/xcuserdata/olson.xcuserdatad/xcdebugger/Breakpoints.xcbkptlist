@@ -21,7 +21,20 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/FaceRecognition.m"
-         timestampString = "362860325.692581"
+         timestampString = "362869942.374546"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "141"
+         endingLineNumber = "141"
+         landmarkName = "-recognizeUsingFace"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/FaceRecognition.m"
+         timestampString = "362869942.374546"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "138"
@@ -34,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/FaceRecognition.m"
-         timestampString = "362860325.692581"
+         timestampString = "362869942.374546"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
+         startingLineNumber = "142"
+         endingLineNumber = "142"
          landmarkName = "-recognizeUsingFace"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,24 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/FaceRecognition.m"
-         timestampString = "362860325.692581"
+         timestampString = "362869942.374546"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "139"
          endingLineNumber = "139"
-         landmarkName = "-recognizeUsingFace"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDealWithIt/FaceRecognition.m"
-         timestampString = "362860325.692581"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "136"
-         endingLineNumber = "136"
          landmarkName = "-recognizeUsingFace"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/Face.m"
-         timestampString = "362766781.017796"
+         timestampString = "362870395.869691"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-roll"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/FaceRecognition.m"
-         timestampString = "362860325.692581"
+         timestampString = "362869942.374546"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "68"
-         endingLineNumber = "68"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
          landmarkName = "-recognizeUsingIOS"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,12 +177,116 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDealWithIt/PreviewViewController.m"
-         timestampString = "362865108.159459"
+         timestampString = "362868111.25115"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
          landmarkName = "-viewDidAppear:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/Face.m"
+         timestampString = "362870395.869691"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-hasEye:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869819.842473"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
+         landmarkName = "-handleTap:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869819.842473"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
+         landmarkName = "-handleTap:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869819.842473"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
+         landmarkName = "-handleTap:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869819.842473"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
+         landmarkName = "-addFace"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869819.842473"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-setOverlay"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869808.453812"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "-handleTap:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDealWithIt/PreviewViewController.m"
+         timestampString = "362869821.412307"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "-handleTap:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -7,16 +7,14 @@
 //
 
 #import "PreviewViewController.h"
+#import "MBProgressHUD.h"
 
 @interface PreviewViewController ()
 
 @end
 
 @implementation PreviewViewController
-@synthesize iView;
-@synthesize raw_image;
-@synthesize optionBar;
-@synthesize found_faces;
+@synthesize parent, imageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,108 +28,74 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
-    
-    float scale = 1.0;
-    if(raw_image.size.height > iView.frame.size.height || raw_image.size.width > iView.frame.size.width)
-    {
-        float extra_height = raw_image.size.height - iView.frame.size.height;
-        if(extra_height > 0) { scale = raw_image.size.height/iView.frame.size.height; }
-    }
-    
-    
-    UIImage *preview = [raw_image resizedImage:CGSizeMake(raw_image.size.width/scale, raw_image.size.height/scale) interpolationQuality:kCGInterpolationLow];
-    
-
-    [self.iView setImage:preview];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    hud.labelText = @"Locating Faces";
-    hud.dimBackground = true;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    FaceRecognition *recognizer = [[FaceRecognition alloc] init];
-    [recognizer setDelegate:self];
-    [recognizer recognizeWithImage:raw_image andFinalSize:self.iView.image.size];
+    NSLog(@">appeared");
+    if(self.parent)
+    {
+        float scale = 1.0;
+        if(parent.image.size.height > imageView.frame.size.height || parent.image.size.width > imageView.frame.size.width)
+        {
+            float extra_height = parent.image.size.height - imageView.frame.size.height;
+            if(extra_height > 0) { scale = parent.image.size.height/imageView.frame.size.height; }
+        }
+        
+        
+        UIImage *preview = [parent.image resizedImage:CGSizeMake(parent.image.size.width/scale, parent.image.size.height/scale) interpolationQuality:kCGInterpolationLow];
+        
+        NSLog(@"h: %f w: %f", preview.size.height, preview.size.width);
+        
+        [self.imageView setImage:preview];
+        [self setOverlay];
+
+    }else{
+        [NSException raise:@"Improper Initialization" format:@"Parent of PreviewController not set in time for viewDidAppear"];
+    }
 }
 
--(void)FaceRecognizer:(id)recognizer didFindFaces:(NSArray *)faces {
-    self.found_faces = faces;
-    [TestFlight passCheckpoint:@"Started Camera"];
-    TFLog(@"Found %d face(s)", [faces count]);
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [self addFacesStep];
-    
-}
-
-
--(void)addFacesStep
+-(void)setOverlay
 {
-    
-    [TestFlight passCheckpoint:@"Moved to 'add faces'"];
+    for(UIView *v in self.imageView.subviews)
+    {
+        [v removeFromSuperview];
+    }
     UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chooseGlassesStep)];
     
-    [self.optionBar setItems:@[addFace,spacer,done] animated:NO];
+    [parent.optionBar setItems:@[addFace,spacer,done] animated:NO];
     
     
-    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:self.iView.image.size];
+    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.imageView.image.size];
     UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
     overlay.image = [io layerAtFrame:10 of:10];
-    [self.iView addSubview:overlay];
+    [self.imageView addSubview:overlay];
 }
 
 -(void)addFace
 {
-    UIBarButtonItem *cancel = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:@selector(addFacesStep)] autorelease];
+    UIBarButtonItem *cancel = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(setOverlay)] autorelease];
     [cancel setTintColor:[UIColor redColor]];
     
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chooseGlassesStep)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(chooseGlassesStep)];
     
-    [self.optionBar setItems:@[cancel,spacer,done] animated:NO];
+    [parent.optionBar setItems:@[cancel,spacer,done] animated:NO];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+
+    hud.mode = MBProgressHUDModeText;
+	hud.labelText = @"Tap on the left, and then right eye.";
+    hud.dimBackground = YES;
+	hud.margin = 10.f;
+	hud.removeFromSuperViewOnHide = YES;
+    
+	[hud hide:YES afterDelay:1.5];
 }
 
-
--(void)chooseGlassesStep
-{
-     [TestFlight passCheckpoint:@"Moved to 'choose chrome'"];
-    
-    UIImage *baseImage = self.iView.image; //[UIImage imageNamed:@"abraham_lincoln1.jpg"];
-    
-   
-    //UIImageView *abe = [[UIImageView alloc] initWithImage:finalpic];
-
-    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:baseImage.size];
-    UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
-    [io setFrames:10];
-    
-    for (UIView *view in self.iView.subviews) {
-        [view removeFromSuperview];
-    }
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.2 block:^
-    {
-        overlay.image = [io nextFrame];
-         
-    } repeats:YES];
-    [self.iView addSubview:overlay];
-    
-    UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    //UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
-    [self.optionBar setItems:@[spacer] animated:YES];
-}
-
-
--(id)initWithImage:(UIImage *)image
-{
-    self = [super initWithNibName:@"PreviewViewController_iPhone" bundle:nil];
-    self.raw_image = image;
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {

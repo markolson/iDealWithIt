@@ -10,7 +10,7 @@
 
 #import "FirstViewController.h"
 #import "CaptureViewController.h"
-#import "PreviewViewController.h"
+#import "FaceViewController.h"
 
 
 @implementation AppDelegate
@@ -54,7 +54,7 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
-    PreviewViewController *worker = [[[PreviewViewController alloc] initWithImage:raw] autorelease];
+    FaceViewController *worker = [[[FaceViewController alloc] initWithImage:raw] autorelease];
     self.window.rootViewController = worker;
 }
 

@@ -46,7 +46,8 @@
     self.canvas = _canvas;
     [self setOriginal:image];
     Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
-
+    [self recognizeUsingIOS];
+    return;
     if([access isReachable])
     {
         [self recognizeUsingFace];

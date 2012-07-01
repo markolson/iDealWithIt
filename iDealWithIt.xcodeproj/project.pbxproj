@@ -51,6 +51,10 @@
 		F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0CA4F9115980DB3000FC938 /* jobs.jpg */; };
 		F0D566FA159F5081001281D0 /* roll.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D566F9159F5081001281D0 /* roll.png */; };
 		F0D566FC159F512E001281D0 /* roll.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FB159F512E001281D0 /* roll.jpg */; };
+		F0D5670015A0D971001281D0 /* OverlayPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */; };
+		F0D5670115A0D971001281D0 /* OverlayPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */; };
+		F0D5670415A0D9A2001281D0 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D5670315A0D9A2001281D0 /* FaceViewController.m */; };
+		F0D5670615A0DAF5001281D0 /* FaceViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +119,12 @@
 		F0CA4F9115980DB3000FC938 /* jobs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jobs.jpg; sourceTree = "<group>"; };
 		F0D566F9159F5081001281D0 /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roll.png; sourceTree = "<group>"; };
 		F0D566FB159F512E001281D0 /* roll.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = roll.jpg; sourceTree = "<group>"; };
+		F0D566FD15A0D971001281D0 /* OverlayPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPickerViewController.h; sourceTree = "<group>"; };
+		F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPickerViewController.m; sourceTree = "<group>"; };
+		F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayPickerViewController.xib; sourceTree = "<group>"; };
+		F0D5670215A0D9A2001281D0 /* FaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceViewController.h; sourceTree = "<group>"; };
+		F0D5670315A0D9A2001281D0 /* FaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceViewController.m; sourceTree = "<group>"; };
+		F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +199,12 @@
 				4D8648CE158D2971003BEBD5 /* FirstViewController.m */,
 				4D2F7DC1158D30DE00E44CC8 /* CaptureViewController.h */,
 				4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */,
+				F0D5670215A0D9A2001281D0 /* FaceViewController.h */,
+				F0D5670315A0D9A2001281D0 /* FaceViewController.m */,
 				4D3F4432158E3C3100E17DFD /* PreviewViewController.h */,
 				4D3F4433158E3C3100E17DFD /* PreviewViewController.m */,
+				F0D566FD15A0D971001281D0 /* OverlayPickerViewController.h */,
+				F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */,
 				4D8648C2158D2971003BEBD5 /* Supporting Files */,
 				4DDE03B0158EB11A00066CF1 /* notes.txt */,
 			);
@@ -234,7 +248,9 @@
 			children = (
 				4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */,
 				4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */,
+				F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */,
 				4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */,
+				F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -380,6 +396,8 @@
 				F081AAFF159A930D0016369A /* glasses.png in Resources */,
 				F0D566FA159F5081001281D0 /* roll.png in Resources */,
 				F0D566FC159F512E001281D0 /* roll.jpg in Resources */,
+				F0D5670115A0D971001281D0 /* OverlayPickerViewController.xib in Resources */,
+				F0D5670615A0DAF5001281D0 /* FaceViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +422,8 @@
 				F000AE9B159A743D006E8743 /* Face.m in Sources */,
 				F088F31B159BCEAC00C51F7E /* ImageOverlay.m in Sources */,
 				F088F31F159BE0D200C51F7E /* NSTimer+Blocks.m in Sources */,
+				F0D5670015A0D971001281D0 /* OverlayPickerViewController.m in Sources */,
+				F0D5670415A0D9A2001281D0 /* FaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

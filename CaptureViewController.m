@@ -62,7 +62,7 @@
         || (delegate == nil)
         || (controller == nil))
     {
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"roll.jpg"]];
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"jobs.jpg"]];
         return NO;
     }
     

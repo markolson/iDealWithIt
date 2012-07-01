@@ -61,42 +61,40 @@
     [TestFlight passCheckpoint:@"Started Camera"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    for (iFace *face in self.found_faces) {
-
-
-        
-        float center_x = (face.left_eye.x + face.right_eye.x)/2.0;
-        float center_y = (face.left_eye.y + face.right_eye.y)/2.0;
-
-        float width = (face.right_eye.x - face.left_eye.x) * 2;
-        float height = width;
-        
-        
-        float x = center_x - (width/2.0);
-        float y = center_y - (height/2.0);
-        
-        // create a UIView using the bounds of the face
-        UIView* faceView = [[UIView alloc] initWithFrame:CGRectMake(x,y,width,height)];
-        
-        // add a border around the newly created UIView
-        faceView.layer.borderWidth = 1;
-        faceView.layer.borderColor = [[UIColor redColor] CGColor];
-
-        [self.iView addSubview:faceView];
-    }
     [self addFacesStep];
+    
 }
+
 
 -(void)addFacesStep
 {
+    
     [TestFlight passCheckpoint:@"Moved to 'add faces'"];
-    UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Faces" style:UIButtonTypeInfoLight target:self action:nil] autorelease];
+    UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chooseGlassesStep)];
     
-    [self.optionBar setItems:@[addFace,spacer,done] animated:YES];
+    [self.optionBar setItems:@[addFace,spacer,done] animated:NO];
+    
+    
+    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:self.found_faces andDimensions:self.iView.image.size];
+    UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
+    overlay.image = [io layerAtFrame:10 of:10];
+    [self.iView addSubview:overlay];
 }
+
+-(void)addFace
+{
+    UIBarButtonItem *cancel = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:@selector(addFacesStep)] autorelease];
+    [cancel setTintColor:[UIColor redColor]];
+    
+    UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chooseGlassesStep)];
+    
+    [self.optionBar setItems:@[cancel,spacer,done] animated:NO];
+}
+
 
 -(void)chooseGlassesStep
 {
@@ -125,13 +123,6 @@
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     //UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(animationPreviewStep)] autorelease];
     [self.optionBar setItems:@[spacer] animated:YES];
-}
-
--(void)animationPreviewStep
-{
-     [TestFlight passCheckpoint:@"Moved to 'preview'"];
-    [[[self.iView subviews] lastObject] removeFromSuperview];
-    [self.optionBar setItems:@[] animated:YES];
 }
 
 

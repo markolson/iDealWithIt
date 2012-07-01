@@ -9,6 +9,8 @@
 #import "Reachability.h"
 #import "FaceRecognition.h"
 #import "Face.h"
+#import <CoreImage/CoreImage.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation FaceRecognition
 
@@ -40,10 +42,11 @@
     return self;
 }
 
-- (void) recognizeWithImage:(UIImage *)image andFinalSize:(CGSize)canvas {
-    self.canvas = canvas;
+- (void) recognizeWithImage:(UIImage *)image andFinalSize:(CGSize)_canvas {
+    self.canvas = _canvas;
     [self setOriginal:image];
     Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
+
     if([access isReachable])
     {
         [self recognizeUsingFace];
@@ -57,6 +60,22 @@
 #pragma mark Internal Stuff.
 
 -(void) recognizeUsingIOS {
+    CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:[NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy]];
+    NSArray* features = [detector featuresInImage:[self.original CIImage]];
+    
+    NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
+    for(CIFaceFeature* faceFeature in features)
+    {
+        NSDictionary * face = @{@"eye_right": @{@"x": [NSNumber numberWithDouble:faceFeature.rightEyePosition.x],
+                                                @"y": [NSNumber numberWithDouble:faceFeature.rightEyePosition.y]},
+                                @"eye_left": @{@"x": [NSNumber numberWithDouble:faceFeature.leftEyePosition.x],
+                                                @"y": [NSNumber numberWithDouble:faceFeature.leftEyePosition.y]}};
+        iFace *obj = [[iFace alloc] init];
+        [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"] andDimensions:self.canvas];
+        [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"] andDimensions:self.canvas];
+        [faceObjects addObject:obj];
+    }
+    [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
     
 }
 

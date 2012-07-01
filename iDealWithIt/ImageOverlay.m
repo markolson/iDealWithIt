@@ -22,7 +22,7 @@
     self = [super init];
     self.faces = f;
     self.dimensions = d;
-    self.current_frame = 0;
+    self.current_frame = -1;
     return self;
 }
 
@@ -34,7 +34,7 @@
 -(UIImage *)nextFrame
 {
     self.current_frame++;
-    if(self.current_frame > frame_count) { self.current_frame = 0; }
+    if(self.current_frame > frame_count) { self.current_frame = -1; }
     return [self layerAtFrame:self.current_frame of:frame_count];
 }
 
@@ -44,15 +44,13 @@
 
 -(UIImage *)shadesForFace:(iFace *)face
 {
-    
-    NSLog(@"sloooope: %f sin: %f cos: %f tan: %f arctan: %f", face.roll, sin(face.roll), cos(face.roll), tan(face.roll), atan(face.roll));
-    NSLog(@"whut %f", atan2(face.right_eye.y - face.left_eye.y, face.right_eye.x - face.left_eye.x));
     UIImage *glasses = [UIImage imageNamed:@"glasses.png"];
     
     CGImageRef imgRef = glasses.CGImage;
     
     
 	CGFloat angleInRadians = -atan(face.roll);
+    if(angleInRadians < 0.1) { angleInRadians = 0.0; }
 	CGFloat width = CGImageGetWidth(imgRef);
 	CGFloat height = CGImageGetHeight(imgRef);
     
@@ -97,11 +95,11 @@
         float width = (face.right_eye.x - face.left_eye.x) * 2.5 ;
         float height = (width/glasses.size.width) * glasses.size.height;
         
-        float start_left = (face.left_eye.x) - (width * 0.25);
+        float start_left = (face.left_eye.x) - (width * 0.28);
         
         float haha = total_frames/1.0;
         
-        float this_y = (face.left_eye.y - (height*0.2)) * frame_number/haha;
+        float this_y = (((face.right_eye.y + face.left_eye.y)/2.0) - height*0.15) * frame_number/haha;
         
         
         

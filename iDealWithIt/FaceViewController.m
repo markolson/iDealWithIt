@@ -7,7 +7,7 @@
 //
 
 #import "FaceViewController.h"
-#import "PreviewViewController.h"
+#import "AdjustmentViewController.h"
 #import "OverlayPickerViewController.h"
 #import "FaceRecognition.h"
 #import "MBProgressHUD.h"
@@ -44,10 +44,22 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     hud.labelText = @"Locating Faces";
     hud.dimBackground = true;
-    currentController = [[PreviewViewController alloc] initWithNibName:@"PreviewViewController_iPhone" bundle:nil];
+    currentController = [[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil];
+
     [currentController setParent:self];
+    float scale = 1.0;
+    if(image.size.height > subContainer.frame.size.height || image.size.width > subContainer.frame.size.width)
+    {
+        float extra_height = image.size.height - subContainer.frame.size.height;
+        if(extra_height > 0) { scale = image.size.height/subContainer.frame.size.height; }
+    }
+    
+    UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
+    
+    subContainer.image = preview;
+    
+    
     [subContainer addSubview:currentController.view];
-    NSLog(@"loaded/set?");
 	
 }
 
@@ -58,13 +70,29 @@
     [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
 }
 
--(void)FaceRecognizer:(id)recognizer didFindFaces:(NSArray *)_faces {
+-(void)FaceRecognizer:(id)recognizer didFindFaces:(NSMutableArray *)_faces {
     self.faces = _faces;
+    [faces retain];
     [TestFlight passCheckpoint:@"Found faces"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [currentController performSelector:@selector(setOverlay)];
-    
+}
+
+-(void)chooseGlasses
+{
+    [[currentController view] removeFromSuperview];
+    [currentController release];
+    [optionBar setItems:@[] animated:YES];
+    currentController = [[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil];
+    [currentController setParent:self];
+    [subContainer addSubview:currentController.view];
+}
+
+-(void)dealloc
+{
+    [faces release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning

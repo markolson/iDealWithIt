@@ -42,6 +42,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{39, 104}, {242, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="428672467"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">1</int>
@@ -55,8 +56,9 @@
 					<object class="IBUILabel" id="200363507">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{106, 20}, {108, 21}}</string>
+						<string key="NSFrame">{{45, 20}, {231, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="293734636"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -66,7 +68,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<string key="IBUIText">0.5 build 1</string>
+						<string key="IBUIText">0.6 build 2 - July 1 @ 10:10pm</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41MDE5NjA4MTQgMCAwAA</bytes>
@@ -89,6 +91,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{39, 150}, {138, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="660031919"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -120,6 +123,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 176}, {280, 233}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -130,20 +134,19 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<int key="IBUIIndicatorStyle">1</int>
+						<bool key="IBUIEditable">NO</bool>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<string type="base64-UTF8" key="IBUIText">QWZ0ZXIgYXBwcm92aW5nIHRoZSBmYWNlcyB0aGF0IGFyZSBmb3VuZCAoc29vbiB5b3UnbGwgYmUgYWJs
-ZSB0byBoYXZlIGdsYXNzZXMgZHJvcCBkb3duIG9uIHlvdXIgY2F0cyBhbmQgZG9ncyksIGl0J2xsIHNo
-b3cgdGhlIGdsYXNzZXMgbG93ZXJpbmcgZG93biBvdmVyIGFuZCBvdmVyLiBObyAiREVBTCBXSVRIIElU
-IiB5ZXQsIGFzIHRoaXMgaXMgbW9zdGx5IGp1c3QgbWUgcHVzaGluZyBzb21ldGhpbmcgb3V0IGFmdGVy
-IGdldHRpbmcgKmp1c3QqIGVub3VnaCB0byBzaG93IHRoZSBnbGFzc2VzIGRyb3BwaW5nLgoKRnVuIEZh
-Y3Q6IFRoZSBnbGFzc2VzIHNvbWV0aW1lcyB3b24ndCBiZSBsaW5lZCB1cCBjb3JyZWN0bHkhCkZ1biBG
-YWN0OiBUaGUgZ2xhc3NlcyBkb24ndCBjdXJyZW50bHkgcm90YXRlIHdpdGggdGhlIHRpbHQgb2YgeW91
-ciBoZWFkIQpGdW4gRmFjdDogSSBkb24ndCB0aGluayBJJ20gY2xlYXJpbmcgb3V0IHVudXNlZCBtZW1v
-cnkgY29ycmVjdGx5LCBzbyBpdCBtaWdodCBjcmFzaCE</string>
+						<string type="base64-UTF8" key="IBUIText">WW91IGNhbiBub3cgYWRkIGZhY2VzICh5b3UncmUgd2VsY29tZSwgY2F0IHBlb3BsZSkgb24gdGhlIHBy
+ZXZpZXcgc3RlcCBieSBoaXR0aW5nIHRoZSBhcHByb3ByaWF0ZWx5IG5hbWVkICdhZGQgZmFjZScgYnV0
+dG9uLiBObywgdGhlcmUncyBubyB3YXkgdG8gZGVsZXRlIGZhY2VzIHlldCAtIG1heWJlIGxhdGVyIHRv
+bmlnaHQgSSdsbCBnZXQgdGhhdCBkb25lPwoKT3RoZXJ3aXNlLCBldmVyeXRoaW5nIHNob3VsZCBtb3N0
+bHkgd29yayB0aGUgc2FtZSBhcyBiZWZvcmUuIE5ldyB0b2RvIGxpc3Q6CgpEbyBtb3JlIHRyaWcgZm9y
+IHJvdGF0aW5nIGdsYXNzZXMuCkRlbGV0ZSBnbGFzc2VzLgpTYXZlIHJlc3VsdCBhcyBhIEdJRgpVcGxv
+YWQgc29tZXdoZXJlPwpTaG93IHRoZSB1cGxvYWRzIG9uIHRoaXMgc2NyZWVuLgoKA</string>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
@@ -157,6 +160,7 @@ cnkgY29ycmVjdGx5LCBzbyBpdCBtaWdodCBjcmFzaCE</string>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="200363507"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -252,7 +256,18 @@ cnkgY29ycmVjdGx5LCBzbyBpdCBtaWdodCBjcmFzaCE</string>
 			<nil key="sourceID"/>
 			<int key="maxID">16</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">FirstViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FirstViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

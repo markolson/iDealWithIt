@@ -27,13 +27,11 @@
 - (void) dealloc
 {
     [super dealloc];
-    [self.original release];
-    [self.delegate release];
 }
 
 - (id) initWithImage:(UIImage *)img andDelegate:(id)d
 {
-    [self init];
+    self = [self init];
     if(self)
     {
         [self setOriginal:img];
@@ -46,7 +44,7 @@
     self.canvas = _canvas;
     [self setOriginal:image];
     Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
-    if(YES)
+    if(NO)
     {
         [self recognizeUsingIOS];
         return;
@@ -78,9 +76,10 @@
         [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"]];
         [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"]];
         [faceObjects addObject:obj];
+        [obj release];
     }
     [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
-    
+    [faceObjects release];
 }
 
 -(void) recognizeUsingFace {
@@ -126,7 +125,6 @@
                                    runInBackground:NO
                                     completionData:^(NSDictionary *response, int tagImagePost) 
      {
-         //NSLog(@"response: %@", response);
          NSArray *faces = (NSArray *)[(NSDictionary *)[(NSArray *)[response objectForKey:@"photos"] objectAtIndex:0] valueForKey:@"tags"];
          
          NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
@@ -137,8 +135,13 @@
              [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"] andDimensions:self.canvas];
              [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"] andDimensions:self.canvas];
              [faceObjects addObject:obj];
+             [obj release];
          }
          [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
+         [faceObjects release];
+         [object release];
+         [fwImage release];
+         [images release];
      }];
 }
 

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		4D2F7DC4158D30DF00E44CC8 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */; };
 		4D2F7DC5158D30DF00E44CC8 /* CaptureViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */; };
-		4D3F4435158E3C3100E17DFD /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F4433158E3C3100E17DFD /* PreviewViewController.m */; };
-		4D3F4436158E3C3100E17DFD /* PreviewViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */; };
+		4D3F4435158E3C3100E17DFD /* AdjustmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F4433158E3C3100E17DFD /* AdjustmentViewController.m */; };
+		4D3F4436158E3C3100E17DFD /* AdjustmentViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3F4434158E3C3100E17DFD /* AdjustmentViewController_iPhone.xib */; };
 		4D3F4439158E3D0700E17DFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3F4438158E3D0700E17DFD /* QuartzCore.framework */; };
 		4D3F443B158E3D0E00E17DFD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3F443A158E3D0E00E17DFD /* OpenGLES.framework */; };
 		4D3F443D158E3D1400E17DFD /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3F443C158E3D1400E17DFD /* GLKit.framework */; };
@@ -49,22 +49,22 @@
 		F0A035B41597D62B00392A2C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A035B31597D62B00392A2C /* Icon.png */; };
 		F0A0360215980C2400392A2C /* abraham_lincoln1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */; };
 		F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0CA4F9115980DB3000FC938 /* jobs.jpg */; };
-		F0D566FA159F5081001281D0 /* roll.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D566F9159F5081001281D0 /* roll.png */; };
 		F0D566FC159F512E001281D0 /* roll.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FB159F512E001281D0 /* roll.jpg */; };
 		F0D5670015A0D971001281D0 /* OverlayPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */; };
-		F0D5670115A0D971001281D0 /* OverlayPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */; };
+		F0D5670115A0D971001281D0 /* OverlayPickerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D566FF15A0D971001281D0 /* OverlayPickerViewController_iPhone.xib */; };
 		F0D5670415A0D9A2001281D0 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D5670315A0D9A2001281D0 /* FaceViewController.m */; };
 		F0D5670615A0DAF5001281D0 /* FaceViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */; };
 		F0D5670815A0F728001281D0 /* Cat-with-hat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0D5670715A0F728001281D0 /* Cat-with-hat.jpg */; };
+		F0D724E915A136D3004D1BDC /* dealwithit.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D724E815A136D3004D1BDC /* dealwithit.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D2F7DC1158D30DE00E44CC8 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureViewController.h; path = ../CaptureViewController.h; sourceTree = "<group>"; };
 		4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureViewController.m; path = ../CaptureViewController.m; sourceTree = "<group>"; };
 		4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CaptureViewController_iPhone.xib; path = ../CaptureViewController_iPhone.xib; sourceTree = "<group>"; };
-		4D3F4432158E3C3100E17DFD /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
-		4D3F4433158E3C3100E17DFD /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
-		4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewViewController_iPhone.xib; sourceTree = "<group>"; };
+		4D3F4432158E3C3100E17DFD /* AdjustmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustmentViewController.h; sourceTree = "<group>"; };
+		4D3F4433158E3C3100E17DFD /* AdjustmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustmentViewController.m; sourceTree = "<group>"; };
+		4D3F4434158E3C3100E17DFD /* AdjustmentViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustmentViewController_iPhone.xib; sourceTree = "<group>"; };
 		4D3F4438158E3D0700E17DFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4D3F443A158E3D0E00E17DFD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D3F443C158E3D1400E17DFD /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -118,15 +118,15 @@
 		F0A035B31597D62B00392A2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abraham_lincoln1.jpg; sourceTree = "<group>"; };
 		F0CA4F9115980DB3000FC938 /* jobs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jobs.jpg; sourceTree = "<group>"; };
-		F0D566F9159F5081001281D0 /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roll.png; sourceTree = "<group>"; };
 		F0D566FB159F512E001281D0 /* roll.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = roll.jpg; sourceTree = "<group>"; };
 		F0D566FD15A0D971001281D0 /* OverlayPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPickerViewController.h; sourceTree = "<group>"; };
 		F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPickerViewController.m; sourceTree = "<group>"; };
-		F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayPickerViewController.xib; sourceTree = "<group>"; };
+		F0D566FF15A0D971001281D0 /* OverlayPickerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayPickerViewController_iPhone.xib; sourceTree = "<group>"; };
 		F0D5670215A0D9A2001281D0 /* FaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceViewController.h; sourceTree = "<group>"; };
 		F0D5670315A0D9A2001281D0 /* FaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceViewController.m; sourceTree = "<group>"; };
 		F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController_iPhone.xib; sourceTree = "<group>"; };
 		F0D5670715A0F728001281D0 /* Cat-with-hat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cat-with-hat.jpg"; sourceTree = "<group>"; };
+		F0D724E815A136D3004D1BDC /* dealwithit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dealwithit.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +203,8 @@
 				4D2F7DC2158D30DE00E44CC8 /* CaptureViewController.m */,
 				F0D5670215A0D9A2001281D0 /* FaceViewController.h */,
 				F0D5670315A0D9A2001281D0 /* FaceViewController.m */,
-				4D3F4432158E3C3100E17DFD /* PreviewViewController.h */,
-				4D3F4433158E3C3100E17DFD /* PreviewViewController.m */,
+				4D3F4432158E3C3100E17DFD /* AdjustmentViewController.h */,
+				4D3F4433158E3C3100E17DFD /* AdjustmentViewController.m */,
 				F0D566FD15A0D971001281D0 /* OverlayPickerViewController.h */,
 				F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */,
 				4D8648C2158D2971003BEBD5 /* Supporting Files */,
@@ -231,8 +231,8 @@
 		4D8648F2158D29B4003BEBD5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				F0D724E815A136D3004D1BDC /* dealwithit.png */,
 				F0D5670715A0F728001281D0 /* Cat-with-hat.jpg */,
-				F0D566F9159F5081001281D0 /* roll.png */,
 				F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */,
 				F0D566FB159F512E001281D0 /* roll.jpg */,
 				F0CA4F9115980DB3000FC938 /* jobs.jpg */,
@@ -252,8 +252,8 @@
 				4D864902158D2DAF003BEBD5 /* FirstViewController_iPhone.xib */,
 				4D2F7DC3158D30DE00E44CC8 /* CaptureViewController_iPhone.xib */,
 				F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */,
-				4D3F4434158E3C3100E17DFD /* PreviewViewController_iPhone.xib */,
-				F0D566FF15A0D971001281D0 /* OverlayPickerViewController.xib */,
+				4D3F4434158E3C3100E17DFD /* AdjustmentViewController_iPhone.xib */,
+				F0D566FF15A0D971001281D0 /* OverlayPickerViewController_iPhone.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -389,7 +389,7 @@
 				4D8648FC158D2A1C003BEBD5 /* camera.png in Resources */,
 				4D864904158D2DAF003BEBD5 /* FirstViewController_iPhone.xib in Resources */,
 				4D2F7DC5158D30DF00E44CC8 /* CaptureViewController_iPhone.xib in Resources */,
-				4D3F4436158E3C3100E17DFD /* PreviewViewController_iPhone.xib in Resources */,
+				4D3F4436158E3C3100E17DFD /* AdjustmentViewController_iPhone.xib in Resources */,
 				4DD174CC158E54A600DC7B37 /* FWImageController.nib in Resources */,
 				4DDE03B1158EB11A00066CF1 /* notes.txt in Resources */,
 				F0A035B41597D62B00392A2C /* Icon.png in Resources */,
@@ -397,11 +397,11 @@
 				F0CA4F9215980DB3000FC938 /* jobs.jpg in Resources */,
 				F000AE9D159A8358006E8743 /* glasses.jpg in Resources */,
 				F081AAFF159A930D0016369A /* glasses.png in Resources */,
-				F0D566FA159F5081001281D0 /* roll.png in Resources */,
 				F0D566FC159F512E001281D0 /* roll.jpg in Resources */,
-				F0D5670115A0D971001281D0 /* OverlayPickerViewController.xib in Resources */,
+				F0D5670115A0D971001281D0 /* OverlayPickerViewController_iPhone.xib in Resources */,
 				F0D5670615A0DAF5001281D0 /* FaceViewController_iPhone.xib in Resources */,
 				F0D5670815A0F728001281D0 /* Cat-with-hat.jpg in Resources */,
+				F0D724E915A136D3004D1BDC /* dealwithit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +416,7 @@
 				4D8648CC158D2971003BEBD5 /* AppDelegate.m in Sources */,
 				4D8648CF158D2971003BEBD5 /* FirstViewController.m in Sources */,
 				4D2F7DC4158D30DF00E44CC8 /* CaptureViewController.m in Sources */,
-				4D3F4435158E3C3100E17DFD /* PreviewViewController.m in Sources */,
+				4D3F4435158E3C3100E17DFD /* AdjustmentViewController.m in Sources */,
 				4DDE03A2158E6D3B00066CF1 /* FaceRecognition.m in Sources */,
 				4DDE03A8158E730300066CF1 /* UIImage+Resize.m in Sources */,
 				4DDE03AB158E733700066CF1 /* UIImage+RoundedCorner.m in Sources */,

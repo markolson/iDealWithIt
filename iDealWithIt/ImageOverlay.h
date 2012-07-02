@@ -17,8 +17,9 @@
 @property (nonatomic) float frame_count;
 @property (nonatomic) int current_frame;
 
-- (void)setFrames:(int)frames;
 - (UIImage *)nextFrame;
-- (id)initWithFaces:(NSArray *)faces andDimensions:(CGSize)dimensions;
 - (UIImage *)layerAtFrame:(int)frame_number of:(int)total_frames;
+- (void)setFrames:(int)frames;
+- (id)initWithFaces:(NSArray *)faces andDimensions:(CGSize)dimensions;
+- (BOOL)isLastFrame;
 @end

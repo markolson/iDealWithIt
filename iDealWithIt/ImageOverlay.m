@@ -22,7 +22,7 @@
     self = [super init];
     self.faces = f;
     self.dimensions = d;
-    self.current_frame = -1;
+    self.current_frame = 0;
     return self;
 }
 
@@ -34,8 +34,13 @@
 -(UIImage *)nextFrame
 {
     self.current_frame++;
-    if(self.current_frame > frame_count) { self.current_frame = -1; }
+    if(self.current_frame > frame_count) { self.current_frame = 0; }
     return [self layerAtFrame:self.current_frame of:frame_count];
+}
+
+-(BOOL)isLastFrame
+{
+    return self.frame_count > 0 && (self.frame_count == current_frame);
 }
 
 -(UIImage *)layer {
@@ -85,8 +90,6 @@
 
 -(UIImage *)layerAtFrame:(int)frame_number of:(int)total_frames
 {
-    
-    
     UIGraphicsBeginImageContext( dimensions );
     
     for (iFace *face in self.faces) {
@@ -101,10 +104,12 @@
         
         float this_y = (((face.right_eye.y + face.left_eye.y)/2.0) - height*0.15) * frame_number/haha;
         
-        
-        
         [glasses drawInRect:CGRectMake(start_left,this_y,width,height) blendMode:kCGBlendModeNormal alpha:1.0];
-        
+    }
+    if([self isLastFrame])
+    {
+        UIImage *deal = [UIImage imageNamed:@"dealwithit.png"];
+        [deal drawInRect:CGRectMake(20, 320, 280, 70) blendMode:kCGBlendModeNormal alpha:1.0];
     }
     layer = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

@@ -7,12 +7,15 @@
 //
 
 #import "OverlayPickerViewController.h"
+#import "NSTimer+Blocks.h"
+#import "ImageOverlay.h"
 
 @interface OverlayPickerViewController ()
 
 @end
 
 @implementation OverlayPickerViewController
+@synthesize parent, overlay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +30,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:overlay.bounds.size];
+    [io setFrames:20];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO];
+    [io release];
+}
+
+-(void)animate:(NSTimer *)timer
+{
+    ImageOverlay *io = (ImageOverlay *)[timer userInfo];
+    overlay.image = [io nextFrame];
+    if([io isLastFrame])
+    {
+        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animate:) userInfo:io repeats:NO];
+    }else{
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning

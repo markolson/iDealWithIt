@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FaceViewController.h"
 
 @interface OverlayPickerViewController : UIViewController
+
+@property (nonatomic, retain) FaceViewController *parent;
+@property (nonatomic, retain) IBOutlet UIImageView *overlay;
 
 @end

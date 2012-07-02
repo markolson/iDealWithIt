@@ -24,8 +24,6 @@
     current.x = canvas.width * ([(NSString *)[xy valueForKey:@"x"] floatValue]/100.0);
     current.y = canvas.height * ([(NSString *)[xy valueForKey:@"y"] floatValue]/100.0);
     
-    NSLog(@"canvas %f, %f -- point ", canvas.height, canvas.width);
-    
     if(part == RightEye) {
         right_eye = current;
     }else{

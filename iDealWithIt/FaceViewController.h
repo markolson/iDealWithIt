@@ -11,7 +11,7 @@
 @interface FaceViewController : UIViewController
 
 
-@property (retain, nonatomic) IBOutlet UIView *subContainer;
+@property (retain, nonatomic) IBOutlet UIImageView *subContainer;
 @property (retain, nonatomic) IBOutlet UIToolbar *optionBar;
 @property (retain, nonatomic) UIImage *image;
 @property (retain, nonatomic) NSMutableArray *faces;

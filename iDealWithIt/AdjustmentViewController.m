@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 syntaxi. All rights reserved.
 //
 
-#import "PreviewViewController.h"
+#import "AdjustmentViewController.h"
 #import "MBProgressHUD.h"
 
-@interface PreviewViewController ()
+@interface AdjustmentViewController ()
 
 @end
 
-@implementation PreviewViewController
-@synthesize parent, imageView, tapper, inprogress;
+@implementation AdjustmentViewController
+@synthesize parent, tapper, inprogress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,25 +34,16 @@
 {
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapper.numberOfTapsRequired = 1;
-    tapper.numberOfTouchesRequired = 1;    [self.view addGestureRecognizer:tapper];
+    tapper.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:tapper];
 
-    NSLog(@">appeared");
     if(self.parent)
     {
-        float scale = 1.0;
-        if(parent.image.size.height > imageView.frame.size.height || parent.image.size.width > imageView.frame.size.width)
+        
+        if([parent.faces count] > 0)
         {
-            float extra_height = parent.image.size.height - imageView.frame.size.height;
-            if(extra_height > 0) { scale = parent.image.size.height/imageView.frame.size.height; }
+            [self setOverlay];
         }
-        
-        
-        UIImage *preview = [parent.image resizedImage:CGSizeMake(parent.image.size.width/scale, parent.image.size.height/scale) interpolationQuality:kCGInterpolationLow];
-        
-        NSLog(@"h: %f w: %f", preview.size.height, preview.size.width);
-        
-        [self.imageView setImage:preview];
-        [self setOverlay];
 
     }else{
         [NSException raise:@"Improper Initialization" format:@"Parent of PreviewController not set in time for viewDidAppear"];
@@ -61,24 +52,20 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
-    CGPoint tap = [sender locationInView:self.imageView];
-    NSLog(@"tapped: %f,%f", tap.x, tap.y);
+    CGPoint tap = [sender locationInView:self.view];
     if([inprogress hasEye:LeftEye])
     {
-        NSLog(@"right. whut");
         [inprogress setEye:RightEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
         [parent.faces addObject:inprogress];
         [self setOverlay];
     }else{
         [inprogress setEye:LeftEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
-        NSLog(@"left, whut");
     }
-    NSLog(@"face!");
 }
 
 -(void)setOverlay
 {
-    for(UIView *v in self.imageView.subviews)
+    for(UIView *v in self.view.subviews)
     {
         [v removeFromSuperview];
         [v release];
@@ -90,19 +77,16 @@
     UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(chooseGlassesStep)];
+    UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:parent action:@selector(chooseGlasses)] autorelease];
     
     [parent.optionBar setItems:@[addFace,spacer,done] animated:NO];
-    for(iFace *f in parent.faces)
-    {
-        NSLog(@"lx: %f ly %f    rx %f ry %f", f.left_eye.x, f.left_eye.y, f.right_eye.x, f.right_eye.y);
-    }
+
     
-    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.imageView.image.size];
+    ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
     UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
     overlay.image = [io layerAtFrame:10 of:10];
-    [self.imageView addSubview:overlay];
-    [io release];
+    [self.view addSubview:overlay];
+    [overlay release];
 }
 
 -(void)addFace
@@ -123,9 +107,17 @@
 	hud.margin = 10.f;
 	hud.removeFromSuperViewOnHide = YES;
     
-	[hud hide:YES afterDelay:1.5];
+	[hud hide:YES afterDelay:1];
     
     tapper.enabled = YES;
+    
+}
+
+-(void)dealloc
+{
+    [super dealloc];
+    [tapper release];
+    [inprogress release];
     
 }
 

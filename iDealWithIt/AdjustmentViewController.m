@@ -57,6 +57,7 @@
     {
         [inprogress setEye:RightEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
         [parent.faces addObject:inprogress];
+        [TestFlight passCheckpoint:@"Added face"];
         [self setOverlay];
     }else{
         [inprogress setEye:LeftEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
@@ -86,7 +87,6 @@
     UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
     overlay.image = [io layerAtFrame:10 of:10];
     [self.view addSubview:overlay];
-    [overlay release];
 }
 
 -(void)addFace

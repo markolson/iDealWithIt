@@ -103,12 +103,15 @@
     }
     UIImage *rotated = [image scaleAndRotate];
 
-
-    FWImage *fwImage = [[FWImage alloc] initWithData:UIImageJPEGRepresentation(rotated, 0.6)
+    NSData *blob = UIImageJPEGRepresentation(rotated, 0.6);
+    FWImage *fwImage = [[FWImage alloc] initWithData:blob
                                            imageName:@"resized"
                                            extension:@"jpg"
                                          andFullPath:@""];
-
+    
+    TFLog(@"Uploading image to face: %dKB", [blob length]);
+    [blob release];
+    
     fwImage.tag = 999;
     [images addImagePOSTToArray:fwImage];
     
@@ -141,7 +144,6 @@
          [faceObjects release];
          [object release];
          [fwImage release];
-         [images release];
      }];
 }
 

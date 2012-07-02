@@ -55,7 +55,7 @@
     
     
 	CGFloat angleInRadians = -atan(face.roll);
-    if(angleInRadians < 0.1) { angleInRadians = 0.0; }
+    if(angleInRadians < 0.06) { angleInRadians = 0.0; }
 	CGFloat width = CGImageGetWidth(imgRef);
 	CGFloat height = CGImageGetHeight(imgRef);
     

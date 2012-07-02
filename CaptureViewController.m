@@ -62,7 +62,7 @@
         || (delegate == nil)
         || (controller == nil))
     {
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"abraham_lincoln1.jpg"]];
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"mst.jpg"]];
         return NO;
     }
     
@@ -86,7 +86,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
     [picker release];
     
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"Cat-with-hat.jpg"]];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"mst.jpg"]];
     
 }
 

@@ -81,6 +81,7 @@
 
 -(void)chooseGlasses
 {
+    [TestFlight passCheckpoint:@"Showed resultant image"];
     [[currentController view] removeFromSuperview];
     [currentController release];
     [optionBar setItems:@[] animated:YES];

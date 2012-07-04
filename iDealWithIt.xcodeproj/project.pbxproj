@@ -53,6 +53,8 @@
 		F09B574E15A3CE8700B73B51 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F09B573615A3CE8700B73B51 /* FBLoginDialog.m */; };
 		F09B574F15A3CE8700B73B51 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F09B573815A3CE8700B73B51 /* FBRequest.m */; };
 		F09B576115A3D95600B73B51 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F09B576015A3D95600B73B51 /* FBUser.m */; };
+		F09B576615A3DBEA00B73B51 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F09B576515A3DBEA00B73B51 /* UploadViewController.m */; };
+		F09B576815A3DC0B00B73B51 /* UploadViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09B576715A3DC0B00B73B51 /* UploadViewController_iPhone.xib */; };
 		F0A035AF1597D16A00392A2C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A035AE1597D16A00392A2C /* MBProgressHUD.m */; };
 		F0A035B41597D62B00392A2C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A035B31597D62B00392A2C /* Icon.png */; };
 		F0A0360215980C2400392A2C /* abraham_lincoln1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0A0360115980C2400392A2C /* abraham_lincoln1.jpg */; };
@@ -154,8 +156,11 @@
 		F09B574115A3CE8700B73B51 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		F09B574315A3CE8700B73B51 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		F09B574515A3CE8700B73B51 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		F09B575F15A3D95600B73B51 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FBUser.h; sourceTree = "<group>"; };
+		F09B575F15A3D95600B73B51 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
 		F09B576015A3D95600B73B51 /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUser.m; sourceTree = "<group>"; };
+		F09B576415A3DBEA00B73B51 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		F09B576515A3DBEA00B73B51 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		F09B576715A3DC0B00B73B51 /* UploadViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadViewController_iPhone.xib; sourceTree = "<group>"; };
 		F0A035AE1597D16A00392A2C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		F0A035B01597D17800392A2C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F0A035B31597D62B00392A2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -253,6 +258,8 @@
 				4D3F4433158E3C3100E17DFD /* AdjustmentViewController.m */,
 				F0D566FD15A0D971001281D0 /* OverlayPickerViewController.h */,
 				F0D566FE15A0D971001281D0 /* OverlayPickerViewController.m */,
+				F09B576415A3DBEA00B73B51 /* UploadViewController.h */,
+				F09B576515A3DBEA00B73B51 /* UploadViewController.m */,
 				4D8648C2158D2971003BEBD5 /* Supporting Files */,
 				4DDE03B0158EB11A00066CF1 /* notes.txt */,
 			);
@@ -301,6 +308,7 @@
 				F0D5670515A0DAF5001281D0 /* FaceViewController_iPhone.xib */,
 				4D3F4434158E3C3100E17DFD /* AdjustmentViewController_iPhone.xib */,
 				F0D566FF15A0D971001281D0 /* OverlayPickerViewController_iPhone.xib */,
+				F09B576715A3DC0B00B73B51 /* UploadViewController_iPhone.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -538,6 +546,7 @@
 				F0D724EB15A14524004D1BDC /* mst.jpg in Resources */,
 				F09B56F015A3CCDC00B73B51 /* FBConnect.bundle in Resources */,
 				F09B574B15A3CE8700B73B51 /* FBDialog.bundle in Resources */,
+				F09B576815A3DC0B00B73B51 /* UploadViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +579,7 @@
 				F09B574E15A3CE8700B73B51 /* FBLoginDialog.m in Sources */,
 				F09B574F15A3CE8700B73B51 /* FBRequest.m in Sources */,
 				F09B576115A3D95600B73B51 /* FBUser.m in Sources */,
+				F09B576615A3DBEA00B73B51 /* UploadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

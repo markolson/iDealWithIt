@@ -52,7 +52,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [subContainer setImage:image];
+    if(animated == YES) { return; }
+    [self scaleDownImage];
     [self setFaces:[@[] mutableCopy]];
     [self chooseFaces];
 }
@@ -60,21 +61,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self scaleDownImage];
+}
+
+-(void)scaleDownImage
+{
     float scale = 1.0;
     if(image.size.height > subContainer.frame.size.height || image.size.width > subContainer.frame.size.width)
     {
         float extra_height = image.size.height - subContainer.frame.size.height;
         if(extra_height > 0) { scale = image.size.height/subContainer.frame.size.height; }
     }
-    
     UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
-    
     [self setImage:preview];
     [subContainer setImage:image];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     hud.labelText = @"Locating Faces";
     hud.dimBackground = true;
@@ -135,7 +140,10 @@
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     [self dismissModalViewControllerAnimated:YES];
+    [self setImage:nil];
     [[chooseDestinationController view] removeFromSuperview];
+    [[chooseGlassesController view] removeFromSuperview];
+    [[chooseFacesController view] removeFromSuperview];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
 }
 

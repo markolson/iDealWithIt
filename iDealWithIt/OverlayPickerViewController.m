@@ -35,6 +35,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:overlay.bounds.size];
     [io setFrames:12];
     

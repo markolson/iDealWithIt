@@ -38,6 +38,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [parent.optionBar setItems:@[] animated:NO];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     [self render];
 }
 
@@ -61,7 +66,7 @@
     
 	hud.removeFromSuperViewOnHide = YES;
 	hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Drawing";
+    hud.labelText = @"Reticulating";
     
     
 	[NSThread detachNewThreadSelector:@selector(exportThread:) toTarget:self withObject:tempFile];
@@ -123,7 +128,6 @@
 
 -(void)dealloc
 {
-    NSLog(@"dealloc in chooseDestination");
     [overlay release];
     [parent release];
     [super dealloc];

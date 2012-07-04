@@ -49,15 +49,17 @@
     return self;
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [subContainer setImage:image];
+    [self setFaces:[@[] mutableCopy]];
+    [self chooseFaces];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    hud.labelText = @"Locating Faces";
-    hud.dimBackground = true;
-    [hud setRemoveFromSuperViewOnHide: true];
-
     float scale = 1.0;
     if(image.size.height > subContainer.frame.size.height || image.size.width > subContainer.frame.size.width)
     {
@@ -68,19 +70,20 @@
     UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
     
     [self setImage:preview];
-    [subContainer setImage:preview];
-    
-    
-	
+    [subContainer setImage:image];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self chooseFaces];
-    
-    recognizer = [[FaceRecognition alloc] init];
-    [recognizer setDelegate:self];
-    [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    hud.labelText = @"Locating Faces";
+    hud.dimBackground = true;
+    [hud setRemoveFromSuperViewOnHide: true];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        recognizer = [[FaceRecognition alloc] init];
+        [recognizer setDelegate:self];
+        [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
+    });
 }
 
 // blow this stack out asap.
@@ -95,8 +98,8 @@
 
 -(void)chooseFaces
 {
-    //[chooseDestinationController.view removeFromSuperview];
-    NSLog(@"chooseFaces %d", [chooseFacesController retainCount]);
+    [chooseDestinationController.view removeFromSuperview];
+    [chooseGlassesController.view removeFromSuperview];
     [subContainer addSubview:chooseFacesController.view];
 }
 
@@ -105,8 +108,7 @@
 {
     [TestFlight passCheckpoint:@"Showed resultant image"];
     [[chooseFacesController view] removeFromSuperview];
-
-   // NSLog(@"added in ChooseGlasses: %d", [self retainCount]);
+    [[chooseDestinationController view] removeFromSuperview];
     [subContainer addSubview:chooseGlassesController.view];
 }
 
@@ -114,6 +116,7 @@
 {
     [TestFlight passCheckpoint:@"Finalized image"];
     [[chooseGlassesController view] removeFromSuperview];
+    [[chooseFacesController view] removeFromSuperview];
     [subContainer addSubview:chooseDestinationController.view];
 }
 
@@ -132,12 +135,12 @@
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     [self dismissModalViewControllerAnimated:YES];
+    [[chooseDestinationController view] removeFromSuperview];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
 }
 
 -(void)dealloc
 {
-    NSLog(@"Dealloc in FaceViewController");
     [faces release];
     [subContainer release];
     [chooseDestinationController release];

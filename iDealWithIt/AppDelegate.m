@@ -58,9 +58,12 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
+    [self.window.rootViewController dismissViewControllerAnimated:YES completion:NULL];
     if(!workflowController)
     {
         workflowController = [[FaceViewController alloc] initWithImage:raw];
+    }else{
+        [workflowController setImage:raw];
     }
     [self.window setRootViewController:workflowController];
 }
@@ -69,8 +72,6 @@
 {
     [self.tabBarController setSelectedIndex:0];
     [self.window setRootViewController:self.tabBarController];
-    
-    NSLog(@"called showMainPage? %d", [workflowController retainCount]);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

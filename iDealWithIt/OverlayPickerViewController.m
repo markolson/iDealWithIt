@@ -66,6 +66,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [timer invalidate];
+    [overlay setImage:nil];
 }
 
 - (void)didReceiveMemoryWarning

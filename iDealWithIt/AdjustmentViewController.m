@@ -15,33 +15,33 @@
 @end
 
 @implementation AdjustmentViewController
-@synthesize parent, tapper, inprogress, hud;
+@synthesize parent, tapper, inprogress, hud, mask;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
+    [self.view addSubview:mask];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapper.numberOfTapsRequired = 1;
     tapper.numberOfTouchesRequired = 1;
     
     if(self.parent)
     {
-        if([parent.faces count] > 0)
+        if([parent.faces count] > 0 && (animated == NO))
         {
             [self setOverlay];
         }
@@ -49,6 +49,11 @@
     }else{
         [NSException raise:@"Improper Initialization" format:@"Parent of PreviewController not set in time for viewDidAppear"];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [mask setImage:nil];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
@@ -67,14 +72,7 @@
 
 -(void)setOverlay
 {
-    for(UIView *v in self.view.subviews)
-    {
-        if([v isKindOfClass:[UIImageView class]])
-        {
-            [v removeFromSuperview];
-            [v release];
-        }
-    }
+    [mask setImage:nil];
     
     [self.view removeGestureRecognizer:tapper];
     [inprogress release];
@@ -91,9 +89,7 @@
 
     
     ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
-    UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
-    [overlay setImage:[io layerAtFrame:10 of:10]];
-    [self.view addSubview:overlay];
+    [mask setImage:[io layerAtFrame:10 of:10]];
 }
 
 -(void)addFace
@@ -118,7 +114,6 @@
     }
 
     [hud hide:YES afterDelay:1.0];
-    
 }
 
 -(void)dealloc

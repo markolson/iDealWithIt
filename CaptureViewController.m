@@ -82,12 +82,9 @@
 
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [self.tabBarController setSelectedIndex:0];
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    [picker release];
-    
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"mst.jpg"]];
-    
+    [self.tabBarController setSelectedIndex:0];
+    [picker release];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -95,10 +92,8 @@
  didFinishPickingMediaWithInfo: (NSDictionary *) info {
     
     UIImage *raw = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
-        
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    [picker release];
-    
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:raw];
+    [self.tabBarController setSelectedIndex:0];
+    [picker release];
 }
 @end

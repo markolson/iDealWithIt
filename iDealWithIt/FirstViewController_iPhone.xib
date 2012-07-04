@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="293734636">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{39, 104}, {242, 38}}</string>
+						<string key="NSFrame">{{39, 45}, {242, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="428672467"/>
@@ -56,7 +56,7 @@
 					<object class="IBUILabel" id="200363507">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{45, 20}, {231, 21}}</string>
+						<string key="NSFrame">{{62, 20}, {198, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="293734636"/>
@@ -68,7 +68,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<string key="IBUIText">0.6 build 2 - July 1 @ 10:10pm</string>
+						<string key="IBUIText">0.7 build 1 - July 4 @ 5pm</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41MDE5NjA4MTQgMCAwAA</bytes>
@@ -89,7 +89,7 @@
 					<object class="IBUILabel" id="428672467">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{39, 150}, {138, 22}}</string>
+						<string key="NSFrame">{{39, 91}, {138, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="660031919"/>
@@ -101,7 +101,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<string key="IBUIText">Changes are..</string>
+						<string key="IBUIText">Newssssss</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -121,9 +121,10 @@
 					<object class="IBUITextView" id="660031919">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 176}, {280, 233}}</string>
+						<string key="NSFrame">{{21, 117}, {280, 289}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -140,13 +141,17 @@
 							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<string type="base64-UTF8" key="IBUIText">WW91IGNhbiBub3cgYWRkIGZhY2VzICh5b3UncmUgd2VsY29tZSwgY2F0IHBlb3BsZSkgb24gdGhlIHBy
-ZXZpZXcgc3RlcCBieSBoaXR0aW5nIHRoZSBhcHByb3ByaWF0ZWx5IG5hbWVkICdhZGQgZmFjZScgYnV0
-dG9uLiBObywgdGhlcmUncyBubyB3YXkgdG8gZGVsZXRlIGZhY2VzIHlldCAtIG1heWJlIGxhdGVyIHRv
-bmlnaHQgSSdsbCBnZXQgdGhhdCBkb25lPwoKT3RoZXJ3aXNlLCBldmVyeXRoaW5nIHNob3VsZCBtb3N0
-bHkgd29yayB0aGUgc2FtZSBhcyBiZWZvcmUuIE5ldyB0b2RvIGxpc3Q6CgpEbyBtb3JlIHRyaWcgZm9y
-IHJvdGF0aW5nIGdsYXNzZXMuCkRlbGV0ZSBnbGFzc2VzLgpTYXZlIHJlc3VsdCBhcyBhIEdJRgpVcGxv
-YWQgc29tZXdoZXJlPwpTaG93IHRoZSB1cGxvYWRzIG9uIHRoaXMgc2NyZWVuLgoKA</string>
+						<object class="NSMutableString" key="IBUIText">
+							<bytes key="NS.bytes">LT4gWW91IGNhbiBlbWFpbCBwaWN0dXJlcyB0byB5b3Vyc2VsZiEKCi0+IEFmdGVyIEkgZ2V0IGl0IHNv
+IHRoYXQgeW91IGNhbiBkZWxldGUgCiAgICBnbGFzc2VzIEknbSBnb2luZyB0byBzdGFydCBwbHVnZ2lu
+ZwogICAgYXdheSBvbiBhIHNpdGUgd2hlcmUgeW91J2xsIGJlIGFibGUgdG8KICAgIHVwbG9hZCB0byBh
+bmQgbGluayB0aGVtIGZyb20uIEknbQogICAgbGVhbmluZyB0b3dhcmRzIHVzaW5nIEZCL3R3aXR0ZXIg
+CiAgICBhdXRoIHJpZ2h0IG5vdyBiZWNhdXNlIGl0J3MgZWFzeS4KCi0+IFRoaXMgaXMgKnZlcnkgbGlr
+ZWx5KiBjcmFzaCBiZWNhdXNlIG9mCiAgIHNvbWUgZHVtYiBtZW1vcnkgbWFuYWdlbWVudCBzdHVmZiAK
+ICAgSSdtIGZyYW5rbHkgZ3Vlc3NpbmcgYXQgcmlnaHQgbm93LiBCZXRhLgoKLT4gVGhlcmUgYXJlIHNv
+bWUgcGVvcGxlIG5lYXIgaGVyZSB3aG8gCiAgIHNldHVwIHNwZWFrZXJzIGFuZCBzaGl0IG91dHNpZGUg
+YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</bytes>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
@@ -199,10 +204,10 @@ YWQgc29tZXdoZXJlPwpTaG93IHRoZSB1cGxvYWRzIG9uIHRoaXMgc2NyZWVuLgoKA</string>
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
+							<reference ref="200363507"/>
 							<reference ref="293734636"/>
 							<reference ref="428672467"/>
 							<reference ref="660031919"/>
-							<reference ref="200363507"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

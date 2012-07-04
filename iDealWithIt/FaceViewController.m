@@ -29,15 +29,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setChooseFacesController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
+        [self setChooseDestinationController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
+        [self setChooseGlassesController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
+        
+        [chooseFacesController setParent:self];
+        [chooseGlassesController setParent:self];
+        [chooseDestinationController setParent:self];
     }
-    [self setChooseFacesController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
-    [self setChooseDestinationController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
-    [self setChooseGlassesController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
-    
-    [chooseFacesController setParent:self];
-    [chooseGlassesController setParent:self];
-    [chooseDestinationController setParent:self];
+
     return self;
 }
 
@@ -98,7 +98,7 @@
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [chooseFacesController performSelector:@selector(setOverlay)];
-    [self.recognizer release];
+    [recognizer release];
 }
 
 -(void)chooseFaces

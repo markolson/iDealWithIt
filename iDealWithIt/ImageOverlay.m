@@ -53,9 +53,8 @@
     
     CGImageRef imgRef = glasses.CGImage;
     
-    
 	CGFloat angleInRadians = -atan(face.roll);
-    if(angleInRadians < 0.06) { angleInRadians = 0.0; }
+    //if(angleInRadians < 0.06) { angleInRadians = 0.0; }
 	CGFloat width = CGImageGetWidth(imgRef);
 	CGFloat height = CGImageGetHeight(imgRef);
     
@@ -98,13 +97,16 @@
         float width = (face.right_eye.x - face.left_eye.x) * 2.5 ;
         float height = (width/glasses.size.width) * glasses.size.height;
         
-        float start_left = (face.left_eye.x) - (width * 0.28);
+        float start_left = (face.left_eye.x) - (width * 0.28 * cos(face.roll));
         
         float haha = total_frames/1.0;
         
-        float this_y = (((face.right_eye.y + face.left_eye.y)/2.0) - height*0.15) * frame_number/haha;
+        //float this_y = (((face.right_eye.y + face.left_eye.y)/2.0)) * frame_number/haha;
         
-        [glasses drawInRect:CGRectMake(start_left,this_y,width,height) blendMode:kCGBlendModeNormal alpha:1.0];
+        float peak = MAX(face.right_eye.y, face.left_eye.y);
+        float this_y = peak * frame_number/haha - (height/1.8);
+        
+        [glasses drawInRect:CGRectMake(start_left,this_y, width,height) blendMode:kCGBlendModeNormal alpha:1.0];
     }
     if([self isLastFrame])
     {

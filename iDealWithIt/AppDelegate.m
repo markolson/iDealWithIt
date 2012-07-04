@@ -10,7 +10,6 @@
 
 #import "FirstViewController.h"
 #import "CaptureViewController.h"
-#import "FaceViewController.h"
 
 
 @implementation AppDelegate
@@ -18,7 +17,7 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
-
+@synthesize workflowController;
 
 - (void)dealloc
 {
@@ -56,13 +55,20 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
-    FaceViewController *worker = [[[FaceViewController alloc] initWithImage:raw] autorelease];
-    [self.window addSubview:worker.view];
+    if(!workflowController)
+    {
+        workflowController = [[FaceViewController alloc] initWithImage:raw];
+    }
+    [self.window setRootViewController:workflowController];
+    
+    NSLog(@"called showPreviewWithImage? %d", [workflowController retainCount]);
 }
 
 - (void) showMainPage
 {
     [self.window setRootViewController:self.tabBarController];
+    [self.tabBarController setSelectedIndex:0];
+    NSLog(@"called showMainPage? %d", [workflowController retainCount]);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

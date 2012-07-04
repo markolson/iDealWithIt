@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FaceViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (strong, nonatomic) UITabBarController *tabBarController;
+@property (retain, nonatomic) FaceViewController *workflowController;
+
 -(void)showPreviewWithImage:(UIImage *)raw;
 -(void)showMainPage;
 @end

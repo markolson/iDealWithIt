@@ -122,10 +122,11 @@
 
 -(void)dealloc
 {
-    [super dealloc];
+    NSLog(@"dealloc in ChooseFaces");
     [tapper release];
+    [parent release];
     [inprogress release];
-    
+    [super dealloc];
 }
 
 

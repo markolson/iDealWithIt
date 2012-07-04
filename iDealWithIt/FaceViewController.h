@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "AppDelegate.h"
+#import "FaceRecognition.h"
 
 @interface FaceViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
@@ -18,6 +18,7 @@
 @property (retain, nonatomic) UIImage *image;
 @property (retain, nonatomic) NSMutableArray *faces;
 @property (retain, nonatomic) UIViewController *currentController;
+@property (retain, nonatomic) FaceRecognition *recognizer;
 
 -(id)initWithImage:(UIImage *)image;
 -(void)FaceRecognizer:(id)recognizer didFindFaces:(NSArray *)response;

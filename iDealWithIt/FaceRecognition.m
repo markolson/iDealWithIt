@@ -26,6 +26,8 @@
 
 - (void) dealloc
 {
+    [delegate release];
+    [original release];
     [super dealloc];
 }
 
@@ -145,5 +147,6 @@
          [fwImage release];
      }];
 }
+
 
 @end

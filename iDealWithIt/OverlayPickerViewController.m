@@ -79,4 +79,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)dealloc
+{
+    NSLog(@"dealloc in ChooseGlasses");
+    [overlay release];
+    [parent release];
+    [timer release];
+    [super dealloc];
+    
+}
+
+
 @end

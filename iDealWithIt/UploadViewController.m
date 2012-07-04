@@ -8,6 +8,8 @@
 
 #import "UploadViewController.h"
 
+#import "AppDelegate.h"
+
 @interface UploadViewController (Background)
 
 - (void)exportThread:(NSString *)fileOutput;
@@ -54,7 +56,6 @@
 -(void)render
 {
     NSString * tempFile = [NSString stringWithFormat:@"%@/%ld", NSTemporaryDirectory(), time(NULL)];
-    NSLog(@"Saving to.. %@", tempFile);
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     //[self.view addSubview:hud];
     
@@ -111,6 +112,8 @@
         [hud removeFromSuperview];
         
         [io release];
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
+        return;
         dispatch_async(dispatch_get_main_queue(), ^{
             [parent sendMessageWithData:[NSData dataWithContentsOfFile:path]];
         });
@@ -120,6 +123,13 @@
 	}
 }
 
-
+-(void)dealloc
+{
+    NSLog(@"dealloc in chooseDestination");
+    [overlay release];
+    [parent release];
+    [super dealloc];
+    
+}
 
 @end

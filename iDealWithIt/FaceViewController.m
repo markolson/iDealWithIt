@@ -7,11 +7,13 @@
 //
 
 #import "FaceViewController.h"
+#import "AppDelegate.h"
 #import "AdjustmentViewController.h"
 #import "OverlayPickerViewController.h"
 #import "UploadViewController.h"
 #import "FaceRecognition.h"
 #import "MBProgressHUD.h"
+
 
 
 @interface FaceViewController ()
@@ -20,7 +22,7 @@
 
 @implementation FaceViewController
 
-@synthesize subContainer, image, faces, optionBar, currentController;
+@synthesize subContainer, image, faces, optionBar, currentController, recognizer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,19 +69,20 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self chooseFaces];
-    FaceRecognition *recognizer = [[FaceRecognition alloc] init];
+    
+    recognizer = [[FaceRecognition alloc] init];
     [recognizer setDelegate:self];
     [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
 }
 
 // blow this stack out asap.
--(void)FaceRecognizer:(id)recognizer didFindFaces:(NSMutableArray *)_faces {
+-(void)FaceRecognizer:(id)r didFindFaces:(NSMutableArray *)_faces {
     [self setFaces:_faces];
-    [faces retain];
     [TestFlight passCheckpoint:@"Found faces"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [currentController performSelector:@selector(setOverlay)];
+    [self.recognizer release];
 }
 
 -(void)chooseFaces
@@ -88,9 +91,13 @@
     {
         [[currentController view] removeFromSuperview];
         [currentController release];
+        [currentController removeFromParentViewController];
+        NSLog(@"release in ChooseFaces: %d", [self retainCount]);
     }
     [self setCurrentController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
     [currentController setParent:self];
+    
+    NSLog(@"added in ChooseFaces: %d", [self retainCount]);
     [subContainer addSubview:currentController.view];
 }
 
@@ -99,9 +106,12 @@
 {
     [TestFlight passCheckpoint:@"Showed resultant image"];
     [[currentController view] removeFromSuperview];
+    [currentController removeFromParentViewController];
     [currentController release];
+    NSLog(@"release in ChooseGlasses: %d", [self retainCount]);
     [self setCurrentController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
     [currentController setParent:self];
+    NSLog(@"added in ChooseGlasses: %d", [self retainCount]);
     [subContainer addSubview:currentController.view];
 }
 
@@ -109,16 +119,18 @@
 {
     [TestFlight passCheckpoint:@"Finalized image"];
     [[currentController view] removeFromSuperview];
+    [currentController removeFromParentViewController];
     [currentController release];
+    NSLog(@"release in chooseDestination: %d", [self retainCount]);
     [self setCurrentController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
     [currentController setParent:self];
+    NSLog(@"added in chooseDestination: %d", [self retainCount]);
     [subContainer addSubview:currentController.view];
 }
 
 
 -(void)sendMessageWithData:(NSData *)data
 {
-    NSLog(@"Main: %d", [NSThread isMainThread]);
     MFMailComposeViewController *compose = [[MFMailComposeViewController alloc] init];
     [compose setSubject:@"Deal"];
     [compose setMessageBody:@"boom." isHTML:NO];
@@ -126,6 +138,7 @@
     [compose setWantsFullScreenLayout:YES];
     compose.mailComposeDelegate = self;
     [self presentModalViewController:compose animated:YES];
+    [compose release];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
@@ -133,9 +146,15 @@
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
 }
 
+-(id)retain
+{
+    NSLog(@"current retain: %d", [self retainCount]);
+    return [super retain];
+}
 
 -(void)dealloc
 {
+    NSLog(@"Dealloc in FaceViewController");
     [faces release];
     [subContainer release];
     [super dealloc];

@@ -15,8 +15,10 @@
 
 @implementation AppDelegate
 
+
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+
 
 - (void)dealloc
 {
@@ -32,7 +34,7 @@
     [TestFlight takeOff:@"f904d8336e0e5e80ab1eec89ea382cae_MTAwODE4MjAxMi0wNi0xNiAxMzozMjo0NC43Mzg0ODU"];
 #endif
     [TestFlight passCheckpoint:@"Started App"];
-
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2;

@@ -8,6 +8,7 @@
 
 #import "AdjustmentViewController.h"
 #import "MBProgressHUD.h"
+#import "FaceViewController.h"
 
 @interface AdjustmentViewController ()
 
@@ -37,8 +38,7 @@
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapper.numberOfTapsRequired = 1;
     tapper.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:tapper];
-
+    
     if(self.parent)
     {
         if([parent.faces count] > 0)
@@ -75,18 +75,19 @@
             [v release];
         }
     }
-    tapper.enabled = NO;
+    
+    [self.view removeGestureRecognizer:tapper];
     [inprogress release];
     inprogress = [[iFace alloc] init];
     
-    UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
+    UIBarButtonItem *addFaceButton = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
     //UIBarButtonSystemItemAdd
     
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:parent action:@selector(chooseGlasses)] autorelease];
     
-    [parent.optionBar setItems:@[addFace,spacer,done] animated:NO];
+    [parent.optionBar setItems:@[addFaceButton,spacer,done] animated:NO];
 
     
     ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
@@ -105,7 +106,7 @@
     
     [parent.optionBar setItems:@[cancel,spacer] animated:NO];
     
-    tapper.enabled = YES;
+    [self.view addGestureRecognizer:tapper];
 
     if(![MBProgressHUD HUDForView:self.view])
     {
@@ -122,7 +123,6 @@
 
 -(void)dealloc
 {
-    NSLog(@"dealloc in ChooseFaces");
     [tapper release];
     [parent release];
     [inprogress release];

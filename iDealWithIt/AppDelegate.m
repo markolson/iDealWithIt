@@ -12,6 +12,10 @@
 #import "CaptureViewController.h"
 
 
+#import "AdjustmentViewController.h"
+#import "OverlayPickerViewController.h"
+#import "UploadViewController.h"
+
 @implementation AppDelegate
 
 
@@ -39,8 +43,7 @@
     UIViewController *viewController1, *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil] autorelease];
-        //UIImage *mr_rogers = [UIImage imageNamed:@"mr-rogers.gif"];
-        //viewController2 = [[[PreviewViewController alloc] initWithImage:mr_rogers] autorelease];
+
         viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPhone" bundle:nil] autorelease];
     } else {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil] autorelease];
@@ -60,14 +63,13 @@
         workflowController = [[FaceViewController alloc] initWithImage:raw];
     }
     [self.window setRootViewController:workflowController];
-    
-    NSLog(@"called showPreviewWithImage? %d", [workflowController retainCount]);
 }
 
 - (void) showMainPage
 {
-    [self.window setRootViewController:self.tabBarController];
     [self.tabBarController setSelectedIndex:0];
+    [self.window setRootViewController:self.tabBarController];
+    
     NSLog(@"called showMainPage? %d", [workflowController retainCount]);
 }
 

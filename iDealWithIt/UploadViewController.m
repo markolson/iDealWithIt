@@ -112,8 +112,6 @@
         [hud removeFromSuperview];
         
         [io release];
-        [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
-        return;
         dispatch_async(dispatch_get_main_queue(), ^{
             [parent sendMessageWithData:[NSData dataWithContentsOfFile:path]];
         });

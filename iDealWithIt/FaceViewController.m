@@ -22,7 +22,8 @@
 
 @implementation FaceViewController
 
-@synthesize subContainer, image, faces, optionBar, currentController, recognizer;
+@synthesize subContainer, image, faces, optionBar, recognizer;
+@synthesize chooseDestinationController, chooseFacesController, chooseGlassesController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,13 +31,20 @@
     if (self) {
         // Custom initialization
     }
+    [self setChooseFacesController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
+    [self setChooseDestinationController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
+    [self setChooseGlassesController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
+    
+    [chooseFacesController setParent:self];
+    [chooseGlassesController setParent:self];
+    [chooseDestinationController setParent:self];
     return self;
 }
 
 
 -(id)initWithImage:(UIImage *)_image
 {
-    self = [super initWithNibName:@"FaceViewController_iPhone" bundle:nil];
+    self = [self initWithNibName:@"FaceViewController_iPhone" bundle:nil];
     [self setImage:_image];
     return self;
 }
@@ -81,51 +89,32 @@
     [TestFlight passCheckpoint:@"Found faces"];
     TFLog(@"Found %d face(s)", [faces count]);
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [currentController performSelector:@selector(setOverlay)];
+    [chooseFacesController performSelector:@selector(setOverlay)];
     [self.recognizer release];
 }
 
 -(void)chooseFaces
 {
-    if(currentController)
-    {
-        [[currentController view] removeFromSuperview];
-        [currentController release];
-        [currentController removeFromParentViewController];
-        NSLog(@"release in ChooseFaces: %d", [self retainCount]);
-    }
-    [self setCurrentController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
-    [currentController setParent:self];
-    
-    NSLog(@"added in ChooseFaces: %d", [self retainCount]);
-    [subContainer addSubview:currentController.view];
+    //[chooseDestinationController.view removeFromSuperview];
+    NSLog(@"chooseFaces %d", [chooseFacesController retainCount]);
+    [subContainer addSubview:chooseFacesController.view];
 }
 
 
 -(void)chooseGlasses
 {
     [TestFlight passCheckpoint:@"Showed resultant image"];
-    [[currentController view] removeFromSuperview];
-    [currentController removeFromParentViewController];
-    [currentController release];
-    NSLog(@"release in ChooseGlasses: %d", [self retainCount]);
-    [self setCurrentController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
-    [currentController setParent:self];
-    NSLog(@"added in ChooseGlasses: %d", [self retainCount]);
-    [subContainer addSubview:currentController.view];
+    [[chooseFacesController view] removeFromSuperview];
+
+   // NSLog(@"added in ChooseGlasses: %d", [self retainCount]);
+    [subContainer addSubview:chooseGlassesController.view];
 }
 
 -(void)chooseDestination
 {
     [TestFlight passCheckpoint:@"Finalized image"];
-    [[currentController view] removeFromSuperview];
-    [currentController removeFromParentViewController];
-    [currentController release];
-    NSLog(@"release in chooseDestination: %d", [self retainCount]);
-    [self setCurrentController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
-    [currentController setParent:self];
-    NSLog(@"added in chooseDestination: %d", [self retainCount]);
-    [subContainer addSubview:currentController.view];
+    [[chooseGlassesController view] removeFromSuperview];
+    [subContainer addSubview:chooseDestinationController.view];
 }
 
 
@@ -146,17 +135,17 @@
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
 }
 
--(id)retain
-{
-    NSLog(@"current retain: %d", [self retainCount]);
-    return [super retain];
-}
-
 -(void)dealloc
 {
     NSLog(@"Dealloc in FaceViewController");
     [faces release];
     [subContainer release];
+    [chooseDestinationController release];
+    [chooseGlassesController release];
+    [chooseFacesController release];
+    [subContainer release];
+    [image release];
+    [optionBar release];
     [super dealloc];
 }
 

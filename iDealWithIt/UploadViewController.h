@@ -21,4 +21,6 @@
 @property (nonatomic, retain) FaceViewController *parent;
 @property (nonatomic, retain) IBOutlet UIImageView *overlay;
 @property (nonatomic, retain) MBProgressHUD *hud;
+
+-(void)setParent:(FaceViewController *)parent;
 @end

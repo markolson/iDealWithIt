@@ -81,7 +81,6 @@
 
 -(void)dealloc
 {
-    NSLog(@"dealloc in ChooseGlasses");
     [overlay release];
     [parent release];
     [timer release];

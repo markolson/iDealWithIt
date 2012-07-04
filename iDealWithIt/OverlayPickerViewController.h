@@ -13,5 +13,5 @@
 
 @property (nonatomic, retain) FaceViewController *parent;
 @property (nonatomic, retain) IBOutlet UIImageView *overlay;
-
+@property (nonatomic, retain) NSTimer *timer;
 @end

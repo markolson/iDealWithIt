@@ -39,6 +39,7 @@ static NSString* kAppId = @"474165092612690";
 }
 
 - (void)apiFQLIMe {
+    NSLog(@"whut");
     // Using the "pic" picture since this currently has a maximum width of 100 pixels
     // and since the minimum profile picture size is 180 pixels wide we should be able
     // to get a 100 pixel wide version of the profile picture
@@ -54,7 +55,7 @@ static NSString* kAppId = @"474165092612690";
 - (id) init
 {
     self = [super init];
-    
+    NSLog(@"initing facebook");
     fb = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
     
     // Check and retrieve authorization information
@@ -68,12 +69,17 @@ static NSString* kAppId = @"474165092612690";
         NSArray * permissions = [[NSArray alloc] initWithObjects:@"offline_access", nil];
         [fb authorize:permissions];
         [permissions release];
+    }else{
+        [self apiFQLIMe];
     }
     return self;
 }
 
 - (void)request:(FBRequest *)request didLoad:(id)result {
-    NSLog(@"%@", request);
+    if ([result isKindOfClass:[NSArray class]]) {
+        result = [result objectAtIndex:0];
+    }
+    NSLog(@"%@ %@", [result objectForKey:@"name"], [result objectForKey:@"uid"]);
 }
 
 

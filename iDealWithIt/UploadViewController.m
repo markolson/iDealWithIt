@@ -14,12 +14,18 @@
 
 @implementation UploadViewController
 
+@synthesize parent;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"oh no!");
+        FBUser *f = [[FBUser alloc] init];
     }
+    NSLog(@"oh no!");
+    FBUser *f = [[FBUser alloc] init];
     return self;
 }
 

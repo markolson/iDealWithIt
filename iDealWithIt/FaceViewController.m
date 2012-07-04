@@ -9,6 +9,7 @@
 #import "FaceViewController.h"
 #import "AdjustmentViewController.h"
 #import "OverlayPickerViewController.h"
+#import "UploadViewController.h"
 #import "FaceRecognition.h"
 #import "MBProgressHUD.h"
 
@@ -86,6 +87,16 @@
     [currentController release];
     [optionBar setItems:@[] animated:YES];
     currentController = [[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil];
+    [currentController setParent:self];
+    [subContainer addSubview:currentController.view];
+}
+
+-(void)chooseDestination
+{
+    [TestFlight passCheckpoint:@"Finalized image"];
+    [[currentController view] removeFromSuperview];
+    [currentController release];
+    currentController = [[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil];
     [currentController setParent:self];
     [subContainer addSubview:currentController.view];
 }

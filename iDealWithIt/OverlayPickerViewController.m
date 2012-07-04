@@ -15,7 +15,7 @@
 @end
 
 @implementation OverlayPickerViewController
-@synthesize parent, overlay;
+@synthesize parent, overlay, timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,18 +39,31 @@
     
     [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO];
     [io release];
+    
+    UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:parent action:@selector(chooseDestination)] autorelease];
+    
+    [parent.optionBar setItems:@[spacer,done] animated:NO];
 }
 
--(void)animate:(NSTimer *)timer
+-(void)animate:(NSTimer *)_timer
 {
-    ImageOverlay *io = (ImageOverlay *)[timer userInfo];
+    ImageOverlay *io = (ImageOverlay *)[_timer userInfo];
+    
+    if(overlay == NULL ) { return; } // we unloaded. stop!
     overlay.image = [io nextFrame];
     if([io isLastFrame])
     {
-        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animate:) userInfo:io repeats:NO];
+        [self setTimer:[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animate:) userInfo:io repeats:NO]];
     }else{
-        [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO];
+        [self setTimer:[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO]];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [timer invalidate];
 }
 
 - (void)didReceiveMemoryWarning

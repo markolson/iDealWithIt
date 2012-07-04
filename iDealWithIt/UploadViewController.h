@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FaceViewController.h"
+
+#import "FBUser.h"
 
 @interface UploadViewController : UIViewController
 
+@property (nonatomic, retain) FaceViewController *parent;
 @end

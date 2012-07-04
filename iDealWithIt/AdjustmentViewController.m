@@ -14,7 +14,7 @@
 @end
 
 @implementation AdjustmentViewController
-@synthesize parent, tapper, inprogress;
+@synthesize parent, tapper, inprogress, hud;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,11 +27,13 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapper.numberOfTapsRequired = 1;
     tapper.numberOfTouchesRequired = 1;
@@ -39,7 +41,6 @@
 
     if(self.parent)
     {
-        
         if([parent.faces count] > 0)
         {
             [self setOverlay];
@@ -68,14 +69,19 @@
 {
     for(UIView *v in self.view.subviews)
     {
-        [v removeFromSuperview];
-        [v release];
+        if([v isKindOfClass:[UIImageView class]])
+        {
+            [v removeFromSuperview];
+            [v release];
+        }
     }
     tapper.enabled = NO;
     [inprogress release];
     inprogress = [[iFace alloc] init];
     
     UIBarButtonItem *addFace = [[[UIBarButtonItem alloc] initWithTitle:@"Add Face" style:UIButtonTypeInfoLight target:self action:@selector(addFace)] autorelease];
+    //UIBarButtonSystemItemAdd
+    
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:parent action:@selector(chooseGlasses)] autorelease];
@@ -85,7 +91,7 @@
     
     ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
     UIImageView *overlay = [[UIImageView alloc] initWithImage:[io layer]];
-    overlay.image = [io layerAtFrame:10 of:10];
+    [overlay setImage:[io layerAtFrame:10 of:10]];
     [self.view addSubview:overlay];
 }
 
@@ -99,17 +105,18 @@
     
     [parent.optionBar setItems:@[cancel,spacer] animated:NO];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-
-    hud.mode = MBProgressHUDModeText;
-	hud.labelText = @"Tap on the left, and then right eye.";
-    hud.dimBackground = YES;
-	hud.margin = 10.f;
-	hud.removeFromSuperViewOnHide = YES;
-    
-	[hud hide:YES afterDelay:1];
-    
     tapper.enabled = YES;
+
+    if(![MBProgressHUD HUDForView:self.view])
+    {
+        hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"Tap on the left, and then right eye.";
+        hud.dimBackground = YES;
+        hud.margin = 10.f;
+    }
+
+    [hud hide:YES afterDelay:1.0];
     
 }
 

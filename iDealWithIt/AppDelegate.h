@@ -15,4 +15,5 @@
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 -(void)showPreviewWithImage:(UIImage *)raw;
+-(void)showMainPage;
 @end

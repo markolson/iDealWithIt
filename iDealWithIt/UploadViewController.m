@@ -42,6 +42,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    TFLog(@"Memory warning in UploadView");
     // Dispose of any resources that can be recreated.
 }
 
@@ -58,7 +59,7 @@
     //[self.view addSubview:hud];
     
 	hud.removeFromSuperViewOnHide = YES;
-	hud.mode = MBProgressHUDModeIndeterminate;
+	hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Drawing";
     
     
@@ -73,29 +74,28 @@
 	@autoreleasepool {
         path = [path stringByAppendingPathExtension:@"gif"];
         ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:overlay.bounds.size];
-        [io setFrames:11];
+        [io setFrames:9];
         
         CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)[NSURL fileURLWithPath:path],
                                                                             kUTTypeGIF,
                                                                             [io frame_count],
                                                                             NULL);
         
-        NSLog(@"%@", (NSString *)kCGImagePropertyGIFDictionary);
-        NSDictionary *gFrames = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @0.2 }};
-        NSDictionary *lFrame = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @2 }};
+        NSDictionary *gFrames = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @0.3 }};
+        NSDictionary *lFrame = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @3 }};
         
         NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount] forKey:(NSString *)kCGImagePropertyGIFDictionary];
         
 
 		CGSize canvasSize = parent.image.size;
         for (int i = 0; i < [io frame_count]; i++) {
+            hud.progress = (i+1)/[io frame_count];
             UIGraphicsBeginImageContext( canvasSize );
             [parent.image drawAtPoint:CGPointMake(0, 0)];
             [[io nextFrame] drawInRect:CGRectMake(0,0, canvasSize.width,canvasSize.height) blendMode:kCGBlendModeNormal alpha:1.0];
             UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
             
             if([io isLastFrame]) {
-                NSLog(@"ALMOST");
                 CGImageDestinationAddImage(destination, image.CGImage, (CFDictionaryRef)lFrame);
             }else{
                 CGImageDestinationAddImage(destination, image.CGImage, (CFDictionaryRef)gFrames);
@@ -108,10 +108,18 @@
         CGImageDestinationSetProperties(destination, (CFDictionaryRef)gifProperties);
         CGImageDestinationFinalize(destination);
         CFRelease(destination);
-        NSLog(@"animated GIF file created at %@", path);
-        [hud hide:YES];
+        [hud removeFromSuperview];
+        
+        [io release];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [parent sendMessageWithData:[NSData dataWithContentsOfFile:path]];
+        });
+        
+
+        //[compose release];
 	}
 }
+
 
 
 @end

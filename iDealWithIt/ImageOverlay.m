@@ -20,8 +20,8 @@
 -(id)initWithFaces:(NSArray *)f andDimensions:(CGSize)d
 {
     self = [super init];
-    self.faces = f;
-    self.dimensions = d;
+    [self setFaces:f];
+    [self setDimensions:d];
     self.current_frame = 0;
     return self;
 }

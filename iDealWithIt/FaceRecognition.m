@@ -41,7 +41,7 @@
 }
 
 - (void) recognizeWithImage:(UIImage *)image andFinalSize:(CGSize)_canvas {
-    self.canvas = _canvas;
+    [self setCanvas:_canvas];
     [self setOriginal:image];
     Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
     if(NO)
@@ -109,7 +109,7 @@
                                            extension:@"jpg"
                                          andFullPath:@""];
     
-    TFLog(@"Uploading image to face: %dKB", [blob length]);
+    TFLog(@"Uploading image to face: %dKB", [blob length]/(8*1024));
     [blob release];
     
     fwImage.tag = 999;
@@ -122,7 +122,6 @@
     
     [object setDetector:DETECTOR_TYPE_DEFAULT];
     [object setFormat:FORMAT_TYPE_JSON];
-    
     
     [[FaceWrapper instance] detectFaceWithFWObject:object 
                                    runInBackground:NO

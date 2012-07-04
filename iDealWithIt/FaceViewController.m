@@ -35,19 +35,19 @@
 -(id)initWithImage:(UIImage *)_image
 {
     self = [super initWithNibName:@"FaceViewController_iPhone" bundle:nil];
-    self.image = _image;
+    [self setImage:_image];
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     hud.labelText = @"Locating Faces";
     hud.dimBackground = true;
-    currentController = [[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil];
+    [hud setRemoveFromSuperViewOnHide: true];
 
-    [currentController setParent:self];
     float scale = 1.0;
     if(image.size.height > subContainer.frame.size.height || image.size.width > subContainer.frame.size.width)
     {
@@ -57,22 +57,24 @@
     
     UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
     
-    subContainer.image = preview;
+    [self setImage:preview];
+    [subContainer setImage:preview];
     
     
-    [subContainer addSubview:currentController.view];
 	
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self chooseFaces];
     FaceRecognition *recognizer = [[FaceRecognition alloc] init];
     [recognizer setDelegate:self];
     [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
 }
 
+// blow this stack out asap.
 -(void)FaceRecognizer:(id)recognizer didFindFaces:(NSMutableArray *)_faces {
-    self.faces = _faces;
+    [self setFaces:_faces];
     [faces retain];
     [TestFlight passCheckpoint:@"Found faces"];
     TFLog(@"Found %d face(s)", [faces count]);
@@ -80,13 +82,25 @@
     [currentController performSelector:@selector(setOverlay)];
 }
 
+-(void)chooseFaces
+{
+    if(currentController)
+    {
+        [[currentController view] removeFromSuperview];
+        [currentController release];
+    }
+    [self setCurrentController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
+    [currentController setParent:self];
+    [subContainer addSubview:currentController.view];
+}
+
+
 -(void)chooseGlasses
 {
     [TestFlight passCheckpoint:@"Showed resultant image"];
     [[currentController view] removeFromSuperview];
     [currentController release];
-    [optionBar setItems:@[] animated:YES];
-    currentController = [[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil];
+    [self setCurrentController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
     [currentController setParent:self];
     [subContainer addSubview:currentController.view];
 }
@@ -96,14 +110,34 @@
     [TestFlight passCheckpoint:@"Finalized image"];
     [[currentController view] removeFromSuperview];
     [currentController release];
-    currentController = [[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil];
+    [self setCurrentController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
     [currentController setParent:self];
     [subContainer addSubview:currentController.view];
 }
 
+
+-(void)sendMessageWithData:(NSData *)data
+{
+    NSLog(@"Main: %d", [NSThread isMainThread]);
+    MFMailComposeViewController *compose = [[MFMailComposeViewController alloc] init];
+    [compose setSubject:@"Deal"];
+    [compose setMessageBody:@"boom." isHTML:NO];
+    [compose addAttachmentData:data mimeType:@"image/gif" fileName:@"dealwithit.gif"];
+    [compose setWantsFullScreenLayout:YES];
+    compose.mailComposeDelegate = self;
+    [self presentModalViewController:compose animated:YES];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self dismissModalViewControllerAnimated:YES];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
+}
+
+
 -(void)dealloc
 {
     [faces release];
+    [subContainer release];
     [super dealloc];
 }
 

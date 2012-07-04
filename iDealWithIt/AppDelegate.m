@@ -57,7 +57,12 @@
 - (void) showPreviewWithImage:(UIImage *)raw
 {
     FaceViewController *worker = [[[FaceViewController alloc] initWithImage:raw] autorelease];
-    self.window.rootViewController = worker;
+    [self.window addSubview:worker.view];
+}
+
+- (void) showMainPage
+{
+    [self.window setRootViewController:self.tabBarController];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

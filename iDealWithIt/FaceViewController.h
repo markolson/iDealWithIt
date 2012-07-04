@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import "AppDelegate.h"
 
-@interface FaceViewController : UIViewController
+@interface FaceViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 
 @property (retain, nonatomic) IBOutlet UIImageView *subContainer;

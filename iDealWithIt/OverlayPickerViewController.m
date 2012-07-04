@@ -22,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -35,16 +36,17 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:overlay.bounds.size];
-    [io setFrames:20];
+    [io setFrames:12];
     
     [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO];
     [io release];
-    
+    UIBarButtonItem *back = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIButtonTypeInfoLight target:parent action:@selector(chooseFaces)] autorelease];
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:parent action:@selector(chooseDestination)] autorelease];
+    UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:parent action:@selector(chooseDestination)] autorelease];
     
-    [parent.optionBar setItems:@[spacer,done] animated:NO];
+    [parent.optionBar setItems:@[back, spacer,done] animated:NO];
+
 }
 
 -(void)animate:(NSTimer *)_timer
@@ -52,7 +54,7 @@
     ImageOverlay *io = (ImageOverlay *)[_timer userInfo];
     
     if(overlay == NULL ) { return; } // we unloaded. stop!
-    overlay.image = [io nextFrame];
+    [overlay setImage:[io nextFrame]];
     if([io isLastFrame])
     {
         [self setTimer:[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animate:) userInfo:io repeats:NO]];

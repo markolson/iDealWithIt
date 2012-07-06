@@ -80,7 +80,7 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
+/**
 -(id)retain
 {
     NSLog(@"O++ %d", [self retainCount]+1);
@@ -92,15 +92,12 @@
     NSLog(@"O-- %d", [self retainCount]-1);
     return [super release];
 }
-
+**/
 
 -(void)dealloc
 {
     [mask release];
-    NSLog(@"mask %d", [mask retainCount]);
-    NSLog(@"parent %d", [parent retainCount]);
     [timer release];
-    NSLog(@"timer %d", [timer retainCount]);
     [super dealloc];
     
 }

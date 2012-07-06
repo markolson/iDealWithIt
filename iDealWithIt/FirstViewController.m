@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"PlaceHolder", @"PlaceHolder");
-        self.tabBarItem.image = [UIImage imageNamed:@"PlaceHolder"];
+        self.tabBarItem.image = [UIImage imageNamed:@"165-glasses-3.png"];
     }
     return self;
 }

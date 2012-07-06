@@ -93,7 +93,7 @@
     [parent.optionBar setItems:@[addFaceButton,spacer,done] animated:NO];
     
     ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
-    [mask setImage:[io layerAtFrame:10 of:10]];
+    [mask setImage:[io layerAtFrame:12 of:12]];
 }
 
 -(void)addFace
@@ -123,11 +123,10 @@
 -(void)dealloc
 {
     [tapper release];
-    NSLog(@"parent %d", [parent retainCount]);
     [inprogress release];
     [super dealloc];
 }
-
+/**
 -(id)retain
 {
     NSLog(@"A++ %d", [self retainCount]+1);
@@ -139,6 +138,7 @@
     NSLog(@"A-- %d", [self retainCount]-1);
     return [super release];
 }
+**/
 
 - (void)didReceiveMemoryWarning
 {

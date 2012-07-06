@@ -16,8 +16,19 @@
 #import "OverlayPickerViewController.h"
 #import "UploadViewController.h"
 
-@implementation AppDelegate
+@interface Feedback : UIViewController
+@end
+@implementation Feedback
+-(id)init
+{
+    self = [super init];
+    self.title = NSLocalizedString(@"Feedback", @"Feedback");
+    self.tabBarItem.image = [UIImage imageNamed:@"help_30.png"];
+    return self;
+}
+@end
 
+@implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
@@ -39,6 +50,7 @@
     [TestFlight passCheckpoint:@"Started App"];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -50,9 +62,21 @@
         viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPad" bundle:nil] autorelease];
     }
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
+    self.tabBarController.delegate = self;
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, [[Feedback alloc] init], nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if([viewController isKindOfClass:[Feedback class]])
+    {
+        [TestFlight openFeedbackView];
+        return NO;
+    }
     return YES;
 }
 
@@ -76,6 +100,7 @@
 
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [TestFlight passCheckpoint:@"Sent/Cancelled"];
     [self.window.rootViewController dismissModalViewControllerAnimated:YES];
     [self showMainPage];
 }

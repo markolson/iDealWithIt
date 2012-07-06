@@ -131,7 +131,7 @@
         //[compose release];
 	}
 }
-
+/**
 -(id)retain
 {
     NSLog(@"U++ %d", [self retainCount]+1);
@@ -143,7 +143,7 @@
     NSLog(@"U-- %d", [self retainCount]-1);
     return [super release];
 }
-
+**/
 -(void)dealloc
 {
     [mask release];

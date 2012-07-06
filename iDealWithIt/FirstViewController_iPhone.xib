@@ -12,7 +12,6 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
-			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUITextView</string>
 			<string>IBUIView</string>
@@ -37,27 +36,13 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="293734636">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{39, 45}, {242, 38}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="428672467"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="IBUIContentMode">1</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">165-glasses-3.png</string>
-						</object>
-					</object>
 					<object class="IBUILabel" id="200363507">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 20}, {198, 21}}</string>
+						<string key="NSFrame">{{44, 0}, {233, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="293734636"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="428672467"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -66,7 +51,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<string key="IBUIText">0.7 build 1 - July 4 @ 5pm</string>
+						<string key="IBUIText">This version is from July 6, FYI</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41MDE5NjA4MTQgMCAwAA</bytes>
@@ -87,8 +72,9 @@
 					<object class="IBUILabel" id="428672467">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{39, 91}, {138, 22}}</string>
+						<string key="NSFrame">{{20, 25}, {138, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="660031919"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -118,8 +104,10 @@
 					<object class="IBUITextView" id="660031919">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{21, 117}, {280, 289}}</string>
+						<string key="NSFrame">{{0, 51}, {320, 365}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -136,15 +124,20 @@
 							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<string type="base64-UTF8" key="IBUIText">LT4gWW91IGNhbiBlbWFpbCBwaWN0dXJlcyB0byB5b3Vyc2VsZiEKCi0+IEFmdGVyIEkgZ2V0IGl0IHNv
-IHRoYXQgeW91IGNhbiBkZWxldGUgCiAgICBnbGFzc2VzIEknbSBnb2luZyB0byBzdGFydCBwbHVnZ2lu
-ZwogICAgYXdheSBvbiBhIHNpdGUgd2hlcmUgeW91J2xsIGJlIGFibGUgdG8KICAgIHVwbG9hZCB0byBh
-bmQgbGluayB0aGVtIGZyb20uIEknbQogICAgbGVhbmluZyB0b3dhcmRzIHVzaW5nIEZCL3R3aXR0ZXIg
-CiAgICBhdXRoIHJpZ2h0IG5vdyBiZWNhdXNlIGl0J3MgZWFzeS4KCi0+IFRoaXMgaXMgKnZlcnkgbGlr
-ZWx5KiBjcmFzaCBiZWNhdXNlIG9mCiAgIHNvbWUgZHVtYiBtZW1vcnkgbWFuYWdlbWVudCBzdHVmZiAK
-ICAgSSdtIGZyYW5rbHkgZ3Vlc3NpbmcgYXQgcmlnaHQgbm93LiBCZXRhLgoKLT4gVGhlcmUgYXJlIHNv
-bWUgcGVvcGxlIG5lYXIgaGVyZSB3aG8gCiAgIHNldHVwIHNwZWFrZXJzIGFuZCBzaGl0IG91dHNpZGUg
-YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</string>
+						<object class="NSMutableString" key="IBUIText">
+							<bytes key="NS.bytes">SSBub3RpY2VkIHRoYXQgdGhlIGdsYXNzZXMgc2hvdyB1cCBhIGxpdHRsZSBiaXQgb2ZmIGluIHRoZSB2
+aWV3IHdoZXJlIHlvdSBjYW4gYWRkIGFkZGl0aW9uIHBhaXJzIGNvbXBhcmVkIHdpdGggdGhlIGZpbmFs
+IGltYWdlLiBJJ2xsIGJlIGdldHRpbmcgYXJvdW5kIHRvIGZpeGluZyB0aGF0IHNob3J0bHkuIFRoaXMg
+YnVpbGQgaW5jbHVkZXMgMiBzbWFsbCBidWdmaXhlcywgbGVzcyBtZW1vcnkgbGVha2luZyAocHJvYmFi
+bHkgc29tZSBuZXcgYnVncyBhbmQgbGVha3MgdGhvdWdoKSwgYSBmZWVkYmFjayBmb3JtIGZvciB5b3Ug
+YWxsIHRvIHNwYW0gbWUgd2l0aCwgYW5kIHNvbWUgZmFjZWJvb2svdHdpdHRlciBhdXRoIHN0dWZmIEkg
+aGF2ZW4ndCBmbGlwcGVkIG9uIHlldC4KCkknbSBob3BpbmcgdG8gdGhlIGEgYmFzaWMgc2l0ZSB1cCBi
+eSB0aGUgZW5kIG9mIHRoZSB3ZWVrZW5kLCBhbG9uZyB3aXRoIHVwbG9hZGluZyB0byBpdCAoYWZ0ZXIg
+bG9nZ2luZyBpbiB3aXRoIGZiL3R3aXR0ZXIgaW4tYXBwKSwgd2l0aCBhIHB1YmxpYy9wcml2YXRlIHRv
+Z2dsZSB0aGF0IHdpbGwgZGljdGF0ZSBpZiB0aGluZ3Mgc2hvdyB1cCBvbiB0aGUgbGlzdCBvZiByZWNl
+bnQgaW1hZ2VzLCB3aGljaCB3aWxsIHRha2Ugb3ZlciB0aGlzIGFyZWEuCgpBbHNvLCBkZWxldGluZyBn
+bGFzc2VzLiBTdGlsbCBoYXZlbid0IGdvdHRlbiBhcm91bmQgdG8gdGhhdC4uLg</bytes>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
@@ -158,6 +151,7 @@ YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</stri
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="200363507"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -196,10 +190,9 @@ YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</stri
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="200363507"/>
-							<reference ref="293734636"/>
-							<reference ref="428672467"/>
 							<reference ref="660031919"/>
+							<reference ref="200363507"/>
+							<reference ref="428672467"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -213,11 +206,6 @@ YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</stri
 						<int key="objectID">-2</int>
 						<reference key="object" ref="975951072"/>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="293734636"/>
-						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
@@ -244,7 +232,6 @@ YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</stri
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -269,10 +256,6 @@ YW5kIAogICB0aGV5J3JlIHBsYXlpbmcgSE9SSUJCTEUgTE9VTkdFIE1VU0lDCiAgIE9IIEdPRA</stri
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">165-glasses-3.png</string>
-			<string key="NS.object.0">{32, 12}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">1884</string>
 	</data>
 </archive>

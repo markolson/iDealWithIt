@@ -95,6 +95,7 @@
 
 -(void)chooseFaces
 {
+    [TestFlight passCheckpoint:@"Choose Faces"];
     [nav popToRootViewControllerAnimated:NO];
     [chooseFacesController setOverlay];
     NSLog(@"Now there are %d", [[nav viewControllers] count]);
@@ -103,7 +104,7 @@
 
 -(void)chooseGlasses
 {
-    [TestFlight passCheckpoint:@"Showed resultant image"];
+    [TestFlight passCheckpoint:@"Preview Image"];
     [nav pushViewController:chooseGlassesController animated:NO];
     
 }

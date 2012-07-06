@@ -19,7 +19,7 @@
 @interface UploadViewController : UIViewController
 
 @property (nonatomic, retain) FaceViewController *parent;
-@property (nonatomic, retain) IBOutlet UIImageView *overlay;
+@property (nonatomic, retain) IBOutlet UIImageView *mask;
 @property (nonatomic, retain) MBProgressHUD *hud;
 
 -(void)setParent:(FaceViewController *)parent;

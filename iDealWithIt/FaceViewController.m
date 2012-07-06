@@ -23,63 +23,40 @@
 @implementation FaceViewController
 
 @synthesize subContainer, image, faces, optionBar, recognizer;
-@synthesize chooseDestinationController, chooseFacesController, chooseGlassesController;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self setChooseFacesController:[[AdjustmentViewController alloc] initWithNibName:@"AdjustmentViewController_iPhone" bundle:nil]];
-        [self setChooseDestinationController:[[UploadViewController alloc] initWithNibName:@"UploadViewController_iPhone" bundle:nil]];
-        [self setChooseGlassesController:[[OverlayPickerViewController alloc] initWithNibName:@"OverlayPickerViewController_iPhone" bundle:nil]];
-        
-        [chooseFacesController setParent:self];
-        [chooseGlassesController setParent:self];
-        [chooseDestinationController setParent:self];
-    }
-
-    return self;
-}
+@synthesize chooseFacesController, chooseDestinationController, chooseGlassesController;
 
 
 -(id)initWithImage:(UIImage *)_image
 {
-    self = [self initWithNibName:@"FaceViewController_iPhone" bundle:nil];
+    nav = self = [self initWithRootViewController:[[[AdjustmentViewController alloc] init] autorelease]];
+    
+    chooseFacesController = [nav topViewController];
+    chooseGlassesController = [[OverlayPickerViewController alloc] init];
+    chooseDestinationController = [[UploadViewController alloc] init];
+    
+    subContainer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    [nav.navigationBar setHidden:YES];
+    
+    optionBar = [nav toolbar];
+    [nav setToolbarHidden:NO];
+    [[nav toolbar] setTintColor:[UIColor blackColor]];
+    
     [self setImage:_image];
+    [self scaleDownImage];
+    
     return self;
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
-    if(animated == YES) { return; }
     [self scaleDownImage];
     [self setFaces:[@[] mutableCopy]];
     [self chooseFaces];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self scaleDownImage];
-}
-
--(void)scaleDownImage
-{
-    float scale = 1.0;
-    if(image.size.height > subContainer.frame.size.height || image.size.width > subContainer.frame.size.width)
-    {
-        float extra_height = image.size.height - subContainer.frame.size.height;
-        if(extra_height > 0) { scale = image.size.height/subContainer.frame.size.height; }
-    }
-    UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
-    [self setImage:preview];
-    [subContainer setImage:image];
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
-    if(animated == YES) { return; }
+    [chooseFacesController viewDidAppear:NO];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     hud.labelText = @"Locating Faces";
     hud.dimBackground = true;
@@ -89,6 +66,19 @@
         [recognizer setDelegate:self];
         [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
     });
+}
+
+-(void)scaleDownImage
+{
+    float scale = 1.0;
+    if(image.size.height > 420 || image.size.width > 320)
+    {
+        float extra_height = image.size.height - 420;
+        if(extra_height > 0) { scale = image.size.height/420; }
+    }
+    UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
+    [self setImage:preview];
+    [subContainer setImage:image];
 }
 
 // blow this stack out asap.
@@ -103,26 +93,22 @@
 
 -(void)chooseFaces
 {
-    [chooseDestinationController.view removeFromSuperview];
-    [chooseGlassesController.view removeFromSuperview];
-    [subContainer addSubview:chooseFacesController.view];
+    [nav popToRootViewControllerAnimated:NO];
+    NSLog(@"Now there are %d", [[nav viewControllers] count]);
 }
 
 
 -(void)chooseGlasses
 {
     [TestFlight passCheckpoint:@"Showed resultant image"];
-    [[chooseFacesController view] removeFromSuperview];
-    [[chooseDestinationController view] removeFromSuperview];
-    [subContainer addSubview:chooseGlassesController.view];
+    [nav pushViewController:chooseGlassesController animated:NO];
+    
 }
 
 -(void)chooseDestination
 {
     [TestFlight passCheckpoint:@"Finalized image"];
-    [[chooseGlassesController view] removeFromSuperview];
-    [[chooseFacesController view] removeFromSuperview];
-    [subContainer addSubview:chooseDestinationController.view];
+    [nav pushViewController:chooseDestinationController animated:NO];
 }
 
 
@@ -141,20 +127,13 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     [self dismissModalViewControllerAnimated:YES];
     [self setImage:nil];
-    [[chooseDestinationController view] removeFromSuperview];
-    [[chooseGlassesController view] removeFromSuperview];
-    [[chooseFacesController view] removeFromSuperview];
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
 }
 
 -(void)dealloc
 {
     [faces release];
     [subContainer release];
-    [chooseDestinationController release];
-    [chooseGlassesController release];
-    [chooseFacesController release];
-    [subContainer release];
+    
     [image release];
     [optionBar release];
     [super dealloc];
@@ -170,5 +149,17 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    
+    [viewController viewWillAppear:animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [viewController viewDidAppear:animated];
+}
+
 
 @end

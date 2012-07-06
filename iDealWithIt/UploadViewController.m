@@ -21,24 +21,28 @@
 
 @implementation UploadViewController
 
-@synthesize parent, overlay, hud;
+@synthesize parent, mask, hud;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        //FBUser *f = [[FBUser alloc] init];
-    }
+    self = [super init];
+    mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    [self.view addSubview:mask];
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     [parent.optionBar setItems:@[] animated:NO];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    parent = (FaceViewController *)[self parentViewController];
+    [self.view addSubview:[parent subContainer]];
+    [self.view bringSubviewToFront:mask];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -79,7 +83,7 @@
 - (void)exportThread:(NSString *)path {
 	@autoreleasepool {
         path = [path stringByAppendingPathExtension:@"gif"];
-        ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:overlay.bounds.size];
+        ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:mask.bounds.size];
         [io setFrames:9];
         
         CGImageDestinationRef destination = CGImageDestinationCreateWithURL((CFURLRef)[NSURL fileURLWithPath:path],
@@ -128,7 +132,7 @@
 
 -(void)dealloc
 {
-    [overlay release];
+    [mask release];
     [parent release];
     [super dealloc];
     

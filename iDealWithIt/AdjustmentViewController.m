@@ -17,35 +17,34 @@
 @implementation AdjustmentViewController
 @synthesize parent, tapper, inprogress, hud, mask;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-    }
+    self = [super init];
+    mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    [self.view addSubview:mask];
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:mask];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapper.numberOfTapsRequired = 1;
     tapper.numberOfTouchesRequired = 1;
     
-    if(self.parent)
+    if(parent)
     {
-        if([parent.faces count] > 0 && (animated == NO))
-        {
-            [self setOverlay];
-        }
-
+        [parent.subContainer removeFromSuperview];
+        [self.view addSubview:[parent subContainer]];
+        NSLog(@"Adjustment subviews; %d", [[self.view subviews] count]);
+        [self.view bringSubviewToFront:mask];
+        [self setOverlay];
     }else{
         [NSException raise:@"Improper Initialization" format:@"Parent of PreviewController not set in time for viewDidAppear"];
     }
@@ -53,7 +52,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [mask setImage:nil];
+    if(!parent)
+    {
+        parent = (FaceViewController *)[self parentViewController];
+
+    }
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
@@ -86,7 +89,6 @@
     UIBarButtonItem *done = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:parent action:@selector(chooseGlasses)] autorelease];
     
     [parent.optionBar setItems:@[addFaceButton,spacer,done] animated:NO];
-
     
     ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
     [mask setImage:[io layerAtFrame:10 of:10]];

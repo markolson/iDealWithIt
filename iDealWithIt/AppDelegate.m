@@ -44,7 +44,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil] autorelease];
 
-        viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPhone" bundle:nil] autorelease];
+        viewController2 = [[[CaptureViewController alloc] init] autorelease];
     } else {
         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil] autorelease];
         viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPad" bundle:nil] autorelease];
@@ -70,6 +70,8 @@
 
 - (void) showMainPage
 {
+    [workflowController parentViewController];
+    [workflowController removeFromParentViewController];
     [self.tabBarController setSelectedIndex:0];
     [self.window setRootViewController:self.tabBarController];
 }

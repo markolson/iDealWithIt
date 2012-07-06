@@ -15,28 +15,27 @@
 @end
 
 @implementation OverlayPickerViewController
-@synthesize parent, overlay, timer;
+@synthesize parent, mask, timer;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-
-    }
+    self = [super init];
+    mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    [self.view addSubview:mask];
     return self;
 }
 
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    parent = (FaceViewController *)[self parentViewController];
+    [self.view addSubview:[parent subContainer]];
+    [self.view bringSubviewToFront:mask];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     if(animated == YES) { return; }
-    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:overlay.bounds.size];
+    ImageOverlay *io = [[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:mask.bounds.size];
     [io setFrames:12];
     
     [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(animate:) userInfo:io repeats:NO];
@@ -54,8 +53,8 @@
 {
     ImageOverlay *io = (ImageOverlay *)[_timer userInfo];
     
-    if(overlay == NULL ) { return; } // we unloaded. stop!
-    [overlay setImage:[io nextFrame]];
+    if(mask == NULL ) { return; } // we unloaded. stop!
+    [mask setImage:[io nextFrame]];
     if([io isLastFrame])
     {
         [self setTimer:[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animate:) userInfo:io repeats:NO]];
@@ -67,7 +66,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [timer invalidate];
-    [overlay setImage:nil];
+    [mask setImage:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +82,7 @@
 
 -(void)dealloc
 {
-    [overlay release];
+    [mask release];
     [parent release];
     [timer release];
     [super dealloc];

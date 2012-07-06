@@ -49,14 +49,16 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     [self scaleDownImage];
     [self setFaces:[@[] mutableCopy]];
-    [self chooseFaces];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [chooseFacesController viewDidAppear:NO];
+    if(animated == YES) { return; }
+    [self chooseFaces];
+    [chooseFacesController viewDidAppear:animated];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     hud.labelText = @"Locating Faces";
     hud.dimBackground = true;
@@ -94,6 +96,7 @@
 -(void)chooseFaces
 {
     [nav popToRootViewControllerAnimated:NO];
+    [chooseFacesController setOverlay];
     NSLog(@"Now there are %d", [[nav viewControllers] count]);
 }
 
@@ -114,28 +117,24 @@
 
 -(void)sendMessageWithData:(NSData *)data
 {
+    [nav popToRootViewControllerAnimated:NO];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     MFMailComposeViewController *compose = [[MFMailComposeViewController alloc] init];
     [compose setSubject:@"Deal"];
     [compose setMessageBody:@"boom." isHTML:NO];
     [compose addAttachmentData:data mimeType:@"image/gif" fileName:@"dealwithit.gif"];
     [compose setWantsFullScreenLayout:YES];
-    compose.mailComposeDelegate = self;
+    compose.mailComposeDelegate = appDelegate;
     [self presentModalViewController:compose animated:YES];
     [compose release];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    [self dismissModalViewControllerAnimated:YES];
-    [self setImage:nil];
+    //[appDelegate showMainPage];
 }
 
 -(void)dealloc
 {
     [faces release];
     [subContainer release];
-    
     [image release];
-    [optionBar release];
     [super dealloc];
 }
 

@@ -33,6 +33,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     [super viewDidAppear:animated];
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapper.numberOfTapsRequired = 1;
@@ -52,6 +53,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     if(!parent)
     {
         parent = (FaceViewController *)[self parentViewController];
@@ -121,11 +123,22 @@
 -(void)dealloc
 {
     [tapper release];
-    [parent release];
+    NSLog(@"parent %d", [parent retainCount]);
     [inprogress release];
     [super dealloc];
 }
 
+-(id)retain
+{
+    NSLog(@"A++ %d", [self retainCount]+1);
+    return [super retain];
+}
+
+-(void)release
+{
+    NSLog(@"A-- %d", [self retainCount]-1);
+    return [super release];
+}
 
 - (void)didReceiveMemoryWarning
 {

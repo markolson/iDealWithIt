@@ -58,23 +58,28 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
-    [self.window.rootViewController dismissViewControllerAnimated:YES completion:NULL];
-    if(!workflowController)
+    if([workflowController isKindOfClass:[FaceViewController class]])
     {
-        workflowController = [[FaceViewController alloc] initWithImage:raw];
-    }else{
-        [workflowController setImage:raw];
+        //[workflowController clean];
+        [workflowController release];
     }
+    [self.window.rootViewController dismissViewControllerAnimated:YES completion:NULL];
+    workflowController = [[FaceViewController alloc] initWithImage:raw];
     [self.window setRootViewController:workflowController];
 }
 
 - (void) showMainPage
 {
-    [workflowController parentViewController];
-    [workflowController removeFromParentViewController];
     [self.tabBarController setSelectedIndex:0];
     [self.window setRootViewController:self.tabBarController];
 }
+
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self.window.rootViewController dismissModalViewControllerAnimated:YES];
+    [self showMainPage];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

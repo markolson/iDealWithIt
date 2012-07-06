@@ -20,13 +20,14 @@
 -(id)init
 {
     self = [super init];
-    mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    mask = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)] autorelease];
     [self.view addSubview:mask];
     return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     parent = (FaceViewController *)[self parentViewController];
     [self.view addSubview:[parent subContainer]];
     [self.view bringSubviewToFront:mask];
@@ -80,11 +81,26 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(id)retain
+{
+    NSLog(@"O++ %d", [self retainCount]+1);
+    return [super retain];
+}
+
+-(void)release
+{
+    NSLog(@"O-- %d", [self retainCount]-1);
+    return [super release];
+}
+
+
 -(void)dealloc
 {
     [mask release];
-    [parent release];
+    NSLog(@"mask %d", [mask retainCount]);
+    NSLog(@"parent %d", [parent retainCount]);
     [timer release];
+    NSLog(@"timer %d", [timer retainCount]);
     [super dealloc];
     
 }

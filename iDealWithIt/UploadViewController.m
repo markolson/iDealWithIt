@@ -40,6 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     parent = (FaceViewController *)[self parentViewController];
     [self.view addSubview:[parent subContainer]];
     [self.view bringSubviewToFront:mask];
@@ -47,6 +48,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    if(animated == YES) { return; }
     [self render];
 }
 
@@ -130,12 +132,23 @@
 	}
 }
 
+-(id)retain
+{
+    NSLog(@"U++ %d", [self retainCount]+1);
+    return [super retain];
+}
+
+-(void)release
+{
+    NSLog(@"U-- %d", [self retainCount]-1);
+    return [super release];
+}
+
 -(void)dealloc
 {
     [mask release];
-    [parent release];
+    NSLog(@"parent %d", [parent retainCount]);
     [super dealloc];
-    
 }
 
 @end

@@ -43,7 +43,6 @@
     {
         [parent.subContainer removeFromSuperview];
         [self.view addSubview:[parent subContainer]];
-        NSLog(@"Adjustment subviews; %d", [[self.view subviews] count]);
         [self.view bringSubviewToFront:mask];
         [self setOverlay];
     }else{

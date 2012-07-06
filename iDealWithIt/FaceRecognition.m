@@ -37,6 +37,7 @@
     if(self)
     {
         [self setOriginal:img];
+        [img release];
         [self setDelegate:d];
     }
     return self;
@@ -95,6 +96,7 @@
     //POST
     UIImage *image = nil;
     NSMutableArray *images = [[NSMutableArray alloc] init];
+    NSLog(@"images: %d", [images retainCount]);
     if(self.original.size.height > 900 || self.original.size.width > 900)
     {
         float scale = MAX(self.original.size.height, self.original.size.width)/900.0;
@@ -132,7 +134,6 @@
          NSArray *faces = (NSArray *)[(NSDictionary *)[(NSArray *)[response objectForKey:@"photos"] objectAtIndex:0] valueForKey:@"tags"];
          
          NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
-         
          for(NSDictionary *face in faces)
          {
              iFace *obj = [[iFace alloc] init];
@@ -142,10 +143,11 @@
              [obj release];
          }
          [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
+         
          [faceObjects release];
-         [object release];
-         [fwImage release];
      }];
+    [fwImage release];
+    [object release];
 }
 
 

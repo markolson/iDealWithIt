@@ -63,7 +63,7 @@
     }
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.delegate = self;
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, [[Feedback alloc] init], nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, [[[Feedback alloc] init] autorelease], nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     

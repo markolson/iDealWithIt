@@ -51,7 +51,7 @@
 {
     if(animated == YES) { return; }
     [self scaleDownImage];
-    [self setFaces:[@[] mutableCopy]];
+    [self setFaces:[[[NSMutableArray alloc] init] autorelease]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -98,7 +98,6 @@
     [TestFlight passCheckpoint:@"Choose Faces"];
     [nav popToRootViewControllerAnimated:NO];
     [chooseFacesController setOverlay];
-    NSLog(@"Now there are %d", [[nav viewControllers] count]);
 }
 
 

@@ -46,4 +46,11 @@
     return (self.left_eye.y - self.right_eye.y) / (self.left_eye.x - self.right_eye.x);
 }
 
+-(NSString *)description {
+    NSMutableString *s = [[[NSMutableString alloc] init] autorelease];
+    [s appendFormat:@"left eye @ %f, %f", left_eye.x, left_eye.y];
+    [s appendFormat:@" | right eye @ %f, %f", right_eye.x, right_eye.y];
+    return s;
+}
+
 @end

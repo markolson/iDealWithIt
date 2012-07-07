@@ -34,7 +34,7 @@
     chooseGlassesController = [[OverlayPickerViewController alloc] init];
     chooseDestinationController = [[UploadViewController alloc] init];
     
-    subContainer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    subContainer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
     [nav.navigationBar setHidden:YES];
     
     optionBar = [nav toolbar];
@@ -73,10 +73,10 @@
 -(void)scaleDownImage
 {
     float scale = 1.0;
-    if(image.size.height > 420 || image.size.width > 320)
+    if(image.size.height > subContainer.bounds.size.height*2 || image.size.width > subContainer.bounds.size.width)
     {
-        float extra_height = image.size.height - 420;
-        if(extra_height > 0) { scale = image.size.height/420; }
+        float extra_height = image.size.height - (subContainer.bounds.size.height*2);
+        if(extra_height > 0) { scale = image.size.height/(subContainer.bounds.size.height*2); }
     }
     UIImage *preview = [image resizedImage:CGSizeMake(image.size.width/scale, image.size.height/scale) interpolationQuality:kCGInterpolationLow];
     [self setImage:preview];
@@ -118,7 +118,6 @@
 -(void)sendMessageWithData:(NSData *)data
 {
     [nav popToRootViewControllerAnimated:NO];
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     MFMailComposeViewController *compose = [[MFMailComposeViewController alloc] init];
     [compose setSubject:@"Deal"];
     [compose setMessageBody:@"boom." isHTML:NO];
@@ -138,7 +137,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-
+/**
 -(id)retain
 {
     NSLog(@"F++ %d", [self retainCount]+1);
@@ -150,6 +149,7 @@
     NSLog(@"F-- %d", [self retainCount]-1);
     return [super release];
 }
+ **/
 
 -(void)dealloc
 {

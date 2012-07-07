@@ -82,8 +82,9 @@
 
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:[UIImage imageNamed:@"mst.jpg"]];
     [self.tabBarController setSelectedIndex:0];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
+    
     [picker release];
 }
 
@@ -96,4 +97,5 @@
     [self.tabBarController setSelectedIndex:0];
     [picker release];
 }
+
 @end

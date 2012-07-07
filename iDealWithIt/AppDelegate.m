@@ -82,7 +82,7 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
-    [self.window.rootViewController dismissViewControllerAnimated:YES completion:NULL];
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion:NULL];
     workflowController = [[FaceViewController alloc] initWithImage:raw];
     [self.window setRootViewController:workflowController];
 }

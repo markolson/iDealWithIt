@@ -12,6 +12,8 @@
 #import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define iOStoFace(f,x) [NSNumber numberWithDouble:(f/x)*100]
+
 @implementation FaceRecognition
 
 @synthesize original;
@@ -46,13 +48,9 @@
 - (void) recognizeWithImage:(UIImage *)image andFinalSize:(CGSize)_canvas {
     [self setCanvas:_canvas];
     [self setOriginal:image];
-    Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
+    //Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
+
     if(NO)
-    {
-        [self recognizeUsingIOS];
-        return;
-    }
-    if([access isReachable])
     {
         [self recognizeUsingFace];
     }else{
@@ -62,27 +60,50 @@
 }
 // Reachability *netReach = [Reachability reachabilityWithHostName:@"host.name"];
 
-#pragma mark Internal Stuff.
+#pragma mark Internal Stuff
 
 -(void) recognizeUsingIOS {
-    CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:[NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy]];
-    NSArray* features = [detector featuresInImage:[self.original CIImage]];
     
-    NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
-    for(CIFaceFeature* faceFeature in features)
-    {
-        NSDictionary * face = @{@"eye_right": @{@"x": [NSNumber numberWithDouble:faceFeature.rightEyePosition.x],
-                                                @"y": [NSNumber numberWithDouble:faceFeature.rightEyePosition.y]},
-                                @"eye_left": @{@"x": [NSNumber numberWithDouble:faceFeature.leftEyePosition.x],
-                                                @"y": [NSNumber numberWithDouble:faceFeature.leftEyePosition.y]}};
-        iFace *obj = [[iFace alloc] init];
-        [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"]];
-        [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"]];
-        [faceObjects addObject:obj];
-        [obj release];
-    }
-    [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
-    [faceObjects release];
+    UIImage *i = original;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        CIImage *image = [[CIImage alloc] initWithImage:i];
+    
+        //NSString *accuracy = CIDetectorAccuracyHigh;
+        NSString *accuracy = CIDetectorAccuracyLow;
+        NSDictionary *options = [NSDictionary dictionaryWithObject:accuracy forKey:CIDetectorAccuracy];
+        CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:options];
+        
+        NSArray *features = [detector featuresInImage:image];
+        UIGraphicsEndImageContext();
+        NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
+        for(CIFaceFeature* faceFeature in features)
+        {
+            // convert each coordinate to a percentage?
+            NSDictionary * face =
+            @{@"eye_right":
+                @{@"x": iOStoFace(faceFeature.rightEyePosition.x, i.size.width),
+                @"y": iOStoFace((i.size.height-faceFeature.rightEyePosition.y), i.size.height)
+            },
+            @"eye_left":
+            @{@"x": iOStoFace(faceFeature.leftEyePosition.x, i.size.width),
+                @"y": iOStoFace((i.size.height-faceFeature.leftEyePosition.y), i.size.height)
+            }};
+            iFace *obj = [[iFace alloc] init];
+            
+            [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"] andDimensions:canvas];
+            [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"] andDimensions:canvas];
+            [faceObjects addObject:obj];
+            [obj release];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
+        });
+        [image release];
+        
+    });
 }
 
 -(void) recognizeUsingFace {

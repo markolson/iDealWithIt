@@ -20,7 +20,7 @@
 -(id)init
 {
     self = [super init];
-    mask = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)] autorelease];
+    mask = [[[UIImageView alloc] initWithFrame:CGRectMake(-20, 0, 360, 480)] autorelease];
     [self.view addSubview:mask];
     return self;
 }

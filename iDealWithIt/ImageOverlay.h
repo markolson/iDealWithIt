@@ -19,7 +19,7 @@
 
 - (UIImage *)nextFrame;
 - (UIImage *)layerAtFrame:(int)frame_number of:(int)total_frames;
-- (void)setFrames:(int)frames;
+- (ImageOverlay *)setFrames:(int)frames;
 - (id)initWithFaces:(NSArray *)faces andDimensions:(CGSize)dimensions;
 - (BOOL)isLastFrame;
 @end

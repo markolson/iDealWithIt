@@ -16,7 +16,7 @@
     UINavigationController *nav;
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *subContainer;
+@property (retain, nonatomic) UIImageView *subContainer;
 @property (retain, nonatomic) IBOutlet UIToolbar *optionBar;
 
 @property (retain, nonatomic) UIImage *image;
@@ -33,4 +33,6 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+
+-(void)sendMessageWithData:(NSData *)d;
 @end

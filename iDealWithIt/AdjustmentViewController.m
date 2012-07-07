@@ -10,6 +10,8 @@
 #import "MBProgressHUD.h"
 #import "FaceViewController.h"
 
+#define iOStoFace(f,x) [NSNumber numberWithDouble:(f/x)*100]
+
 @interface AdjustmentViewController ()
 
 @end
@@ -20,7 +22,7 @@
 -(id)init
 {
     self = [super init];
-    mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    mask = [[UIImageView alloc] initWithFrame:CGRectMake(-20, 0, 360, 480)];
     [self.view addSubview:mask];
     return self;
 }
@@ -65,12 +67,12 @@
     CGPoint tap = [sender locationInView:self.view];
     if([inprogress hasEye:LeftEye])
     {
-        [inprogress setEye:RightEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
+        [inprogress setEye:RightEye withDictionary:@{@"x": iOStoFace(tap.x, mask.frame.size.width), @"y": iOStoFace(tap.y, mask.frame.size.height)} andDimensions:mask.bounds.size];
         [parent.faces addObject:inprogress];
         [TestFlight passCheckpoint:@"Added face"];
         [self setOverlay];
     }else{
-        [inprogress setEye:LeftEye withDictionary:@{@"x": [NSNumber numberWithDouble:tap.x], @"y": [NSNumber numberWithDouble:tap.y]}];
+        [inprogress setEye:LeftEye withDictionary:@{@"x": iOStoFace(tap.x, mask.frame.size.width), @"y": iOStoFace(tap.y, mask.frame.size.height)} andDimensions:mask.bounds.size];
     }
 }
 
@@ -91,7 +93,7 @@
     
     [parent.optionBar setItems:@[addFaceButton,spacer,done] animated:NO];
     
-    ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:self.view.frame.size] autorelease];
+    ImageOverlay *io = [[[ImageOverlay alloc] initWithFaces:parent.faces andDimensions:mask.bounds.size] autorelease];
     [mask setImage:[io layerAtFrame:12 of:12]];
 }
 

@@ -82,7 +82,11 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
-    [self.window.rootViewController dismissViewControllerAnimated:NO completion:NULL];
+    if(workflowController && [workflowController isKindOfClass:[FaceViewController class]])
+    {
+        //[workflowController clean];
+        [workflowController release];
+    }
     workflowController = [[FaceViewController alloc] initWithImage:raw];
     [self.window setRootViewController:workflowController];
 }
@@ -91,11 +95,7 @@
 {
     [self.tabBarController setSelectedIndex:0];
     [self.window setRootViewController:self.tabBarController];
-    if([workflowController isKindOfClass:[FaceViewController class]])
-    {
-        //[workflowController clean];
-        [workflowController release];
-    }
+    
 }
 
 

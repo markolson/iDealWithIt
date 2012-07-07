@@ -14,5 +14,5 @@
 @property (retain, nonatomic) MBProgressHUD *hud;
 @property (retain, nonatomic) IBOutlet UIImageView *mask;
 
--(void)setParent:(FaceViewController *)parent;
+-(void)setOverlay;
 @end

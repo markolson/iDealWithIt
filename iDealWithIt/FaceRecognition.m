@@ -50,12 +50,8 @@
     [self setOriginal:image];
     //Reachability *access = [Reachability reachabilityWithHostname:@"apple.com"];
 
-    if(NO)
-    {
-        [self recognizeUsingFace];
-    }else{
-        [self recognizeUsingIOS];
-    }
+    [self recognizeUsingIOS];
+
     
 }
 // Reachability *netReach = [Reachability reachabilityWithHostName:@"host.name"];
@@ -70,12 +66,13 @@
         
         CIImage *image = [[CIImage alloc] initWithImage:i];
     
-        //NSString *accuracy = CIDetectorAccuracyHigh;
-        NSString *accuracy = CIDetectorAccuracyLow;
+        NSString *accuracy = CIDetectorAccuracyHigh;
+        //NSString *accuracy = CIDetectorAccuracyLow;
         NSDictionary *options = [NSDictionary dictionaryWithObject:accuracy forKey:CIDetectorAccuracy];
         CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:options];
         
         NSArray *features = [detector featuresInImage:image];
+        [image release];
         UIGraphicsEndImageContext();
         NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
         for(CIFaceFeature* faceFeature in features)
@@ -91,7 +88,6 @@
                 @"y": iOStoFace((i.size.height-faceFeature.leftEyePosition.y), i.size.height)
             }};
             iFace *obj = [[iFace alloc] init];
-            
             [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"] andDimensions:canvas];
             [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"] andDimensions:canvas];
             [faceObjects addObject:obj];
@@ -101,75 +97,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
         });
-        [image release];
         
     });
 }
-
--(void) recognizeUsingFace {
-    
-    [FWKeysHelper setFaceAPI:@"2f67db92fdb19ae9c269a4bdae34a46f"];
-    [FWKeysHelper setFaceSecretAPI:@"7414ec16d863f65caa5c3169a8112045"];
-    
-    FWObject *object = [FWObject new];
-    
-    
-    //POST
-    UIImage *image = nil;
-    NSMutableArray *images = [[NSMutableArray alloc] init];
-    NSLog(@"images: %d", [images retainCount]);
-    if(self.original.size.height > 900 || self.original.size.width > 900)
-    {
-        float scale = MAX(self.original.size.height, self.original.size.width)/900.0;
-        
-        image = [self.original resizedImage:CGSizeMake(self.original.size.width/scale, self.original.size.height/scale) interpolationQuality:kCGInterpolationLow];
-    }else{
-        image = self.original;
-    }
-    UIImage *rotated = [image scaleAndRotate];
-
-    NSData *blob = UIImageJPEGRepresentation(rotated, 0.6);
-    FWImage *fwImage = [[FWImage alloc] initWithData:blob
-                                           imageName:@"resized"
-                                           extension:@"jpg"
-                                         andFullPath:@""];
-    
-    TFLog(@"Uploading image to face: %dKB", [blob length]/(8*1024));
-    [blob release];
-    
-    fwImage.tag = 999;
-    [images addImagePOSTToArray:fwImage];
-    
-    [object setPostImages:images];
-    
-    object.isRESTObject = NO;
-    object.wantRecognition = NO;
-    
-    [object setDetector:DETECTOR_TYPE_DEFAULT];
-    [object setFormat:FORMAT_TYPE_JSON];
-    
-    [[FaceWrapper instance] detectFaceWithFWObject:object 
-                                   runInBackground:NO
-                                    completionData:^(NSDictionary *response, int tagImagePost) 
-     {
-         NSArray *faces = (NSArray *)[(NSDictionary *)[(NSArray *)[response objectForKey:@"photos"] objectAtIndex:0] valueForKey:@"tags"];
-         
-         NSMutableArray *faceObjects = [[NSMutableArray alloc] init];
-         for(NSDictionary *face in faces)
-         {
-             iFace *obj = [[iFace alloc] init];
-             [obj setEye:RightEye withDictionary:[face objectForKey:@"eye_right"] andDimensions:self.canvas];
-             [obj setEye:LeftEye withDictionary:[face objectForKey:@"eye_left"] andDimensions:self.canvas];
-             [faceObjects addObject:obj];
-             [obj release];
-         }
-         [self.delegate FaceRecognizer:self didFindFaces:faceObjects];
-         
-         [faceObjects release];
-     }];
-    [fwImage release];
-    [object release];
-}
-
 
 @end

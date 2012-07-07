@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WrapperFace/FWImageController.h>
-#import <WrapperFace/FWKeysHelper.h>
 
 #import "UIImage+Resize.h"
 
@@ -23,7 +21,6 @@
 - (id)initWithImage:(UIImage *)image andDelegate:(id)delegate;
 - (void) recognizeWithImage:(UIImage *)image andFinalSize:(CGSize)canvas;
 
-- (void) recognizeUsingFace;
 - (void) recognizeUsingIOS;
 
 @end

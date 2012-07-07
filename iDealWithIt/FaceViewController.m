@@ -34,11 +34,12 @@
     chooseGlassesController = [[OverlayPickerViewController alloc] init];
     chooseDestinationController = [[UploadViewController alloc] init];
     
-    subContainer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
+    subContainer = [[UIImageView alloc] initWithFrame:CGRectMake(-20, 0, 360, 480)];
     [nav.navigationBar setHidden:YES];
     
     optionBar = [nav toolbar];
     [nav setToolbarHidden:NO];
+    [[nav toolbar] setTranslucent:YES];
     [[nav toolbar] setTintColor:[UIColor blackColor]];
     
     [self setImage:_image];
@@ -66,12 +67,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         recognizer = [[FaceRecognition alloc] init];
         [recognizer setDelegate:self];
-        [recognizer recognizeWithImage:image andFinalSize:self.subContainer.frame.size];
+        [recognizer recognizeWithImage:image andFinalSize:self.subContainer.bounds.size];
     });
 }
 
 -(void)scaleDownImage
 {
+    NSLog(@"current image size is %fx%f", image.size.width, image.size.height);
     float scale = 1.0;
     if(image.size.height > subContainer.bounds.size.height*2 || image.size.width > subContainer.bounds.size.width)
     {
@@ -97,7 +99,7 @@
 {
     [TestFlight passCheckpoint:@"Choose Faces"];
     [nav popToRootViewControllerAnimated:NO];
-    [chooseFacesController setOverlay];
+    [(AdjustmentViewController *)chooseFacesController setOverlay];
 }
 
 
@@ -134,7 +136,7 @@
     [TestFlight passCheckpoint:@"Sent/Cancelled"];
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate showMainPage];
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
 }
 
 /**

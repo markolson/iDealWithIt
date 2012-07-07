@@ -71,20 +71,21 @@
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     cameraUI.mediaTypes = [[[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil] autorelease];
-    
+
     cameraUI.allowsEditing = NO;
     
     cameraUI.delegate = delegate;
     
-    [controller presentViewController:cameraUI animated:YES completion:NULL];
+    [self.tabBarController presentViewController:cameraUI animated:YES completion:NULL];
+    //[cameraUI release];
     return YES;
 }
 
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+    [self.tabBarController dismissModalViewControllerAnimated:YES];
     [self.tabBarController setSelectedIndex:0];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showMainPage];
-    
     [picker release];
 }
 
@@ -92,6 +93,7 @@
 - (void) imagePickerController: (UIImagePickerController *) picker
  didFinishPickingMediaWithInfo: (NSDictionary *) info {
     
+    [self.tabBarController dismissModalViewControllerAnimated:YES];
     UIImage *raw = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showPreviewWithImage:raw];
     [self.tabBarController setSelectedIndex:0];

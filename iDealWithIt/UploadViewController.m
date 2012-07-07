@@ -26,7 +26,7 @@
 -(id)init
 {
     self = [super init];
-    mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+    mask = [[UIImageView alloc] initWithFrame:CGRectMake(-20, 0, 360, 480)];
     [self.view addSubview:mask];
     return self;
 }
@@ -72,7 +72,7 @@
     
 	hud.removeFromSuperViewOnHide = YES;
 	hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Reticulating";
+    hud.labelText = @"Reticulating Splines";
     
     
 	[NSThread detachNewThreadSelector:@selector(exportThread:) toTarget:self withObject:tempFile];
@@ -99,11 +99,11 @@
         NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount] forKey:(NSString *)kCGImagePropertyGIFDictionary];
         
 
-		CGSize canvasSize = parent.image.size;
+		CGSize canvasSize = CGSizeMake(360, 480);
         for (int i = 0; i < [io frame_count]; i++) {
             hud.progress = (i+1)/[io frame_count];
             UIGraphicsBeginImageContext( canvasSize );
-            [parent.image drawAtPoint:CGPointMake(0, 0)];
+            [parent.image drawInRect:CGRectMake(0,0, canvasSize.width,canvasSize.height) blendMode:kCGBlendModeNormal alpha:1.0];
             [[io nextFrame] drawInRect:CGRectMake(0,0, canvasSize.width,canvasSize.height) blendMode:kCGBlendModeNormal alpha:1.0];
             UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
             

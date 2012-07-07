@@ -26,9 +26,10 @@
     return self;
 }
 
--(void)setFrames:(int)frames
+-(ImageOverlay *)setFrames:(int)frames
 {
     self.frame_count = frames/1.0;
+    return self;
 }
 
 -(UIImage *)nextFrame
@@ -105,13 +106,12 @@
         
         float peak = MAX(face.right_eye.y, face.left_eye.y);
         float this_y = peak * frame_number/haha - (height/1.8);
-        
         [glasses drawInRect:CGRectMake(start_left,this_y, width,height) blendMode:kCGBlendModeNormal alpha:1.0];
     }
     if([self isLastFrame])
     {
         UIImage *deal = [UIImage imageNamed:@"dealwithit.png"];
-        [deal drawInRect:CGRectMake(20, 320, 280, 70) blendMode:kCGBlendModeNormal alpha:1.0];
+        [deal drawInRect:CGRectMake(40, 400, 280, 70) blendMode:kCGBlendModeNormal alpha:1.0];
     }
     layer = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

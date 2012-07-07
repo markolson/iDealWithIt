@@ -51,7 +51,7 @@
 {
     if(animated == YES) { return; }
     [self scaleDownImage];
-    [self setFaces:[[[NSMutableArray alloc] init] autorelease]];
+    [self setFaces:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -124,14 +124,40 @@
     [compose setMessageBody:@"boom." isHTML:NO];
     [compose addAttachmentData:data mimeType:@"image/gif" fileName:@"dealwithit.gif"];
     [compose setWantsFullScreenLayout:YES];
-    compose.mailComposeDelegate = appDelegate;
+    compose.mailComposeDelegate = self;
     [self presentModalViewController:compose animated:YES];
     [compose release];
     //[appDelegate showMainPage];
 }
 
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [TestFlight passCheckpoint:@"Sent/Cancelled"];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate showMainPage];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+-(id)retain
+{
+    NSLog(@"F++ %d", [self retainCount]+1);
+    return [super retain];
+}
+
+-(void)release
+{
+    NSLog(@"F-- %d", [self retainCount]-1);
+    return [super release];
+}
+
 -(void)dealloc
 {
+    // Let's Do Horrible Things Today!
+    while([nav popViewControllerAnimated:NO]);
+    
+    [chooseDestinationController release];
+    [chooseGlassesController release];
     [faces release];
     [subContainer release];
     [image release];

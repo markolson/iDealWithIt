@@ -25,12 +25,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     if(animated == YES) { return; }
@@ -58,6 +52,12 @@
         parent = (FaceViewController *)[self parentViewController];
 
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [mask setImage:nil];
+    [parent.subContainer removeFromSuperview];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender

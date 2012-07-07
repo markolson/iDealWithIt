@@ -82,11 +82,6 @@
 
 - (void) showPreviewWithImage:(UIImage *)raw
 {
-    if([workflowController isKindOfClass:[FaceViewController class]])
-    {
-        //[workflowController clean];
-        [workflowController release];
-    }
     [self.window.rootViewController dismissViewControllerAnimated:YES completion:NULL];
     workflowController = [[FaceViewController alloc] initWithImage:raw];
     [self.window setRootViewController:workflowController];
@@ -96,14 +91,14 @@
 {
     [self.tabBarController setSelectedIndex:0];
     [self.window setRootViewController:self.tabBarController];
+    if([workflowController isKindOfClass:[FaceViewController class]])
+    {
+        //[workflowController clean];
+        [workflowController release];
+    }
 }
 
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    [TestFlight passCheckpoint:@"Sent/Cancelled"];
-    [self.window.rootViewController dismissModalViewControllerAnimated:YES];
-    [self showMainPage];
-}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application

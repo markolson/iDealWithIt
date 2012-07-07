@@ -147,7 +147,6 @@
 -(void)dealloc
 {
     [mask release];
-    NSLog(@"parent %d", [parent retainCount]);
     [super dealloc];
 }
 

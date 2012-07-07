@@ -68,6 +68,7 @@
 {
     [timer invalidate];
     [mask setImage:nil];
+    [parent.subContainer removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +81,7 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 /**
 -(id)retain
 {

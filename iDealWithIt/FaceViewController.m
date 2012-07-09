@@ -43,7 +43,6 @@
     [[nav toolbar] setTintColor:[UIColor blackColor]];
     
     [self setImage:_image];
-    [self scaleDownImage];
     
     return self;
 }
@@ -61,7 +60,7 @@
     [self chooseFaces];
     [chooseFacesController viewDidAppear:animated];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    hud.labelText = @"Locating Faces";
+    hud.labelText = @"Searching for Faces";
     hud.dimBackground = true;
     [hud setRemoveFromSuperViewOnHide: true];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -99,7 +98,7 @@
 {
     [TestFlight passCheckpoint:@"Choose Faces"];
     [nav popToRootViewControllerAnimated:NO];
-    [(AdjustmentViewController *)chooseFacesController setOverlay];
+    //[(AdjustmentViewController *)chooseFacesController setOverlay];
 }
 
 
@@ -131,12 +130,12 @@
     //[appDelegate showMainPage];
 }
 
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
     [TestFlight passCheckpoint:@"Sent/Cancelled"];
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate showMainPage];
-    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 /**

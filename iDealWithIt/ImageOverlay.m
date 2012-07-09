@@ -90,6 +90,7 @@
 
 -(UIImage *)layerAtFrame:(int)frame_number of:(int)total_frames
 {
+    //NSLog(@"Drawing a layer on a %fx%f canvas", dimensions.width, dimensions.height);
     UIGraphicsBeginImageContext( dimensions );
     
     for (iFace *face in self.faces) {
@@ -102,8 +103,7 @@
         
         float haha = total_frames/1.0;
         
-        //float this_y = (((face.right_eye.y + face.left_eye.y)/2.0)) * frame_number/haha;
-        
+        //NSLog(@"Face: %@", face);
         float peak = MAX(face.right_eye.y, face.left_eye.y);
         float this_y = peak * frame_number/haha - (height/1.8);
         [glasses drawInRect:CGRectMake(start_left,this_y, width,height) blendMode:kCGBlendModeNormal alpha:1.0];

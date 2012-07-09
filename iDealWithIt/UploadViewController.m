@@ -124,6 +124,7 @@
         
         [io release];
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@", path);
             [parent sendMessageWithData:[NSData dataWithContentsOfFile:path]];
         });
         

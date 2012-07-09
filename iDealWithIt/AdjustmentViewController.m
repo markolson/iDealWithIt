@@ -65,14 +65,16 @@
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     CGPoint tap = [sender locationInView:self.view];
+    NSLog(@"tapped face with a %fx%f", tap.x, tap.y);
     if([inprogress hasEye:LeftEye])
     {
-        [inprogress setEye:RightEye withDictionary:@{@"x": iOStoFace(tap.x, mask.frame.size.width), @"y": iOStoFace(tap.y, mask.frame.size.height)} andDimensions:mask.bounds.size];
+        [inprogress setEye:RightEye withDictionary:@{@"x": iOStoFace(tap.x, 320), @"y": iOStoFace(tap.y, mask.bounds.size.height)} andDimensions:mask.bounds.size];
         [parent.faces addObject:inprogress];
         [TestFlight passCheckpoint:@"Added face"];
+        NSLog(@"added face with size of %fx%f",mask.bounds.size.width, mask.bounds.size.height);
         [self setOverlay];
     }else{
-        [inprogress setEye:LeftEye withDictionary:@{@"x": iOStoFace(tap.x, mask.frame.size.width), @"y": iOStoFace(tap.y, mask.frame.size.height)} andDimensions:mask.bounds.size];
+        [inprogress setEye:LeftEye withDictionary:@{@"x": iOStoFace(tap.x, 320), @"y": iOStoFace(tap.y, mask.bounds.size.height)} andDimensions:mask.bounds.size];
     }
 }
 

@@ -7,18 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PlayerView.h"
-
-#import "GifVideo.h"
-#import "VideoSource.h"
-#import "PlayerView.h"
+#import "GIF.h"
 
 @interface ImageCell : UITableViewCell {
 
 }
 
--(void)play:(NSString *)source;
-
-@property (nonatomic, retain) IBOutlet PlayerView *gif;
+@property (nonatomic, retain) IBOutlet UIImageView *canvas;
 @property (nonatomic, retain) IBOutlet UILabel *name;
+@property (nonatomic, retain) UIImage *image;
+
+@property (nonatomic, retain) GIF *gif;
+
+-(void)setImageFromURL:(NSURL *)path;
 @end

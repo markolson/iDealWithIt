@@ -10,7 +10,9 @@
 
 @implementation ImageCell
 
-@synthesize name, gif;
+@synthesize name, canvas, image, gif;
+
+static dispatch_queue_t queue;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -28,26 +30,21 @@
     // Configure the view for the selected state
 }
 
--(void)play:(NSString *)video{
-    // Load test.gif VideoSource
-    NSLog(@"img: %@", video);
-    NSString *str = [[NSBundle mainBundle] pathForResource:video ofType:nil];
-    FILE *fp = fopen([str UTF8String], "r");
-    VideoSource *src = VideoSource_init(fp, VIDEOSOURCE_FILE);
-    src->writeable = false;
-    
-    // Init video using VideoSource
-    Video *vid = [[GifVideo alloc] initWithSource:src inContext:[gif context]];
-    VideoSource_release(src);
-    
-    // Start if loaded
-    if (vid) {
-        [gif startAnimation:vid];
-        [vid release];
-    }
-    
-    // Cleanup if failed
-    fclose(fp);
+- (void)setImageFromURL:(NSURL *)input
+{
+    [image autorelease];
+    NSData *d = [NSData dataWithContentsOfURL:input];
+    canvas.image = [UIImage imageWithData:d];
+    gif = [[GIF alloc] initWithData:d];
+    //[d release];
+}
+
+-(void)dealloc
+{
+    [gif release];
+    [image release];
+    NSLog(@"releasing cell %d", [image retainCount]);
+    [super dealloc];
 }
 
 @end

@@ -67,7 +67,6 @@
     
     ImageCell *cell = (ImageCell *) [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
     if (cell == nil) {
-        NSLog(@"nil index %d: %@", indexPath.row, [images objectAtIndex:indexPath.row]);
 		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:nil options:nil];
 		
 		for (id currentObject in topLevelObjects){
@@ -76,10 +75,7 @@
 				break;
 			}
 		}
-	}else{
-        NSLog(@"non-nil index %d: %@", indexPath.row, [images objectAtIndex:indexPath.row]);
-        
-    }
+	}
     NSString *path = [[NSBundle mainBundle] pathForResource:[images objectAtIndex:indexPath.row] ofType:nil];
     
     [cell setImageFromURL:[NSURL fileURLWithPath:path]];

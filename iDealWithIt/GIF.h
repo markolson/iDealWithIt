@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GIF : NSObject
+@interface GIF : NSObject {
+    int pointer;
+    NSData *buffer;
+    NSMutableData *screen;
+}
 
 @property (nonatomic, retain) NSData *gif;
 

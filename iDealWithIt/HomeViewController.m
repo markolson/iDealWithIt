@@ -79,7 +79,7 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:[images objectAtIndex:indexPath.row] ofType:nil];
     
     [cell setImageFromURL:[NSURL fileURLWithPath:path]];
-
+    
 	cell.name.text = @"Mark Olson";
     return cell;
 }

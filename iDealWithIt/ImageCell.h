@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GIF.h"
+#import "AnimatedGif.h"
 
 @interface ImageCell : UITableViewCell {
 

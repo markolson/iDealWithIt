@@ -34,6 +34,7 @@ static dispatch_queue_t queue;
 {
     [image autorelease];
     NSData *d = [NSData dataWithContentsOfURL:input];
+    [AnimatedGif getAnimationForGifAtUrl: input];
     canvas.image = [UIImage imageWithData:d];
     gif = [[GIF alloc] initWithData:d];
     //[d release];

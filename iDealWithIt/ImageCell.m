@@ -34,9 +34,17 @@ static dispatch_queue_t queue;
 {
     [image autorelease];
     NSData *d = [NSData dataWithContentsOfURL:input];
-    [AnimatedGif getAnimationForGifAtUrl: input];
-    canvas.image = [UIImage imageWithData:d];
-    gif = [[GIF alloc] initWithData:d];
+    //[AnimatedGif getAnimationForGifAtUrl: input];
+    //canvas.image = [UIImage imageWithData:d];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        gif = [[GIF alloc] initWithData:d];
+        GIFFrame *img = ((GIFFrame *)[gif.frames objectAtIndex:0]);
+        dispatch_async(dispatch_get_main_queue(), ^{ canvas.image = [UIImage imageWithData:img.data]; });
+        for(GIFFrame *frame in gif.frames)
+        {
+            NSLog(@"Frame delay is %f", frame.delay);
+        }
+    });
     //[d release];
 }
 

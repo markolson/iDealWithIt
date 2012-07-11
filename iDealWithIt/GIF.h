@@ -10,7 +10,7 @@
 
 @interface GIFFrame : NSObject
 {
-	NSData *data;
+	NSMutableData *data;
 	NSData *header;
 	double delay;
 	int disposalMethod;
@@ -29,6 +29,7 @@
     int pointer;
     NSData *buffer;
     NSMutableData *screen;
+	NSMutableData *GIF_global;
     
     int GIF_sorted;
 	int GIF_colorS;
@@ -38,5 +39,9 @@
 
 @property (nonatomic, retain) NSData *gif;
 
+
+@property (nonatomic, copy) NSMutableArray *frames;
+
 -(id)initWithData:(NSData *)data;
+
 @end

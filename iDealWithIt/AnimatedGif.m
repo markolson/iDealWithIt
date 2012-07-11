@@ -535,6 +535,7 @@ static AnimatedGif * instance;
     else
     {
 		[GIF_string appendData:GIF_global];
+        NSLog(@"+]Frame is %d", [GIF_string length]);
 	}
 	
 	// Add Graphic Control Extension Frame (for transparancy)
@@ -582,6 +583,7 @@ static AnimatedGif * instance;
 	
 	// save the frame into the array of frames
 	frame.data = GIF_string;
+    NSLog(@"+=Frame is %d", [frame.data length]);
 }
 
 /* Puts (int) length into the GIF_buffer from file, returns whether read was succesfull */

@@ -24,7 +24,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"165-glasses-3.png"];
         //images = [@[@"http://i-deal.s3.amazonaws.com/a2828357-b263-4e5c-ac51-ba2247f1a4c7.gif", @"http://i-deal.s3.amazonaws.com/a2b43718-8321-4417-b520-ba2bbcd0fb12.gif", @"http://i-deal.s3.amazonaws.com/f77d9942-ea2f-4705-b9ea-f9d6950ca674.gif"] mutableCopy];
         
-        images = [@[@"1342240628.gif", @"1341772033.gif", @"1341760966.gif"] mutableCopy];
+        images = [@[@"1.gif", @"2.gif", @"3.gif"] mutableCopy];
     }
     return self;
 }
@@ -68,7 +68,7 @@
     ImageCell *cell = (ImageCell *) [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
     if (cell == nil) {
 		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:nil options:nil];
-		
+		NSLog(@"Hey looking at a cell for %d", indexPath.row);
 		for (id currentObject in topLevelObjects){
 			if ([currentObject isKindOfClass:[UITableViewCell class]]){
 				cell =  (ImageCell *) currentObject;
@@ -77,7 +77,7 @@
 		}
 	}
     NSString *path = [[NSBundle mainBundle] pathForResource:[images objectAtIndex:indexPath.row] ofType:nil];
-    
+    NSLog(@"setting image for cell %d", indexPath.row);
     [cell setImageFromURL:[NSURL fileURLWithPath:path]];
     
 	cell.name.text = @"Mark Olson";

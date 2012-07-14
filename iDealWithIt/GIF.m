@@ -12,13 +12,6 @@
 
 @synthesize data, delay, disposalMethod, area, header;
 
-
--(id)retain
-{
-    NSLog(@"GIFFrame retaining: %d", [self retainCount]+1);
-    return [super retain];
-}
-
 - (void) dealloc
 {
 	[data release];
@@ -32,6 +25,14 @@
 @implementation GIF
 @synthesize gif, frames;
 
+-(void)dealloc
+{
+    [frames release];
+    [GIF_global release];
+    //[gif release];
+    [super dealloc];
+}
+
 -(id)initWithData:(NSData *)data
 {
     self = [super init];
@@ -44,7 +45,7 @@
 
 -(void)setGif:(NSData *)g
 {
-    [self.gif autorelease];
+    [gif release];
     gif = [g retain];
     [self parse];
 }
@@ -196,12 +197,12 @@
         GIFFrame *frame = [[GIFFrame alloc] init];
         frame.disposalMethod = (header[1] & 0x1c) >> 2;
         frame.delay = (header[2] | header[3] << 8);
-        
+        if(frame.delay < 0.1) { frame.delay = 10; }
         pointer -= 8;
         frame.header = [self read:8];
         
         [frames addObject:frame];
-        //[frame release];
+        [frame release];
 
     }else{
         pointer--;
@@ -262,7 +263,7 @@
     //gooood
     
     NSMutableData *GIF_string = [NSMutableData dataWithData:[@"GIF89a" dataUsingEncoding: NSUTF8StringEncoding]];
-	[screen setData:[NSData dataWithBytes:bBuffer length:blength]];
+	screen = [NSMutableData dataWithBytes:bBuffer length:blength];
     [GIF_string appendData: screen];
     
 	if (GIF_colorF == 1)
@@ -320,6 +321,7 @@
 	
 	// save the frame into the array of frames
 	frame.data = [GIF_string retain];
+    [GIF_string release];
     return nil;
 }
 

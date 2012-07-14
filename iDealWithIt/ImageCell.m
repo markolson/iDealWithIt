@@ -21,37 +21,38 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)setImageFromURL:(NSURL *)input
 {
+    if([animator isValid])
+    {
+        [animator invalidate];
+        [gif release];
+    }
+    
     [image autorelease];
     NSData *d = [NSData dataWithContentsOfURL:input];
-    //[AnimatedGif getAnimationForGifAtUrl: input];
-    //canvas.image = [UIImage imageWithData:d];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         gif = [[GIF alloc] initWithData:d];
         dispatch_async(dispatch_get_main_queue(), ^{
             canvas.image = [gif imageFromFrame:0];
             [self drawNextFrame:nil];
         });
+        [d release];
     });
-    [d release];
 }
+
 
 -(void)drawNextFrame:(NSTimer *)timer
 {
     if(current_frame >= [gif.frames count]) { current_frame = 0; }
     GIFFrame *t = (GIFFrame *)[gif.frames objectAtIndex:current_frame];
-    //NSLog(@"HEY GUYS %d of %d. going to wait %f", current_frame, [gif.frames count], t.delay);
-    canvas.image = [gif drawFrame:current_frame withPreviousImage:canvas.image];
-    current_frame++;
-    self.animator = [NSTimer scheduledTimerWithTimeInterval:t.delay/100 target:self selector:@selector(drawNextFrame:) userInfo:nil repeats:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        canvas.image = [gif drawFrame:current_frame withPreviousImage:canvas.image];
+        animator = [NSTimer scheduledTimerWithTimeInterval:t.delay/100.0 target:self selector:@selector(drawNextFrame:) userInfo:nil repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:animator forMode:NSRunLoopCommonModes];
+        current_frame++;
+    });
 }
 
 -(void)dealloc
@@ -60,7 +61,6 @@
     [animator release];
     [gif release];
     [image release];
-    NSLog(@"releasing cell %d", [image retainCount]);
     [super dealloc];
 }
 

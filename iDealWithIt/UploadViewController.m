@@ -93,8 +93,8 @@
                                                                             [io frame_count],
                                                                             NULL);
         
-        NSDictionary *gFrames = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @0.3 }};
-        NSDictionary *lFrame = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @3 }};
+        NSDictionary *gFrames = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @0.5 }};
+        NSDictionary *lFrame = @{ (NSString *)kCGImagePropertyGIFDictionary: @{@"DelayTime" : @1 }};
         
         NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount] forKey:(NSString *)kCGImagePropertyGIFDictionary];
         

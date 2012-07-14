@@ -10,9 +10,7 @@
 
 @implementation ImageCell
 
-@synthesize name, canvas, image, gif;
-
-static dispatch_queue_t queue;
+@synthesize name, canvas, image, gif, animator;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -38,18 +36,28 @@ static dispatch_queue_t queue;
     //canvas.image = [UIImage imageWithData:d];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         gif = [[GIF alloc] initWithData:d];
-        GIFFrame *img = ((GIFFrame *)[gif.frames objectAtIndex:0]);
-        dispatch_async(dispatch_get_main_queue(), ^{ canvas.image = [UIImage imageWithData:img.data]; });
-        for(GIFFrame *frame in gif.frames)
-        {
-            NSLog(@"Frame delay is %f", frame.delay);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            canvas.image = [gif imageFromFrame:0];
+            [self drawNextFrame:nil];
+        });
     });
-    //[d release];
+    [d release];
+}
+
+-(void)drawNextFrame:(NSTimer *)timer
+{
+    if(current_frame >= [gif.frames count]) { current_frame = 0; }
+    GIFFrame *t = (GIFFrame *)[gif.frames objectAtIndex:current_frame];
+    //NSLog(@"HEY GUYS %d of %d. going to wait %f", current_frame, [gif.frames count], t.delay);
+    canvas.image = [gif drawFrame:current_frame withPreviousImage:canvas.image];
+    current_frame++;
+    self.animator = [NSTimer scheduledTimerWithTimeInterval:t.delay/100 target:self selector:@selector(drawNextFrame:) userInfo:nil repeats:NO];
 }
 
 -(void)dealloc
 {
+    [animator invalidate];
+    [animator release];
     [gif release];
     [image release];
     NSLog(@"releasing cell %d", [image retainCount]);

@@ -11,13 +11,13 @@
 #import "AnimatedGif.h"
 
 @interface ImageCell : UITableViewCell {
-
+    int current_frame;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *canvas;
 @property (nonatomic, retain) IBOutlet UILabel *name;
 @property (nonatomic, retain) UIImage *image;
-
+@property (nonatomic, retain) NSTimer *animator;
 @property (nonatomic, retain) GIF *gif;
 
 -(void)setImageFromURL:(NSURL *)path;

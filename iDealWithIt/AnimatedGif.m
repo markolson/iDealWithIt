@@ -189,7 +189,7 @@ static AnimatedGif * instance;
 		[GIF_global setData:GIF_buffer];
 	}
     
-	NSLog(@"+whoops. Now at %d", dataPointer);
+	//NSLog(@"+whoops. Now at %d", dataPointer);
 	unsigned char bBuffer[1];
 	while ([self GIFGetBytes:1] == YES)
     {
@@ -338,7 +338,7 @@ static AnimatedGif * instance;
                     // Get Canvas
                     previousCanvas = UIGraphicsGetImageFromCurrentImageContext();
 
-                    // Create Rect (y inverted) to clipping
+                    // Create Rec.t (y inverted) to clipping
                     clipRect = CGRectMake(frame.area.origin.x, size.height - frame.area.size.height - frame.area.origin.y, frame.area.size.width, frame.area.size.height);
                     // Clip Context
                     CGContextClipToRect(ctx, clipRect);
@@ -445,7 +445,7 @@ static AnimatedGif * instance;
 			
 			// We save the delays for easy access.
 			frame.delay = (buffer[1] | buffer[2] << 8);
-             //NSLog(@"+Extension Block Found %f", frame.delay);
+             NSLog(@"+Extension Block Found %d", frame.delay);
 			
 			unsigned char board[8];
 			board[0] = 0x21;
@@ -460,7 +460,7 @@ static AnimatedGif * instance;
 			frame.header = [NSData dataWithBytes:board length:8];
             
 			[GIF_frames addObject:frame];
-             NSLog(@"+read extensions. Now at %d", dataPointer);
+             //NSLog(@"+read extensions. Now at %d", dataPointer);
              
 			[frame release];
 			break;
@@ -535,7 +535,7 @@ static AnimatedGif * instance;
     else
     {
 		[GIF_string appendData:GIF_global];
-        NSLog(@"+]Frame is %d", [GIF_string length]);
+        //NSLog(@"+]Frame is %d", [GIF_string length]);
 	}
 	
 	// Add Graphic Control Extension Frame (for transparancy)
@@ -583,7 +583,7 @@ static AnimatedGif * instance;
 	
 	// save the frame into the array of frames
 	frame.data = GIF_string;
-    NSLog(@"+=Frame is %d", [frame.data length]);
+    //NSLog(@"+=Frame is %d", [frame.data length]);
 }
 
 /* Puts (int) length into the GIF_buffer from file, returns whether read was succesfull */

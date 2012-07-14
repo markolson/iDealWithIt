@@ -12,6 +12,13 @@
 
 @synthesize data, delay, disposalMethod, area, header;
 
+
+-(id)retain
+{
+    NSLog(@"GIFFrame retaining: %d", [self retainCount]+1);
+    return [super retain];
+}
+
 - (void) dealloc
 {
 	[data release];
@@ -40,6 +47,93 @@
     [self.gif autorelease];
     gif = [g retain];
     [self parse];
+}
+
+-(UIImage *)imageFromFrame:(int)frame
+{
+    return [UIImage imageWithData:((GIFFrame *)frames[frame]).data];
+}
+
+-(UIImage *)drawFrame:(int)framenumber withPreviousImage:(UIImage *)lastFrame
+{
+    if(framenumber == 0)
+    {
+        return [self imageFromFrame:0];
+    }
+    
+    GIFFrame *frame = (GIFFrame *)frames[framenumber];
+    
+    CGSize size = lastFrame.size;
+    CGRect rect = CGRectZero;
+    rect.size = size;
+    
+    UIGraphicsBeginImageContext(size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextSaveGState(ctx);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+    CGContextTranslateCTM(ctx, 0.0, -size.height);
+    
+    CGRect clipRect;
+    //NSLog(@"Disposal type %d", frame.disposalMethod);
+    switch (frame.disposalMethod)
+    {
+        case 1: // Do not dispose (draw over context)
+            // Create Rect (y inverted) to clipping
+            CGContextDrawImage(ctx, rect , lastFrame.CGImage);
+            clipRect = CGRectMake(frame.area.origin.x, size.height - frame.area.size.height - frame.area.origin.y, frame.area.size.width, frame.area.size.height);
+            // Clip Context
+            CGContextClipToRect(ctx, clipRect);
+            break;
+        case 2: // Restore to background the rect when the actual frame will go to be drawed
+            // Create Rect (y inverted) to clipping
+            clipRect = CGRectMake(frame.area.origin.x, size.height - frame.area.size.height - frame.area.origin.y, frame.area.size.width, frame.area.size.height);
+            // Clip Context
+            CGContextClipToRect(ctx, clipRect);
+            break;
+        case 3: // Restore to Previous
+            // Create Rect (y inverted) to clipping
+            clipRect = CGRectMake(frame.area.origin.x, size.height - frame.area.size.height - frame.area.origin.y, frame.area.size.width, frame.area.size.height);
+            // Clip Context
+            CGContextClipToRect(ctx, clipRect);
+            break;
+    }
+    
+    UIImage *image = [self imageFromFrame:framenumber];
+    CGContextDrawImage(ctx, rect, image.CGImage);
+    // Restore State
+    CGContextRestoreGState(ctx);
+    
+    switch (frame.disposalMethod)
+    {
+        case 2: // Restore to background color the zone of the actual frame
+            // Save Context
+            CGContextSaveGState(ctx);
+            // Change CTM
+            CGContextScaleCTM(ctx, 1.0, -1.0);
+            CGContextTranslateCTM(ctx, 0.0, -size.height);
+            // Clear Context
+            CGContextClearRect(ctx, clipRect);
+            // Restore Context
+            CGContextRestoreGState(ctx);
+            break;
+        case 3: // Restore to Previous Canvas
+            // Save Context
+            CGContextSaveGState(ctx);
+            // Change CTM
+            CGContextScaleCTM(ctx, 1.0, -1.0);
+            CGContextTranslateCTM(ctx, 0.0, -size.height);
+            // Clear Context
+            CGContextClearRect(ctx, frame.area);
+            // Draw previous frame
+            CGContextDrawImage(ctx, rect, lastFrame.CGImage);
+            // Restore State
+            CGContextRestoreGState(ctx);
+            break;
+    }
+    UIImage *finale = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return finale;
 }
 
 -(bool)parse
@@ -100,8 +194,8 @@
         }
         
         GIFFrame *frame = [[GIFFrame alloc] init];
-        frame.disposalMethod = (header[0] & 0x1c) >> 2;
-        frame.delay = (header[1] | header[2] << 8);
+        frame.disposalMethod = (header[1] & 0x1c) >> 2;
+        frame.delay = (header[2] | header[3] << 8);
         
         pointer -= 8;
         frame.header = [self read:8];

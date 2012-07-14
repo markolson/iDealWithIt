@@ -24,7 +24,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"165-glasses-3.png"];
         //images = [@[@"http://i-deal.s3.amazonaws.com/a2828357-b263-4e5c-ac51-ba2247f1a4c7.gif", @"http://i-deal.s3.amazonaws.com/a2b43718-8321-4417-b520-ba2bbcd0fb12.gif", @"http://i-deal.s3.amazonaws.com/f77d9942-ea2f-4705-b9ea-f9d6950ca674.gif"] mutableCopy];
         
-        images = [@[@"1341772657.gif", @"1341772033.gif", @"1341760966.gif"] mutableCopy];
+        images = [@[@"1342240628.gif", @"1341772033.gif", @"1341760966.gif"] mutableCopy];
     }
     return self;
 }

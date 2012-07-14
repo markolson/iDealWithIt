@@ -43,5 +43,7 @@
 @property (nonatomic, copy) NSMutableArray *frames;
 
 -(id)initWithData:(NSData *)data;
+-(UIImage *)imageFromFrame:(int)frame;
+-(UIImage *)drawFrame:(int)framenumber withPreviousImage:(UIImage *)lastFrame;
 
 @end

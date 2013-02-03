@@ -49,6 +49,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     if(animated == YES) { return; }
     [self scaleDownImage];
     [self setFaces:nil];

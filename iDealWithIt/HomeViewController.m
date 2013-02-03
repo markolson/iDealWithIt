@@ -68,7 +68,7 @@
     ImageCell *cell = (ImageCell *) [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
     if (cell == nil) {
 		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:nil options:nil];
-		NSLog(@"Hey looking at a cell for %d", indexPath.row);
+		//NSLog(@"Hey looking at a cell for %d", indexPath.row);
 		for (id currentObject in topLevelObjects){
 			if ([currentObject isKindOfClass:[UITableViewCell class]]){
 				cell =  (ImageCell *) currentObject;
@@ -77,7 +77,7 @@
 		}
 	}
     NSString *path = [[NSBundle mainBundle] pathForResource:[images objectAtIndex:indexPath.row] ofType:nil];
-    NSLog(@"setting image for cell %d", indexPath.row);
+    //NSLog(@"setting image for cell %d", indexPath.row);
     [cell setImageFromURL:[NSURL fileURLWithPath:path]];
     
 	cell.name.text = @"Mark Olson";

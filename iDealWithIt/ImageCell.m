@@ -30,15 +30,11 @@
     }
     
     [image autorelease];
-    NSData *d = [NSData dataWithContentsOfURL:input];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData *d = [[NSData dataWithContentsOfURL:input] autorelease];
         gif = [[GIF alloc] initWithData:d];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            canvas.image = [gif imageFromFrame:0];
-            [self drawNextFrame:nil];
-        });
-        [d release];
+        [self drawNextFrame:nil];
     });
 }
 

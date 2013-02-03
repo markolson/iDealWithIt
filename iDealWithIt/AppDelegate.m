@@ -53,14 +53,10 @@
     
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        viewController1 = [[[HomeViewController alloc] initWithNibName:@"HomeViewController_iPhone" bundle:nil] autorelease];
+    viewController1 = [[[HomeViewController alloc] initWithNibName:@"HomeViewController_iPhone" bundle:nil] autorelease];
 
-        viewController2 = [[[CaptureViewController alloc] init] autorelease];
-    } else {
-        viewController1 = [[[HomeViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil] autorelease];
-        viewController2 = [[[CaptureViewController alloc] initWithNibName:@"CaptureViewController_iPad" bundle:nil] autorelease];
-    }
+    viewController2 = [[[CaptureViewController alloc] init] autorelease];
+    
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.delegate = self;
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, [[[Feedback alloc] init] autorelease], nil];
